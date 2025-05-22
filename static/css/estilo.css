@@ -145,6 +145,8 @@ header {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    position: fixed;
+    z-index: 999;
 }
 
 .cabecalho {
@@ -221,6 +223,23 @@ header img {
     margin-left: 50px;
 }
 
+
+.seta img {
+    width: 40px;
+    padding: 20px;
+}
+
+.foto {
+    align-items: center;
+    justify-content: center;
+}
+
+.foto img {
+    width: 170px;
+    height: auto;
+}
+
+
 .inputs  {
     display: flex;
     flex-direction: column;
@@ -256,6 +275,7 @@ header img {
     border: none;
     width: 60px;
     height: 30px;
+
     font-family: McLaren;
 }
 
