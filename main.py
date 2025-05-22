@@ -20,13 +20,20 @@ pacientes = []
 def index():
     return render_template('index.html')
 
+@app.route('/quem_somos')
+def quem_somos():
+    return render_template('index.html')
+
+@app.route('/servicos')
+def servicos():
+    return render_template('index.html')
+
+@app.route('/depoimentos')
+def depoimentos():
+    return render_template('index.html')
 @app.route('/login')
 def login():
     return render_template('login.html')
-
-@app.route('/perfil_usuario')
-def perfil_usuario():
-    return render_template('perfil_usuario.html')
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
@@ -58,6 +65,10 @@ def cadastro_usuario():
     except:
         flash(f'Não foi possível criar esse usuário. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
+
+@app.route('/perfil_usuario')
+def perfil_usuario():
+    return render_template('perfil_usuario.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
