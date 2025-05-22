@@ -20,6 +20,7 @@ pacientes = []
 def index():
     return render_template('index.html')
 
+<<<<<<< HEAD
 @app.route('/perfil_usuario')
 def perfil_usuario():
     return render_template('perfil_usuario.html')
@@ -54,6 +55,21 @@ def dashboard():
 @app.route('/perfil_veterinario')
 def perfil_veterinario():
     return render_template('perfil_veterinario.html')
+
+@app.route('/quem_somos')
+def quem_somos():
+    return render_template('index.html')
+
+@app.route('/servicos')
+def servicos():
+    return render_template('index.html')
+
+@app.route('/depoimentos')
+def depoimentos():
+    return render_template('index.html')
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
@@ -146,6 +162,10 @@ def cadastro_animal(codigo):
     except:
         flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
+
+@app.route('/perfil_usuario')
+def perfil_usuario():
+    return render_template('perfil_usuario.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

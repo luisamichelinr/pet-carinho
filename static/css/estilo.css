@@ -205,23 +205,28 @@ header img {
 }
 
 .imgdogsemfoto {
-    height: 25vh;
+    height: 20vh;
     margin: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+
 .patinhas {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-    height: 100vh;
     position: absolute;
     top: 45vh;
     right: 20vh;
+    width: 150px;          
+    height: auto;          
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;  
+    z-index: 0;            
 }
+
 
 .pata1 {
     transform: rotate(-20deg);
@@ -259,18 +264,10 @@ header img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: 30px;
 
 }
 
-.inputs p {}
-
-.inputs p {
-    font-family: McLaren;
-    flex-direction: column;
-
-
-}
 
 .inputs input {
     background-color: #FAD9F2;
@@ -293,6 +290,8 @@ header img {
     width: 60px;
     height: 30px;
     font-family: McLaren;
+    align-items: center;
+    justify-content: center;
 }
 
 .inputs select {
@@ -308,6 +307,7 @@ header img {
 .nomeinput {
     align-items: start;
     justify-content: left;
+    font-family: McLaren;
 
 }
 
@@ -323,4 +323,34 @@ header img {
     padding-left: 80px;
     padding-right: 80px;
     color: var(--cor-branco);
+}
+
+.comentario1 {
+    font-family: Quicksand;
+    margin: 55px;
+    padding: 20px;
+    height: 140px;
+    width: 500px;
+    background-color: #FFF6F7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.comentario2 {
+    font-family: Quicksand;
+    margin: 55px;
+    padding: 20px;
+    height: 140px;
+    width: 500px;
+    background-color: #FFF6F7;
+    border-radius: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.comentario1 span {
+    font-weight: bold;
+}
+
+.comentario2 span {
+    font-weight: bold;
 }
