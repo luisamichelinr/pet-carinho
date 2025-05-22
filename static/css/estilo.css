@@ -220,13 +220,13 @@ header img {
     position: absolute;
     top: 45vh;
     right: 20vh;
-    width: 150px;          
-    height: auto;          
+    width: 150px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    pointer-events: none;  
-    z-index: 0;            
+    pointer-events: none;
+    z-index: 0;
 }
 
 
@@ -260,6 +260,7 @@ header img {
 .rosa {
     padding: 50px;
 }
+
 .foto img {
     width: 170px;
     height: auto;
@@ -353,16 +354,16 @@ header img {
     flex-direction: column;
 }
 
-.h3-quem-somos{
+.h3-quem-somos {
     font-size: 35px;
     margin-top: 20px;
 }
 
-.somos{
+.somos {
     color: var(--cor-roxo-escuro);
 }
 
-.decoracao{
+.decoracao {
     color: var(--cor-branco);
     background-color: var(--cor-roxo);
     border-radius: 50px;
@@ -370,59 +371,57 @@ header img {
     height: 5px;
 }
 
-.p-quem-somos{
+.p-quem-somos {
     margin-top: 30px;
 }
 
-.fundo-rosa{
-    background-color: var(--cor-rosa-claro);
-    width: 1264px;
-    height: 650px;
-    display: inline-block;
-}
 
-.nossos-servicos{
-    margin-top: 80px;
-    justify-self: center;
-    width: 1100px;
-    height: 500px;
-    border-radius: 50px;
-    background-color: var(--cor-branco);
-}
-
-.itens{
-    display: flex;
-    justify-self: center;
-    align-self: center;
-    gap: 200px;
-    margin-bottom: 20px;
-}
-
-.ajuste{
-    width: 90px;
-}
-
-.frase-itens{
-    display: flex;
+.servico {
+    background: var(--cor-branco);
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    justify-self: center;
-    gap: 50px;
 }
 
-.ajustando{
-    font-size: 35px;
-    color: var(--cor-roxo-escuro);
+.servico h2 {
+    color: var(--cor-rosa-escuro);
+    font-size: 32px;
+    margin-bottom: 30px;
+    position: relative;
 }
 
-.ajuste1{
-    width: 130px;
+.iten {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
 }
 
-.titulo-nossos-servicos{
-    justify-self: center;
-    margin-bottom: 60px;
-    padding-top: 30px;
+.iten {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
 }
+
+.iten img {
+    height: 60px;
+    margin-bottom: 15px;
+    filter: hue-rotate(280deg) brightness(1.2);
+}
+
+.iten h3 {
+    color: var(--cor-rosa-escuro);
+    margin-bottom: 10px;
+}
+
+.iten p {
+    font-size: 14px;
+    max-width: 200px;
+}
+
 
 
 .infousuario {
@@ -442,11 +441,13 @@ header img {
     gap: 10px;
     margin-bottom: 20px;
 }
+
 .agendamentos h1 {
     margin-bottom: 30px;
 }
-.agendamentos button{
-    background-color:var(--cor-roxo) ;
+
+.agendamentos button {
+    background-color: var(--cor-roxo);
     width: 100px;
     height: 30px;
     border-radius: 100px;
@@ -458,23 +459,25 @@ header img {
     border-radius: 100px;
     padding: 5px;
     width: 35px;
-    
+
 }
+
 .adicionar p {
     padding: 5px;
     text-align: center;
     color: var(--cor-branco);
 }
 
-.petsp{
-    padding:30px;
+.petsp {
+    padding: 30px;
 }
 
 .pets {
     display: flex;
-    gap: 10px; 
-    flex-wrap: wrap; 
+    gap: 10px;
+    flex-wrap: wrap;
 }
+
 .pets div {
     margin: 20px;
     background-color: var(--cor-rosa-cards);
@@ -485,13 +488,13 @@ header img {
 }
 
 .iconeditar {
-  display: flex;
-  justify-content: flex-start; 
-  align-items: flex-start;    
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .pets img {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .pets h3 {
@@ -526,7 +529,7 @@ header img {
     width: 500px;
     background-color: #FFF6F7;
     border-radius: 20px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .comentario1 span {
