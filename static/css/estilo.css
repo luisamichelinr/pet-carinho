@@ -326,6 +326,7 @@ header img {
 }
 
 .comentario1 {
+    font-family: Quicksand;
     margin: 55px;
     padding: 20px;
     height: 140px;
@@ -336,6 +337,7 @@ header img {
 }
 
 .comentario2 {
+    font-family: Quicksand;
     margin: 55px;
     padding: 20px;
     height: 140px;
@@ -343,4 +345,12 @@ header img {
     background-color: #FFF6F7;
     border-radius: 20px;
       box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.comentario1 span {
+    font-weight: bold;
+}
+
+.comentario2 span {
+    font-weight: bold;
 }
