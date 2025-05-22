@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCarinho - Cadastro do veterinário</title>
+    <link rel="stylesheet" href="static/css/estilo.css">
+</head>
+<body>
+    <header>
+         <img src="static/img/logo.png" alt="Logo da PetCarinho">
+         <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html">Quem somos</a>
+            <a href="index.html">Serviços</a>
+            <a href="index.html">Depoimentos</a>
+            <a href="login.html">Login</a>
+            <a href="cadastro_usuario.html">Cadastro</a>
+         </nav>   
+    </header>
+    <main>
+     <div>
+         <a href="index.html"><img  src="static/img/seta.png" alt="Seta para voltar a Home"></a>
+    </div>
+    <div>
+            <img src="static/img/veterinario.png" alt="Foto do veterinário">
+    </div>
+    <section class="formularioveterinario">
+    <form action="">
+                
+                <label>Nome:</label>
+                <input type="text" 
+                    name="nome" 
+                    placeholder="Digite seu nome" />
+
+
+                <label>Telefone:</label>
+                <input type="tel" 
+                    name="telefone"
+                    placeholder="Digite seu Telefone" 
+                    required />
+
+              
+                <label>Número de registro:</label>
+                <input type="number" 
+                    name="numeroderegistro"
+                    placeholder="Digite seu número de registro" 
+                    required />
+                
+                
+                <label>Informe seu e-mail:</label>
+                <input type="email" 
+                    name="email"
+                    placeholder="Digite seu e-mail"
+                    required  />
+                
+               
+
+                <label>Informe uma senha:</label>
+                <input type="password"
+                    name="senha"
+                    placeholder="Digite uma senha"
+                    required
+                    minlength="4"
+                    maxlength="10" />
+
+        
+
+                <button type="submit">Salvar</button>
+               
+            </form>
+        </section>
+    
+    </main>
+        <footer>
+        <img src="static/img/logo.png" alt="Logo PetCarinho">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="index.html">Quem somos</a>
+            <a href="index.html">Serviços</a>
+            <a href="index.html">Depoimentos</a>
+        </div>
+        <div>
+            <div>
+                <h5>Redes Sociais:</h5>
+                <p>Instagram: <a href="http://instagram.com" target="_blank">@petcarinho</a></p>
+                <p>Facebook: <a href="http://facebook.com" target="_blank">PetCarinho Clínica Veterinária</a></p>
+                <p>Twitter: <a href="http://twitter.com" target="_blank">@petcarinho_vet</a></p>
+            </div>
+            <img src="static/img/pagamento.png" alt="Formas de pagamento">
+        </div>
+    </footer>    
+</body>
+</html>
