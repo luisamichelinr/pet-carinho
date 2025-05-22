@@ -230,13 +230,6 @@ header img {
     justify-content: center;
 }
 
-input {
-    background-color: var(--cor-rosa-claro);
-    border-radius: 100px;
-    
-}
-
-
 .inputs  {
     display: flex;
     flex-direction: column;
