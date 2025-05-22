@@ -24,3 +24,53 @@
     color: black;
 }
 
+.introducao {
+    display: flex;
+    align-items: center;
+}
+
+.texto-introducao {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.frase1 {
+    color: var(--cor-roxo);
+    font-family: "Quicksand";
+    font-size: 48pt;
+}
+
+.frase2 {
+    color: var(--cor-rosa-escuro);
+}
+
+.frase3 {
+    font-size: 30px;
+}
+
+.agendamento {
+    background-color: var(--cor-salmao);
+    border-radius: 20px;
+    padding: 1.5vh;
+    max-width: fit-content;
+    align-self: center;
+    font-size: 23px;
+    margin-top: 15px;
+    color: var(--cor-branco);
+    box-shadow: black 1px 4px 9px 0px
+}
+
+.pata1 {
+    position: absolute;
+    top: 440px;
+    width: 65px;
+}
+
+.pata2 {
+    position: absolute;
+    top: 400px;
+    width: 50px;
+    left: 20px;
+}
