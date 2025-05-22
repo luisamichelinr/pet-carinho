@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PetCarinho</title>
+    <link rel="stylesheet" href="static/css/estilo.css">
 </head>
 <body>
     <main>
@@ -14,9 +15,12 @@
             <img src="" alt="Ícone de usuário">
             <form action="">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome">
+                <input type="text" id="nome" name="nome" required>
+
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha">
+                <input type="password" id="senha" name="senha" required
+                minlength="4"
+                maxlength="10" />
 
                 <button type="submit">Entrar</button>
             </form>

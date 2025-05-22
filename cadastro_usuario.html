@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de usuário - PetCarinho</title>
+    <link rel="stylesheet" href="static/css/estilo.css">
 </head>
 <body>
     <header>
@@ -17,17 +18,24 @@
             <img src="" alt="Ícone de usuário">
             <form action="">
                 <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome">
+                <input type="text" id="nome" name="nome" required>
+
                 <label for="data-nascimento">Data de nascimento:</label>
-                <input type="date" id="data-nascimento" name="data-nascimento">
+                <input type="date" id="data-nascimento" name="data-nascimento" required>
+
                 <label for="endereco">Endereço completo:</label>
-                <input type="text" id="endereco" name="endereco">
+                <input type="text" id="endereco" name="endereco" required>
+
                 <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep">
+                <input type="text" id="cep" name="cep" required>
+
                 <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone">
+                <input type="tel" id="telefone" name="telefone" required>
+
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha">
+                <input type="password" id="senha" name="senha" required
+                minlength="4"
+                maxlength="10" />
 
                 <button type="submit">Salvar</button>
             </form>
