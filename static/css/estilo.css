@@ -155,3 +155,19 @@ header img {
     transform: rotate(-30deg);
     margin-left: 50px;
 }
+
+.seta img {
+    width: 40px;
+    padding: 20px;
+}
+
+.foto {
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    background-color: var(--cor-rosa-claro);
+    border-radius: 100px;
+    
+}
