@@ -23,6 +23,7 @@
     font-family: 'Quicksand', sans-serif;
     text-decoration: none;
     color: black;
+    max-width: 1400px;
 }
 
 .flex {
@@ -315,12 +316,95 @@ header img {
     display: flex;
     background-color: var(--cor-rosa);
     border-radius: 100px;
-    gap: 20px;
+    gap: 80px;
     justify-self: center;
     max-width: fit-content;
     text-align: center;
     padding: 30px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 120px;
+    padding-right: 120px;
+    box-shadow: black 1px 4px 9px 0px;
+}
+
+.quem-somos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;
+}
+
+.texto-quem-somos {
+    display: flex;
+    flex-direction: column;
+}
+
+.h3-quem-somos{
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.somos{
+    color: var(--cor-roxo-escuro);
+}
+
+.decoracao{
     color: var(--cor-branco);
+    background-color: var(--cor-roxo);
+    border-radius: 50px;
+    width: 170px;
+    height: 5px;
+}
+
+.p-quem-somos{
+    margin-top: 30px;
+}
+
+.fundo-rosa{
+    background-color: var(--cor-rosa-claro);
+    width: 1264px;
+    height: 650px;
+    display: inline-block;
+}
+
+.nossos-servicos{
+    margin-top: 80px;
+    justify-self: center;
+    width: 1100px;
+    height: 500px;
+    border-radius: 50px;
+    background-color: var(--cor-branco);
+}
+
+.itens{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    gap: 200px;
+    margin-bottom: 20px;
+}
+
+.ajuste{
+    width: 90px;
+}
+
+.frase-itens{
+    display: flex;
+    text-align: center;
+    justify-self: center;
+    gap: 50px;
+}
+
+.ajustando{
+    font-size: 35px;
+    color: var(--cor-roxo-escuro);
+}
+
+.ajuste1{
+    width: 130px;
+}
+
+.titulo-nossos-servicos{
+    justify-self: center;
+    margin-bottom: 60px;
+    padding-top: 30px;
 }
