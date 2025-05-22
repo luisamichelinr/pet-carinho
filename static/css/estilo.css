@@ -14,6 +14,7 @@
     --cor-roxo-fundo: #F3BCFF;
     --cor-roxo-escuro: #7A03F9;
     --cor-slamao-fundo: #FFCED5;
+    --cor-rosa-cards: #FFDBF6;
 
 }
 
@@ -206,23 +207,28 @@ header img {
 }
 
 .imgdogsemfoto {
-    height: 25vh;
+    height: 20vh;
     margin: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+
 .patinhas {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-    height: 100vh;
     position: absolute;
     top: 45vh;
     right: 20vh;
+    width: 150px;          
+    height: auto;          
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;  
+    z-index: 0;            
 }
+
 
 .pata1 {
     transform: rotate(-20deg);
@@ -232,7 +238,7 @@ header img {
 .pata2 {
     transform: rotate(20deg);
     align-self: flex-start;
-    margin-left: 1450px;
+    margin-left: 90%;
 }
 
 .pata3 {
@@ -241,6 +247,7 @@ header img {
 }
 
 .seta img {
+    margin-top: 100px;
     width: 40px;
     padding: 20px;
 }
@@ -250,6 +257,9 @@ header img {
     justify-content: center;
 }
 
+.rosa {
+    padding: 50px;
+}
 .foto img {
     width: 170px;
     height: auto;
@@ -260,11 +270,12 @@ header img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: 30px;
 
 }
 
-.inputs p {}
+
+
 
 .inputs p {
     font-family: McLaren;
@@ -272,6 +283,7 @@ header img {
 
 
 }
+
 
 .inputs input {
     background-color: #FAD9F2;
@@ -294,6 +306,8 @@ header img {
     width: 60px;
     height: 30px;
     font-family: McLaren;
+    align-items: center;
+    justify-content: center;
 }
 
 .inputs select {
@@ -309,6 +323,7 @@ header img {
 .nomeinput {
     align-items: start;
     justify-content: left;
+    font-family: McLaren;
 
 }
 
@@ -407,4 +422,119 @@ header img {
     justify-self: center;
     margin-bottom: 60px;
     padding-top: 30px;
+}
+
+
+.infousuario {
+    padding: 0px 50px;
+    flex-direction: column;
+    gap: 25px;
+    margin: 20px;
+}
+
+
+
+.agendamentos {
+    justify-content: space-between;
+}
+
+.agendamentos div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.agendamentos h1 {
+    margin-bottom: 30px;
+}
+.agendamentos button{
+    background-color:var(--cor-roxo) ;
+    width: 100px;
+    height: 30px;
+    border-radius: 100px;
+    font: var(--cor-branco);
+}
+
+.adicionar {
+    background-color: var(--cor-rosa-escuro);
+    border-radius: 100px;
+    padding: 5px;
+    width: 35px;
+    
+}
+.adicionar p {
+    padding: 5px;
+    text-align: center;
+    color: var(--cor-branco);
+}
+
+.petsp{
+    padding:30px;
+}
+
+.pets {
+    display: flex;
+    gap: 10px; 
+    flex-wrap: wrap; 
+}
+.pets div {
+    margin: 20px;
+    background-color: var(--cor-rosa-cards);
+    height: 200px;
+    width: 150px;
+    padding: 50px;
+    border-radius: 30px;
+}
+
+.iconeditar {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: flex-start;    
+}
+
+.pets img {
+  margin-left: auto;
+}
+
+.pets h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pets h4 {
+    font-style: 'Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comentario1 {
+    font-family: Quicksand;
+    margin: 55px;
+    padding: 20px;
+    height: 140px;
+    width: 500px;
+    background-color: #FFF6F7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.comentario2 {
+    font-family: Quicksand;
+    margin: 55px;
+    padding: 20px;
+    height: 140px;
+    width: 500px;
+    background-color: #FFF6F7;
+    border-radius: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.comentario1 span {
+    font-weight: bold;
+}
+
+.comentario2 span {
+    font-weight: bold;
 }
