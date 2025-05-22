@@ -145,6 +145,8 @@ header {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    position: fixed;
+    z-index: 999;
 }
 
 .cabecalho {
