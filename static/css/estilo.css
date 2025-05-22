@@ -62,17 +62,19 @@
     box-shadow: black 1px 4px 9px 0px
 }
 
-.pata1 {
+.patinha1 {
     position: absolute;
-    top: 440px;
     width: 65px;
+    top: 170px;
+    transform: rotate(15deg);
 }
 
-.pata2 {
+.patinha2 {
     position: absolute;
-    top: 400px;
     width: 50px;
-    left: 20px;
+    top: 130px;
+    left: 25px;
+    transform: rotate(20deg);
 }
 
 header {
