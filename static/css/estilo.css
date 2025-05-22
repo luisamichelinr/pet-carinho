@@ -23,3 +23,50 @@
     text-decoration: none;
     color: black;
 }
+
+header {
+    background-color: var(--cor-roxo-claro);
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cabecalho {
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    font-family: 'McLaren';
+    font-size: 15px;
+    color: var(--cor-branco);
+    margin: 0px 2px;
+    padding: 10px;
+}
+
+.d-flex {
+    display: flex;
+    gap: 85px;
+}
+
+header img {
+    width: 80px;
+    padding-left: 15px;
+}
+
+.botoes {
+    padding-left: 120px;
+}
+
+.login {
+    border: 2px solid var(--cor-roxo);
+    border-radius: 100px;
+    padding: 5px 20px;
+}
+
+.cadastro {
+    background-color: var(--cor-roxo);
+    padding: 5px 15px;
+    border-radius: 100px;
+}
+
