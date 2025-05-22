@@ -1,74 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-BR" dir="ltr">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de usuário - PetCarinho</title>
+    <title>Login - PetCarinho</title>
     <link rel="stylesheet" href="static/css/estilo.css">
 </head>
 <body>
     <header class="d-flex">
-         <img src="static/img/logo.png" alt="Logo da PetCarinho">
-         <nav class="cabecalho d-flex">
+        <img src="static/img/logo.png" alt="Logo da PetCarinho">
+        <nav class="cabecalho d-flex">
             <a href="index.html">Home</a>
             <a href="index.html">Quem somos</a>
             <a href="index.html">Serviços</a>
             <a href="index.html">Depoimentos</a>
             <div class="botoes">
             <a class="login" href="login.html">Login</a>
-            <a class="cadastro" href="cadastro_usuario.html">Cadastro</a>
+            <a class="cadastro"  href="cadastro_usuario.html">Cadastro</a>
             </div>
-         </nav>   
+        </nav>
     </header>
 
     <main>
-        <section>
+        <section class="seta">
             <a href="index.html"><img src="static/img/seta.png" alt="Seta voltar"></a>
         </section>
-
-        <section>
-            {% with mensagens = get_flashed_messages() %}
-                {% if mensagens %}
-                    <div class="mensagens">
-                      {% for msg in mensagens %}
-                        <p>{{ msg }}</p>
-                      {% endfor %}
-                    </div>
-              {% endif %}
-            {% endwith %}
-        </section>
-
-
         <section>
             <div class="foto d-flex">
                 <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
             </div>
             <div class="inputs">
-                <form action="{{ url_for('cadastro_usuario') }}" method="POST">
+                <form action="">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
-
-                    <label for="data-nascimento">Data de nascimento:</label>
-                    <input type="date" id="data-nascimento" name="data-nascimento" required>
-
-                    <label for="endereco">Endereço completo:</label>
-                    <input type="text" id="endereco" name="endereco" required>
-
-                    <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" required>
-
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" required>
 
                     <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" required
                     minlength="4"
                     maxlength="10" />
 
-                    <button type="submit">Salvar</button>
+                    <button type="submit">Entrar</button>
                 </form>
             </div>
         </section>
+        <search>
+            <p>Ainda não tem uma conta?</p>
+            <a href="cadastro_usuario.html">Cadastro</a>
+        </search>
     </main>
 
     <footer class="flex">
