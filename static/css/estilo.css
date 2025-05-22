@@ -12,6 +12,7 @@
     --cor-rosa-fundo: #FDF3FB;
     --cor-rosa-escuro: #FF03C0;
     --cor-roxo-fundo: #F3BCFF;
+    --cor-roxo-escuro: #7A03F9;
     --cor-slamao-fundo: #FFCED5;
 
 }
@@ -22,6 +23,68 @@
     font-family: 'Quicksand', sans-serif;
     text-decoration: none;
     color: black;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+    align-items: start;
+}
+
+.gap-nav-footer {
+    gap: 27px;
+}
+
+.inferior {
+    align-items: end;
+}
+
+.texto-branco {
+    color: var(--cor-branco);
+    font-size: 17px;
+}
+
+.gap-vinte {
+    gap: 20px;
+}
+
+footer {
+    background-color: var(--cor-roxo-escuro);
+    padding: 25px 30px;
+    text-align: left;
+    gap: 275px;
+    max-width: 1400px;
+    transition: 0.5s;
+}
+
+footer a:hover {
+    text-decoration:underline;
+    transition: 0.5s;
+}
+
+.logo-footer {
+    width: 320px;
+    height: auto;
+}
+
+.nav-footer a {
+    font-family: 'McLaren', sans-serif;
+    color: var(--cor-branco);
+    font-size: 21px;
+}
+
+.redes-sociais {
+    height: 320px;
+    font-weight: bold;
+}
+
+.pagamento {
+    width: 305px;
+    height: auto;
 }
 
 .introducao {
@@ -62,17 +125,19 @@
     box-shadow: black 1px 4px 9px 0px
 }
 
-.pata1 {
+.patinha1 {
     position: absolute;
-    top: 440px;
     width: 65px;
+    top: 170px;
+    transform: rotate(15deg);
 }
 
-.pata2 {
+.patinha2 {
     position: absolute;
-    top: 400px;
     width: 50px;
-    left: 20px;
+    top: 130px;
+    left: 25px;
+    transform: rotate(20deg);
 }
 
 header {
