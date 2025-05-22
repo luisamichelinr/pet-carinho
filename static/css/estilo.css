@@ -145,6 +145,7 @@ header {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
+    height: 90px;
 }
 
 .cabecalho {
@@ -154,24 +155,24 @@ header {
 
 header nav a {
     font-family: 'McLaren';
-    font-size: 15px;
+    font-size: 20px;
     color: var(--cor-branco);
-    margin: 0px 2px;
+    margin: 0px 5px;
     padding: 10px;
 }
 
 .d-flex {
     display: flex;
-    gap: 85px;
+    gap: 50px;
 }
 
 header img {
-    width: 80px;
+    width: auto;
     padding-left: 15px;
 }
 
 .botoes {
-    padding-left: 120px;
+    padding-left: 70px;
 }
 
 .login {
@@ -261,3 +262,4 @@ header img {
     width: 60px;
     height: 30px;
 }
+
