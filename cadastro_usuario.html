@@ -26,30 +26,34 @@
             <a href="index.html"><img src="static/img/seta.png" alt="Seta voltar"></a>
         </section>
         <section>
-            <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
-            <form action="">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+            <div class="foto d-flex">
+                <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
+            </div>
+            <div class="inputs">
+                <form action="">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
 
-                <label for="data-nascimento">Data de nascimento:</label>
-                <input type="date" id="data-nascimento" name="data-nascimento" required>
+                    <label for="data-nascimento">Data de nascimento:</label>
+                    <input type="date" id="data-nascimento" name="data-nascimento" required>
 
-                <label for="endereco">Endereço completo:</label>
-                <input type="text" id="endereco" name="endereco" required>
+                    <label for="endereco">Endereço completo:</label>
+                    <input type="text" id="endereco" name="endereco" required>
 
-                <label for="cep">CEP:</label>
-                <input type="text" id="cep" name="cep" required>
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" required>
 
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" required>
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required>
 
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required
-                minlength="4"
-                maxlength="10" />
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required
+                    minlength="4"
+                    maxlength="10" />
 
-                <button type="submit">Salvar</button>
-            </form>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
         </section>
     </main>
 

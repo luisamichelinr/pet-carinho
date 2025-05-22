@@ -232,6 +232,11 @@ header img {
     justify-content: center;
 }
 
+.foto img {
+    width: 170px;
+    height: auto;
+}
+
 .inputs  {
     display: flex;
     flex-direction: column;
