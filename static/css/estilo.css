@@ -17,7 +17,7 @@
 
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Quicksand', sans-serif;
@@ -62,7 +62,7 @@ footer {
 }
 
 footer a:hover {
-    text-decoration:underline;
+    text-decoration: underline;
     transition: 0.5s;
 }
 
@@ -90,6 +90,7 @@ footer a:hover {
 .introducao {
     display: flex;
     align-items: center;
+    margin-left: 90px;
 }
 
 .texto-introducao {
@@ -99,18 +100,26 @@ footer a:hover {
     gap: 10px;
 }
 
+.img-introducao {
+    width: 700px;
+    margin-top: 120px;
+}
+
 .frase1 {
     color: var(--cor-roxo);
+    font-size: 40px;
     font-family: "Quicksand";
-    font-size: 48pt;
 }
 
 .frase2 {
     color: var(--cor-rosa-escuro);
+    font-family: "Quicksand";
 }
 
 .frase3 {
     font-size: 30px;
+    font-family: "Quicksand";
+    font-size: 25px;
 }
 
 .agendamento {
@@ -128,16 +137,15 @@ footer a:hover {
 .patinha1 {
     position: absolute;
     width: 65px;
-    top: 170px;
-    transform: rotate(15deg);
+    top: 210px;
+    left: 90px;
 }
 
 .patinha2 {
     position: absolute;
     width: 50px;
-    top: 130px;
-    left: 25px;
-    transform: rotate(20deg);
+    top: 170px;
+    left: 110px;
 }
 
 header {
@@ -194,45 +202,41 @@ header img {
     align-items: center;
 }
 
-.patinhas{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end; 
-  width: 100%;           
-  height: 100vh;         
-  position: absolute;    
-  top: 45vh;
-  right: 20vh;
+.patinhas {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 45vh;
+    right: 20vh;
 }
 
 .pata1 {
-  transform: rotate(-20deg);
-  margin-left: 10px;
+    transform: rotate(-20deg);
+    margin-left: 10px;
 }
 
 .pata2 {
-  transform: rotate(20deg);
-  align-self: flex-start; 
-  margin-left: 1450px; 
+    transform: rotate(20deg);
+    align-self: flex-start;
+    margin-left: 1450px;
 }
 
 .pata3 {
     transform: rotate(-30deg);
     margin-left: 50px;
 }
-<<<<<<< Updated upstream
-=======
 
-.inputs  {
+.inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
 
 }
 
-.inputs p {
-
-}
+.inputs p {}
 
 .inputs input {
     background-color: #FAD9F2;
@@ -250,6 +254,5 @@ header img {
     border: none;
     width: 60px;
     height: 30px;
-    
+
 }
->>>>>>> Stashed changes
