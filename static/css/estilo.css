@@ -391,3 +391,12 @@ header img {
     display: flex;
     align-items: flex-end; 
 }
+.fotorodape {
+    position: relative;
+    height: 200px; 
+    margin-bottom: -72px; 
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 300px;
+}
