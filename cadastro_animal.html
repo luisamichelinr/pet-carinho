@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro do Animal-PetCarinho</title>
+
+    <link rel="stylesheet" href="static/css/estilo.css">
+</head>
+<body>
+    <header class="d-flex">
+         <img src="static/img/logo.png" alt="Logo da PetCarinho">
+         <nav class="cabecalho d-flex">
+            <a href="index.html">Home</a>
+            <a href="index.html">Quem somos</a>
+            <a href="index.html">Serviços</a>
+            <a href="index.html">Depoimentos</a>
+            <div class="botoes">
+            <a class="login" href="login.html">Login</a>
+            <a class="cadastro" href="cadastro_usuario.html">Cadastro</a>
+            </div>
+         </nav>   
+    </header>
+    <main>
+        <a href="index.html">
+            <img src="static/img/seta.png" alt="setinha" class="seta">
+        </a>
+        <div class="imgdogsemfoto">
+            <img  src="static/img/dog_usuario.png" alt="Dog Usuário">
+        </div>
+        
+        <div class="patinhas">
+            <img src="static/img/patinha.png" alt="pata" class="pata1">
+            <img src="static/img/patinha.png" alt="pata" class="pata2">
+            <img src="static/img/patinha.png" alt="pata" class="pata3">
+        </div>
+        <div class="inputs">
+            <p>Nome: </p> <input type="text" placeholder="Digite o nome do seu pet">
+            <br>
+            <p>Espécie:</p>
+            <select name="especies">
+            <option value="cachorro">Cachorro</option>
+            <option value="gato">Gato</option>
+            option value="Calopsita">Calopsita</option>
+            <option value="coelho">Coelho</option>
+            </select>
+            <p>Raça: </p> <input type="text" placeholder="Digite a raça do seu pet">
+            <br>
+            <p>Data de nascimento do pet: </p> <input type="date">
+            <br> <br>
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" name="peso" placeholder="digite o peso do seu animalzinho" step="0.1" min="0">        
+        </div>
+
+        <br>
+        <button class="botaodesalvar">Salvar</button>
+    </main>
+    <footer>
+        <img src="" alt="Logo PetCarinho">
+        <div>
+            <a href="index.html">Home</a>
+            <a href="index.html">Quem somos</a>
+            <a href="index.html">Serviços</a>
+            <a href="index.html">Depoimentos</a>
+        </div>
+        <div>
+            <div>
+                <h5>Redes Sociais:</h5>
+                <p>Instagram: <a href="http://instagram.com" target="_blank">@petcarinho</a></p>
+                <p>Facebook: <a href="http://facebook.com" target="_blank">PetCarinho Clínica Veterinária</a></p>
+                <p>Twitter: <a href="http://twitter.com" target="_blank">@petcarinho_vet</a></p>
+            </div>
+            <img src="" alt="Formas de pagamento">
+        </div>
+    </footer> 
+</body>
