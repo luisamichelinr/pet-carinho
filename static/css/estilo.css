@@ -198,7 +198,7 @@ header img {
 
 .imgdogsemfoto {
     height: 25vh;
-    margin: 0;
+    margin: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -246,10 +246,12 @@ header img {
     height: auto;
 }
 
+
 .inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 20px;
 
 }
 
@@ -257,23 +259,46 @@ header img {
 
 .inputs p {
     font-family: McLaren;
+    flex-direction: column;
+
 
 }
 
 .inputs input {
     background-color: #FAD9F2;
     border: 2px solid #FAD9F2;
-    border: ;
+    border-radius: 60px;
     padding: 10px;
     font-size: 16px;
-    border-radius: 60px;
     width: 300px;
+    flex-direction: column;
 }
 
 .botaodesalvar {
+    display: flex;
+}
+
+.botaodesalvar button {
     background-color: #A451FC;
     border-radius: 60px;
     border: none;
     width: 60px;
     height: 30px;
+    font-family: McLaren;
+}
+
+.inputs select {
+    background-color: #FAD9F2;
+    border: 2px solid #FAD9F2;
+    border-radius: 60px;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    flex-direction: column;
+}
+
+.nomeinput {
+    align-items: start;
+    justify-content: left;
+
 }
