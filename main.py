@@ -20,7 +20,6 @@ pacientes = []
 def index():
     return render_template('index.html')
 
-<<<<<<< HEAD
 @app.route('/perfil_usuario')
 def perfil_usuario():
     return render_template('perfil_usuario.html')
@@ -67,9 +66,6 @@ def servicos():
 @app.route('/depoimentos')
 def depoimentos():
     return render_template('index.html')
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
@@ -151,7 +147,7 @@ def cadastro_animal(codigo):
                 'data_nascimento': data_nascimento,
                 'especie': especie,
                 'raca' : raca,
-                'peso': peso,
+                'peso': peso
             }
             pacientes.append(paciente)
             flash(f'Pet {nome} cadastrado com sucesso!')
@@ -166,6 +162,34 @@ def cadastro_animal(codigo):
 @app.route('/perfil_usuario')
 def perfil_usuario():
     return render_template('perfil_usuario.html')
+
+@app.route('/cadastro_veterinario', methods=['GET', 'POST'])
+def cadastro_veterinario():
+    try:
+        if request.method == 'POST':
+            nome = request.form['nome']
+            telefone = request.form['telefone']
+            numeroderegistro = request.form['numeroderegistro']
+            email = request.form['email']
+            senha = request.form['senha']
+            codigo = len(usuarios)
+            usuario = {
+                'codigo': codigo,
+                'nome': nome,
+                'telefone': telefone,
+                'numeroderegistro': numeroderegistro,
+                'email' : email,
+                'senha': senha
+            }
+            pacientes.append(paciente)
+            flash(f'Pet {nome} cadastrado com sucesso!')
+            return redirect('/perfil_usuario')
+        else:
+            flash(f'Não foi possível cadastrar esse pet. Tente novamente mais tarde.')
+            return render_template('perfil_usuario.html')
+    except:
+        flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
+        return render_template('cadastro_usuario.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
