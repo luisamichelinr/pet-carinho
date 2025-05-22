@@ -63,7 +63,8 @@
                     <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" required
                     minlength="4"
-                    maxlength="10" />
+                    maxlength="10"
+                    pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$">
 
                     <button type="submit">Salvar</button>
                 </form>

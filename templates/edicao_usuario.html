@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetCarinho - Cadastro do veterinário</title>
-    <link rel="stylesheet" href="../static/css/estilo.css">
+    <title>Edição de usuário - PetCarinho</title>
+    <link rel="stylesheet" href="static/css/estilo.css">
 </head>
 <body>
     <header class="d-flex">
@@ -18,13 +18,13 @@
             <a class="login" href="login.html">Login</a>
             <a class="cadastro" href="cadastro_usuario.html">Cadastro</a>
             </div>
-         </nav>   
+         </nav>
     </header>
-    <main>
 
-     <div class="seta">
-         <a href="index.html"><img  src="static/img/seta.png" alt="Seta para voltar a Home"></a>
-    </div>
+    <main>
+        <section>
+            <a href="index.html"><img src="static/img/seta.png" alt="Seta voltar"></a>
+        </section>
 
         <section>
             {% with mensagens = get_flashed_messages() %}
@@ -38,65 +38,42 @@
             {% endwith %}
         </section>
 
-    <div class="foto d-flex">
-            <img src="static/img/veterinario.png" alt="Foto do veterinário">
-    </div>
-    <section class="formularioveterinario d-flex inputs">
-    <form action="{{ url_for('cadastro_veterinario') }}" method="POST">
-                
-                <label>Nome:</label>
-                <input type="text" 
-                    name="nome" 
-                    >
 
+        <section>
+            <div class="foto d-flex">
+                <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
+            </div>
+            <div class="inputs">
+                <form action="/editar/{{ usuario.codigo }}" method="POST">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required value="{{ usuario.nome }}">
 
-                <label>Telefone:</label>
-                <input type="tel" 
-                    name="telefone"
-                    placeholder="Digite seu Telefone" 
-                    required />
+                    <label for="data-nascimento">Data de nascimento:</label>
+                    <input type="date" id="data-nascimento" name="data-nascimento" required value="{{ usuario.data_nascimento }}>
 
-              
-                <label>Número de registro:</label>
-                <input type="number" 
-                    name="numeroderegistro"
-                    placeholder="Digite seu número de registro" 
-                    required />
-                
-                
-                <label>Informe seu e-mail:</label>
-                <input type="email" 
-                    name="email"
-                    placeholder="Digite seu e-mail"
-                    required  />
-                
-               
+                    <label for="endereco">Endereço completo:</label>
+                    <input type="text" id="endereco" name="endereco" required value="{{ usuario.endereco }}>
 
-                <label>Informe uma senha:</label>
-                <input type="password"
-                    name="senha"
-                    placeholder="Digite uma senha"
-                    required
-                    minlength="4"
-                    maxlength="10"
-                       pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$"/>
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" required value="{{ usuario.cep }}>
 
-        
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required value="{{ usuario.telefone }}>
 
-                <button class="botaodesalvar" type="submit">Salvar</button>
-               
-            </form>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
         </section>
-    
     </main>
-         <footer class="flex">
+
+    <footer class="flex">
         <div class="flex gap-vinte">
             <img src="static/img/logo.png" alt="Logo PetCarinho" class="logo-footer">
             <div class="nav-footer flex column gap-nav-footer">
-                <a href="index.html">Home</a>
-                <a href="index.html">Quem somos</a>
-                <a href="index.html">Serviços</a>
-                <a href="index.html">Depoimentos</a>
+                <a href="/">Home</a>
+                <a href="/">Quem somos</a>
+                <a href="/">Serviços</a>
+                <a href="/">Depoimentos</a>
             </div>
         </div>
         <div class="flex inferior redes-sociais">
@@ -110,6 +87,6 @@
                 <img src="static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
             </div>
         </div>
-    </footer>    
+    </footer>
 </body>
 </html>
