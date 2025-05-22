@@ -73,5 +73,37 @@ header img {
 
 
 .imgdogsemfoto {
-    height: 30vh;
+    height: 25vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.patinhas{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  width: 100%;           
+  height: 100vh;         
+  position: absolute;    
+  top: 45vh;
+  right: 20vh;
+}
+
+.pata1 {
+  transform: rotate(-20deg);
+  margin-left: 10px;
+}
+
+.pata2 {
+  transform: rotate(20deg);
+  align-self: flex-start; 
+  margin-left: 1450px; 
+}
+
+.pata3 {
+    transform: rotate(-30deg);
+    margin-left: 50px;
+}
+
