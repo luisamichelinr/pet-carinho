@@ -24,3 +24,197 @@
     text-decoration: none;
     color: black;
 }
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+    align-items: start;
+}
+
+.gap-nav-footer {
+    gap: 27px;
+}
+
+.inferior {
+    align-items: end;
+}
+
+.texto-branco {
+    color: var(--cor-branco);
+    font-size: 17px;
+}
+
+.gap-vinte {
+    gap: 20px;
+}
+
+footer {
+    background-color: var(--cor-roxo-escuro);
+    padding: 25px 30px;
+    text-align: left;
+    gap: 275px;
+    max-width: 1400px;
+    transition: 0.5s;
+}
+
+footer a:hover {
+    text-decoration:underline;
+    transition: 0.5s;
+}
+
+.logo-footer {
+    width: 320px;
+    height: auto;
+}
+
+.nav-footer a {
+    font-family: 'McLaren', sans-serif;
+    color: var(--cor-branco);
+    font-size: 21px;
+}
+
+.redes-sociais {
+    height: 320px;
+    font-weight: bold;
+}
+
+.pagamento {
+    width: 305px;
+    height: auto;
+}
+
+.introducao {
+    display: flex;
+    align-items: center;
+}
+
+.texto-introducao {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.frase1 {
+    color: var(--cor-roxo);
+    font-family: "Quicksand";
+    font-size: 48pt;
+}
+
+.frase2 {
+    color: var(--cor-rosa-escuro);
+}
+
+.frase3 {
+    font-size: 30px;
+}
+
+.agendamento {
+    background-color: var(--cor-salmao);
+    border-radius: 20px;
+    padding: 1.5vh;
+    max-width: fit-content;
+    align-self: center;
+    font-size: 23px;
+    margin-top: 15px;
+    color: var(--cor-branco);
+    box-shadow: black 1px 4px 9px 0px
+}
+
+.pata1 {
+    position: absolute;
+    top: 440px;
+    width: 65px;
+}
+
+.pata2 {
+    position: absolute;
+    top: 400px;
+    width: 50px;
+    left: 20px;
+}
+
+header {
+    background-color: var(--cor-roxo-claro);
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.cabecalho {
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav a {
+    font-family: 'McLaren';
+    font-size: 15px;
+    color: var(--cor-branco);
+    margin: 0px 2px;
+    padding: 10px;
+}
+
+.d-flex {
+    display: flex;
+    gap: 85px;
+}
+
+header img {
+    width: 80px;
+    padding-left: 15px;
+}
+
+.botoes {
+    padding-left: 120px;
+}
+
+.login {
+    border: 2px solid var(--cor-roxo);
+    border-radius: 100px;
+    padding: 5px 20px;
+}
+
+.cadastro {
+    background-color: var(--cor-roxo);
+    padding: 5px 15px;
+    border-radius: 100px;
+}
+
+.imgdogsemfoto {
+    height: 25vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.patinhas{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  width: 100%;           
+  height: 100vh;         
+  position: absolute;    
+  top: 45vh;
+  right: 20vh;
+}
+
+.pata1 {
+  transform: rotate(-20deg);
+  margin-left: 10px;
+}
+
+.pata2 {
+  transform: rotate(20deg);
+  align-self: flex-start; 
+  margin-left: 1450px; 
+}
+
+.pata3 {
+    transform: rotate(-30deg);
+    margin-left: 50px;
+}
