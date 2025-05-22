@@ -21,9 +21,23 @@
          </nav>   
     </header>
     <main>
+
      <div class="seta">
          <a href="index.html"><img  src="static/img/seta.png" alt="Seta para voltar a Home"></a>
     </div>
+
+        <section>
+            {% with mensagens = get_flashed_messages() %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                      {% for msg in mensagens %}
+                        <p>{{ msg }}</p>
+                      {% endfor %}
+                    </div>
+              {% endif %}
+            {% endwith %}
+        </section>
+
     <div class="foto d-flex">
             <img src="static/img/veterinario.png" alt="Foto do veterinário">
     </div>
@@ -64,7 +78,8 @@
                     placeholder="Digite uma senha"
                     required
                     minlength="4"
-                    maxlength="10" />
+                    maxlength="10"
+                       pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$"/>
 
         
 

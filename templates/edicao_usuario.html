@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de usuário - PetCarinho</title>
+    <title>Edição de usuário - PetCarinho</title>
     <link rel="stylesheet" href="static/css/estilo.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
             <a class="login" href="login.html">Login</a>
             <a class="cadastro" href="cadastro_usuario.html">Cadastro</a>
             </div>
-         </nav>   
+         </nav>
     </header>
 
     <main>
@@ -44,27 +44,21 @@
                 <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
             </div>
             <div class="inputs">
-                <form action="{{ url_for('cadastro_usuario') }}" method="POST">
+                <form action="/editar/{{ usuario.codigo }}" method="POST">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+                    <input type="text" id="nome" name="nome" required value="{{ usuario.nome }}">
 
                     <label for="data-nascimento">Data de nascimento:</label>
-                    <input type="date" id="data-nascimento" name="data-nascimento" required>
+                    <input type="date" id="data-nascimento" name="data-nascimento" required value="{{ usuario.data_nascimento }}>
 
                     <label for="endereco">Endereço completo:</label>
-                    <input type="text" id="endereco" name="endereco" required>
+                    <input type="text" id="endereco" name="endereco" required value="{{ usuario.endereco }}>
 
                     <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" required>
+                    <input type="text" id="cep" name="cep" required value="{{ usuario.cep }}>
 
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" required>
-
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required
-                    minlength="4"
-                    maxlength="10"
-                    pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$">
+                    <input type="tel" id="telefone" name="telefone" required value="{{ usuario.telefone }}>
 
                     <button type="submit">Salvar</button>
                 </form>
