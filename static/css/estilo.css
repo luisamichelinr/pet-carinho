@@ -90,7 +90,8 @@ footer a:hover {
 .introducao {
     display: flex;
     align-items: center;
-    margin-left: 90px;
+    margin-left: 40px;
+    margin-top: 60px;
 }
 
 .texto-introducao {
@@ -101,13 +102,13 @@ footer a:hover {
 }
 
 .img-introducao {
-    width: 700px;
-    margin-top: 120px;
+    width: 630px;
+    margin-top: 50px;
 }
 
 .frase1 {
     color: var(--cor-roxo);
-    font-size: 40px;
+    font-size: 35px;
     font-family: "Quicksand";
 }
 
@@ -119,7 +120,7 @@ footer a:hover {
 .frase3 {
     font-size: 30px;
     font-family: "Quicksand";
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .agendamento {
@@ -127,25 +128,27 @@ footer a:hover {
     border-radius: 20px;
     padding: 1.5vh;
     max-width: fit-content;
-    align-self: center;
+    justify-self: center;
     font-size: 23px;
     margin-top: 15px;
     color: var(--cor-branco);
-    box-shadow: black 1px 4px 9px 0px
+    box-shadow: black 1px 4px 9px 0px;
+    align-self: center;
+    margin-left: -100px;
 }
 
 .patinha1 {
     position: absolute;
     width: 65px;
-    top: 210px;
-    left: 90px;
+    top: 150px;
+    left: 30px;
 }
 
 .patinha2 {
     position: absolute;
     width: 50px;
-    top: 170px;
-    left: 110px;
+    top: 120px;
+    left: 60px;
 }
 
 header {
@@ -175,6 +178,7 @@ header nav a {
 }
 
 .d-flex {
+    top: 0;
     display: flex;
     gap: 50px;
 }
@@ -227,7 +231,7 @@ header img {
 .pata2 {
     transform: rotate(20deg);
     align-self: flex-start;
-    margin-left: 1450px;
+    margin-left: 90%;
 }
 
 .pata3 {
@@ -307,3 +311,16 @@ header img {
 
 }
 
+.atendimento {
+    display: flex;
+    background-color: var(--cor-rosa);
+    border-radius: 100px;
+    gap: 20px;
+    justify-self: center;
+    max-width: fit-content;
+    text-align: center;
+    padding: 30px;
+    padding-left: 80px;
+    padding-right: 80px;
+    color: var(--cor-branco);
+}
