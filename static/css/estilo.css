@@ -324,3 +324,23 @@ header img {
     padding-right: 80px;
     color: var(--cor-branco);
 }
+
+.comentario1 {
+    margin: 55px;
+    padding: 20px;
+    height: 140px;
+    width: 500px;
+    background-color: #FFF6F7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.comentario2 {
+    margin: 55px;
+    padding: 20px;
+    height: 140px;
+    width: 500px;
+    background-color: #FFF6F7;
+    border-radius: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
