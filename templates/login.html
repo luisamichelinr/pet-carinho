@@ -25,12 +25,25 @@
         <section class="seta">
             <a href="index.html"><img src="static/img/seta.png" alt="Seta voltar"></a>
         </section>
+
+        <section>
+            {% with mensagens = get_flashed_messages() %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                      {% for msg in mensagens %}
+                        <p>{{ msg }}</p>
+                      {% endfor %}
+                    </div>
+              {% endif %}
+            {% endwith %}
+        </section>
+
         <section>
             <div class="foto d-flex">
                 <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
             </div>
             <div class="inputs">
-                <form action="">
+                <form action="{{ url_for('login') }}" method="POST">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
 
