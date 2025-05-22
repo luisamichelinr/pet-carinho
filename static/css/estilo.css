@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=McLaren&family=Quicksand:wght@300..700&display=swap');
+
+:root {
+    --cor-branco: #FFFFFF;
+    --cor-preto: #000000;
+    --cor-roxo: #A451FC;
+    --cor-rosa: #FFC3F0;
+    --cor-salmao: #F9B8AE;
+    --cor-roxo-claro: #E896FA;
+    --cor-rosa-claro: #FAD9F2;
+    --cor-rosa-fundo: #FDF3FB;
+    --cor-rosa-escuro: #FF03C0;
+    --cor-roxo-fundo: #F3BCFF;
+    --cor-slamao-fundo: #FFCED5;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    text-decoration: none;
+    color: black;
+}
