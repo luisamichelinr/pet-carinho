@@ -24,6 +24,7 @@
     color: black;
 }
 
+
 header {
     background-color: var(--cor-roxo-claro);
     width: 100%;
@@ -70,3 +71,7 @@ header img {
     border-radius: 100px;
 }
 
+
+.imgdogsemfoto {
+    height: 30vh;
+}
