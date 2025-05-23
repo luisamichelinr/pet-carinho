@@ -542,7 +542,6 @@ header img {
     font-weight: bold;
 }
 
-<<<<<<< Updated upstream
 .nome-do-servico {
     font-size: 25px;
 }
@@ -553,7 +552,7 @@ header img {
 .secao2 {
     gap: 300px;
 }
-=======
+
 .alinhadordeinput {
     display: flex;
 }
@@ -635,4 +634,3 @@ header img {
     left: 550px;
     top: 3451px;
 }
->>>>>>> Stashed changes
