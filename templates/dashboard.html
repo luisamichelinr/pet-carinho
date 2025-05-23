@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - PetCarinho</title>
-    <link rel="stylesheet" href="static/css/estilo.css">
+    <title>Dashboard - PetCarinho</title>
+    <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
 <body>
     <header class="d-flex">
-        <img src="static/img/logo.png" alt="Logo da PetCarinho">
+        <img src="../static/img/logo.png" alt="Logo da PetCarinho">
         <nav class="cabecalho d-flex">
             <a href="index.html">Home</a>
             <a href="index.html">Quem somos</a>
@@ -23,7 +23,7 @@
 
     <main>
         <section class="seta">
-            <a href="index.html"><img src="static/img/seta.png" alt="Seta voltar"></a>
+            <a href="index.html"><img src="../static/img/seta.png" alt="Seta voltar"></a>
         </section>
 
         <section>
@@ -39,26 +39,26 @@
         </section>
 
         <section>
-            <div class="foto d-flex">
-                <img src="static/img/usuario sem foto.png" alt="Ícone de usuário">
-            </div>
-            <div class="inputs">
-                <form action="{{ url_for('login') }}" method="POST">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
-
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required
-                    minlength="4"
-                    maxlength="10" />
-
-                    <button type="submit">Entrar</button>
-                </form>
-            </div>
+            <h3 class="titulo">Dashboard da clínica</h3>
         </section>
-        <section>
-            <p>Ainda não tem uma conta?</p>
-            <a href="cadastro_usuario.html">Cadastro</a>
+
+        <section class="flex between">
+            <div>
+                <div class="flex between meio">
+                    <h5 class="subtitulo">Pacientes</h5>
+                    <a href="">+</a>
+                </div>
+
+                <div>
+
+                </div>
+            </div>
+            <div>
+                <div class="flex between meio">
+                    <h5 class="subtitulo">Agendamentos</h5>
+                    <a href="">+</a>
+                </div>
+            </div>
         </section>
     </main>
 
