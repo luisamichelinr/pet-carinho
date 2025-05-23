@@ -290,6 +290,7 @@ header img { /*ajusta a imagem no header*/
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 50px;
 }
 
 
@@ -299,7 +300,7 @@ header img { /*ajusta a imagem no header*/
      distancia do topo de 45vh, da esquerda de 150vh, largura de 150px e autura se ajusta
       automaticamente ao conteúdo que estiver dentro dele*/
     position: absolute;
-    top: 45vh;
+    top: 25vh;
     left: 150vh;
     width: 150px;
     height: auto;
