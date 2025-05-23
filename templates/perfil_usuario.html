@@ -28,26 +28,35 @@
             <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
         </section>
 
-        <section>
+    
             <div class="foto d-flex">
                 <img src="../static/img/usuario sem foto.png" alt="Ícone de usuário">
             </div>
-            <div class="inputs">
-                <form action="">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+           <section class="login2">
 
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required minlength="4" maxlength="10" />
+                <div class="inputs">
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <div class="campo">
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
 
-                    <button class="botao animacao" type="submit">Entrar</button>
-                </form>
-            </div>
+                        <div class="campo">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha" required minlength="4" maxlength="10">
+                        </div>
+
+                        <div class="botaoalinhar">
+                            <button class="botaologin animacao" type="submit">Entrar</button>
+                        </div>
+                    </form>
+
+
+            </section>
+        <section class="cadastrologin">
+                <p>Ainda não tem uma conta?</p>
+                <a class="botaocadastro animacao" href="/cadastro_usuario">Cadastro</a>
         </section>
-        <search>
-            <p>Ainda não tem uma conta?</p>
-            <a href="/cadastro_usuario">Cadastro</a>
-        </search>
     </main>
 
     <footer class="flex">
