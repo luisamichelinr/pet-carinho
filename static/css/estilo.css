@@ -27,6 +27,11 @@
     max-width: 1400px;
 }
 
+main {
+    max-width: 1400px;
+    padding-top: 100px;
+}
+
 .flex {
     display: flex;
     align-items: center;
@@ -219,13 +224,9 @@ header img {
 .patinhas {
     position: absolute;
     top: 45vh;
-    right: 20vh;
+    left: 150vh;
     width: 150px;
     height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    pointer-events: none;
     z-index: 0;
 }
 
@@ -268,23 +269,22 @@ header img {
 
 
 .inputs {
+    padding: 40px 20px;
+    margin: 0 200px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px;
+    gap: 10px;
 
 }
 
-
-
-
-.inputs p {
-    font-family: McLaren;
-    flex-direction: column;
-
-
+.pergunta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
 }
-
 
 .inputs input {
     background-color: #FAD9F2;
@@ -292,8 +292,7 @@ header img {
     border-radius: 60px;
     padding: 10px;
     font-size: 16px;
-    width: 300px;
-    flex-direction: column;
+    width: 600px;
 }
 
 .botaodesalvar {
@@ -304,11 +303,12 @@ header img {
     background-color: #A451FC;
     border-radius: 60px;
     border: none;
-    width: 60px;
-    height: 30px;
+    padding: 10px 20px;
     font-family: McLaren;
     align-items: center;
     justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
 }
 
 .inputs select {
@@ -317,15 +317,13 @@ header img {
     border-radius: 60px;
     padding: 10px;
     font-size: 16px;
-    width: 300px;
-    flex-direction: column;
+    width: 625px;
 }
 
 .nomeinput {
-    align-items: start;
-    justify-content: left;
     font-family: McLaren;
-
+    text-align: right;
+    width: 300px;
 }
 
 .atendimento {
