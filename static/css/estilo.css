@@ -15,6 +15,8 @@
     --cor-roxo-escuro: #7A03F9;
     --cor-slamao-fundo: #FFCED5;
     --cor-rosa-cards: #FFDBF6;
+    --cor-pra-animacao: #5201a8;
+    --cor-anima: #fc8c7b;
 
 }
 
@@ -170,6 +172,7 @@ footer a:hover {
     box-shadow: black 1px 4px 9px 0px;
     align-self: center;
     margin-left: -100px;
+    padding: 10px;
 }
 
 .patinha1 {
@@ -663,6 +666,38 @@ header img {
     font-size: 20px;
 }
 
+
+.animacao:hover {
+    animation: animabotao 0.3s forwards;
+}
+
+.latidos {
+    margin: 70px 0px 300px;
+    display: flex
+
+}
+
+.latidos .dogs {
+    display: inline-block;
+    position: absolute;
+    right: 700px;
+    bottom: 10px;
+    top: 20px;
+}
+
+.latidos h4 {
+    margin: 20px 0px 14px 40px;
+    font-size: xx-large;
+    color: #7A03F9;
+}
+
+.latidos h4 span {
+    font-size: x-large;
+    color: #000000;
+
+}
+
+
 .avaliacoes {
     display: flex;
     justify-content: center;
@@ -673,7 +708,7 @@ header img {
     display: flex;
     position: absolute;
     left: 550px;
-    top: 2770px;
+    top: 2670px;
 }
 
 .botaologin {
@@ -742,6 +777,39 @@ header img {
   padding: 6px 8px;
   font-size: 14px;
 }
+
+
+.aviso {
+    position: relative;
+    display: flex;
+    left: 140px;
+}
+
+@keyframes animabotao {
+  0% {
+    transform: scale(1);
+    background-color: var(--cor-roxo-claro);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-pra-animacao);
+  }
+}
+
+
+@keyframes animabotaozin {
+  0% {
+    transform: scale(1);
+    color: var(--cor-salmao);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-anima);
+  }
+}
+
+.animazita:hover {
+    animation: animabotaozin 0.3s forwards;}
 
 
 html {
