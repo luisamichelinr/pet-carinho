@@ -196,7 +196,7 @@ header img {
 }
 
 .botoes {
-    padding-left: 70px;
+    margin-left: 200px;
 }
 
 .login {
@@ -634,3 +634,69 @@ header img {
     left: 550px;
     top: 2694px;
 }
+
+.botaologin {
+    background-color: var(--cor-roxo) ;
+    width: 150px;
+    height: 40px;
+    color: var(--cor-branco);
+    font-size: 20px;
+    border-radius: 100px;
+    margin-top: 40px;
+    border: none;
+    
+}
+
+.botaocadastro {
+    display: flex;
+    background-color: var(--cor-roxo) ;
+    width: 150px;
+    height: 40px;
+    color: var(--cor-branco);
+    font-size: 20px;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastrologin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.login2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.botaoalinhar {
+    display: flex;
+  justify-content: center; 
+  align-items: center;    
+ 
+}
+.campo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  width: 75px; 
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.campo input {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
