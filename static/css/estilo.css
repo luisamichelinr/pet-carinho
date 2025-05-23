@@ -644,7 +644,7 @@ header img {
     position: absolute;
     right: 700px;
     bottom: 10px;
-    top: 20px;
+    top: 70px;
 }
 
 .latidos h4 {
@@ -662,15 +662,17 @@ header img {
 
 .avaliacoes {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
+    left: 200px;
 }
 
 .fotorodape {
     display: flex;
     position: absolute;
     left: 550px;
-    top: 2670px;
+    top: 2493px;
 }
 
 .botaologin {
