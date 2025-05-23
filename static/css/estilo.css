@@ -162,6 +162,7 @@ footer a:hover {
     box-shadow: black 1px 4px 9px 0px;
     align-self: center;
     margin-left: -100px;
+    padding: 10px;
 }
 
 .patinha1 {
@@ -635,7 +636,7 @@ header img {
     display: flex;
     position: absolute;
     left: 550px;
-    top: 2770px;
+    top: 2670px;
 }
 
 .botaologin {
