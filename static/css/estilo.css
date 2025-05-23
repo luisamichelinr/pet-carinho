@@ -697,13 +697,9 @@ header img {
     align-items: flex-end; 
 }
 .fotorodape {
-    position: relative;
-    height: 200px; 
-    margin-bottom: -72px; 
-    z-index: 10;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: 300px;
+    position: absolute;
+    top: 2589px;
+    right: 0;
 }
 
 
@@ -797,12 +793,6 @@ header img {
     left: 200px;
 }
 
-.fotorodape {
-    display: flex;
-    position: absolute;
-    left: 550px;
-    top: 2493px;
-}
 
 .botaologin {
     background-color: var(--cor-roxo) ;
