@@ -33,6 +33,7 @@ main {
     max-width: 1400px;
 }
 
+
 .flex {
     display: flex;
     align-items: center;
@@ -50,6 +51,11 @@ main {
 
 .inicio {
     align-items: start;
+}
+
+header a:hover {
+    text-decoration: underline;
+    transition: 0.5s;
 }
 
 .left {
@@ -621,8 +627,36 @@ header img {
     font-size: 12px;
 }
 
+.latidos > section > div {
+    display: flex;           
+    justify-content: space-between;  
+    align-items: flex-start }
+
+.latidos {
+    padding: 20px;
+    display: flex;
+
+}
+.latidos img {
+    justify-content: left;
+    align-items: start;
+}
+
+.latidos h4 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #7A03F9;
+}
+
+.latidos span {
+    font-size: 27px;
+    display: block;
+    
+}
+
 .comentario1 {
     font-family: Quicksand;
+    font-size: 16px;
     margin: 55px;
     padding: 20px;
     height: 140px;
@@ -634,21 +668,44 @@ header img {
 
 .comentario2 {
     font-family: Quicksand;
+    font-size: 16px;
     margin: 55px;
     padding: 20px;
     height: 140px;
     width: 500px;
     background-color: #FFF6F7;
     border-radius: 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);}
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
 
 .comentario1 span {
     font-weight: bold;
+    font-size: 17px;
 }
 
 .comentario2 span {
     font-weight: bold;
+
+    font-size: 17px;
 }
+
+.comentarios {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-end; 
+}
+.fotorodape {
+    position: relative;
+    height: 200px; 
+    margin-bottom: -72px; 
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 300px;
+}
+
 
 .nome-do-servico {
     font-size: 25px;
@@ -868,4 +925,5 @@ html {
     margin-top: 15px;
     margin-left: 160px;
 }
+
 
