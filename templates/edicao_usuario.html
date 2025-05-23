@@ -67,8 +67,10 @@
                 <div class="campo">
                     <label for="telefone">Telefone:</label>
                     <input type="tel" id="telefone" name="telefone" required value="{{ usuario.telefone }}">
-
-
+                </div>
+                <div class="campo">
+                    <label for="senha">Alterar a senha::</label>
+                    <input type="tel" id="senha" name="senha" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$">
                 </div>
                 <div class="botaosalvar botaoalinhar">
                     <button class="botao animacao" type="submit">Salvar</button>
