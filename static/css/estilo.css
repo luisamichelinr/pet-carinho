@@ -42,28 +42,6 @@ main {
     align-items: start;
 }
 
-.between {
-    justify-content: space-between;
-    padding: 0 20px;
-}
-
-.meio {
-    width: 40vw;
-}
-
-.titulo {
-    font-family: 'McLaren', sans-serif;
-    font-size: 30px;
-    padding: 20px 40px;
-    font-weight: normal;
-}
-
-.subtitulo {
-    font-family: 'McLaren', sans-serif;
-    font-size: 25px;
-    font-weight: normal;
-}
-
 .gap-nav-footer {
     gap: 27px;
 }
@@ -218,7 +196,7 @@ header img {
 }
 
 .botoes {
-    padding-left: 70px;
+    margin-left: 200px;
 }
 
 .login {
@@ -407,35 +385,54 @@ header img {
 }
 
 .servico h4 {
-    color: var(--cor-rosa-escuro);
     font-size: 32px;
     margin-bottom: 30px;
 }
 
-.iten {
-    display: grid;
-    gap: 30px;
+.coelho-img{
+    position: absolute;
+    width: 270px;
+    margin-top: 360px;
+    right: 130px;
 }
 
 .iten {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #333;
 }
 
 .iten img {
     height: 60px;
+    margin-top: 40px;
 }
 
 .iten h5 {
-    color: var(--cor-rosa-escuro);
     margin-bottom: 10px;
 }
 
 .iten p {
     font-size: 14px;
     max-width: 200px;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+.servicos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.fundo-rosa {
+    background-color: var(--cor-rosa-cards);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
 }
 
 .infousuario {
@@ -558,6 +555,13 @@ header img {
     font-weight: bold;
 }
 
+.nome-do-servico {
+    font-size: 25px;
+}
+
+.texto-roxo{
+    color: var(--cor-roxo-escuro);
+}
 .secao2 {
     gap: 300px;
 }
