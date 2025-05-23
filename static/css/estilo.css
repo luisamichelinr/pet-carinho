@@ -308,7 +308,7 @@ header img { /*ajusta a imagem no header*/
     left: 150vh;
     width: 150px;
     height: auto;
-    z-index: 0; /*controla qual elemento fica na frente ou atrás*/ .
+    z-index: 0; /*controla qual elemento fica na frente ou atrás*/ 
 }
 
 
