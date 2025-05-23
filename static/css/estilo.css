@@ -29,9 +29,10 @@
     max-width: 1400px;
 }
 
-main {   /*define a largura maxima do <main>*/
+main {  /*define a largura maxima do <main>*/
     max-width: 1400px;
 }
+
 
 .flex {  /*organiza os elementos dentro de um contêiner, em linha, e centraliza na vertical*/
     display: flex;
@@ -52,7 +53,14 @@ main {   /*define a largura maxima do <main>*/
     align-items: start;
 }
 
-.left {  /*alinha textos a esquerda*/
+
+
+header a:hover {
+    text-decoration: underline;
+    transition: 0.5s;
+}
+
+.left { /*alinha textos a esquerda*/
     text-align: left;
 }
 
@@ -300,7 +308,7 @@ header img { /*ajusta a imagem no header*/
 }
 
 
-.pata1 {                        /*ajeita e roda*/
+.pata1 {    /*ajeita e roda*/
     transform: rotate(-20deg);
     margin-left: 10px;
 }
@@ -697,13 +705,9 @@ header img { /*ajusta a imagem no header*/
     align-items: flex-end; 
 }
 .fotorodape {
-    position: relative;
-    height: 200px; 
-    margin-bottom: -72px; 
-    z-index: 10;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: 300px;
+    position: absolute;
+    top: 2589px;
+    right: 0;
 }
 
 
@@ -797,12 +801,6 @@ header img { /*ajusta a imagem no header*/
     left: 200px;
 }
 
-.fotorodape {
-    display: flex;
-    position: absolute;
-    left: 550px;
-    top: 2493px;
-}
 
 .botaologin {
     background-color: var(--cor-roxo) ;
@@ -925,5 +923,3 @@ html {
     margin-top: 15px;
     margin-left: 160px;
 }
-
-
