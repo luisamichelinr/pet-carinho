@@ -207,64 +207,7 @@ def cadastro_animal(codigo):
         flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
 
-@app.route('/cadastro_veterinario', methods=['GET', 'POST'])
-def cadastro_veterinario():
-    try:
-        if request.method == 'POST':
-            nome = request.form['nome']
-            numero_registro = request.form['numeroderegistro']
-            telefone = request.form['telefone']
-            email = request.form['email']
-            senha = request.form['senha']
-            codigo = len(usuarios)
-            usuario = {
-                'tipo': 2,
-                'codigo': codigo,
-                'nome': nome,
-                'numero_registro': numero_registro,
-                'email': email,
-                'telefone' : telefone,
-                'senha': senha
-            }
-            usuarios.append(usuario)
-            flash(f'Veterinário {nome} cadastrado com sucesso!')
-            return redirect('/dashboard')
-        else:
-            flash(f'Não foi possível cadastrar esse veterinário. Tente novamente mais tarde.')
-            return redirect('/dashboard')
-    except:
-        flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
-        return redirect('/dashboard')
-
-@app.route('/edicao_veterinario/<int:codigo>', methods=['GET', 'POST'])
-def edicao_veterinario(codigo):
-    try:
-        if request.method == 'POST':
-            nome = request.form['nome']
-            numero_registro = request.form['numeroderegistro']
-            telefone = request.form['telefone']
-            email = request.form['email']
-            senha = request.form['senha']
-            codigo = len(usuarios)
-            usuario = {
-                'tipo': 2,
-                'codigo': codigo,
-                'nome': nome,
-                'numero_registro': numero_registro,
-                'email': email,
-                'telefone': telefone,
-                'senha': senha
-            }
-            usuarios.append(usuario)
-            flash(f'Veterinário {nome} editado com sucesso!')
-            return redirect('/dashboard')
-        else:
-            flash(f'Não foi possível editar esse usuário. Tente novamente mais tarde.')
-            return render_template('cadastro_usuario.html')
-    except:
-        flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
-        return render_template('cadastro_usuario.html')
-
+@app.route('/pagina_usuario/<int:codigo>')
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):
     for usuario in usuarios:
@@ -276,22 +219,6 @@ def pagina_usuario(codigo):
             return render_template('pagina_usuario.html', usuario=usuario, pacientes=pets_do_usuario)
     flash("Usuário não encontrado.")
     return redirect('/')
-
-@app.route('/excluir_usuario/<int:codigo>')
-def excluir_usuario(codigo):
-        usuarios[codigo] = {
-            'nome': ""
-        }
-        flash(f'Usuário excluído com sucesso!')
-        return redirect('/dashboard')
-
-@app.route('/excluir_pet/<int:codigo>')
-def excluir_pet(codigo):
-        pacientes[codigo] = {
-            'nome': ""
-        }
-        flash(f'Pet excluído com sucesso!')
-        return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
