@@ -226,7 +226,7 @@ def cadastro_veterinario():
             nome = request.form['nome']
             numero_registro = request.form['numeroderegistro']
             telefone = request.form['telefone']
-            email = request.form['email']
+            
             senha = request.form['senha']
             codigo = len(usuarios)
             usuario = {
@@ -234,7 +234,7 @@ def cadastro_veterinario():
                 'codigo': codigo,
                 'nome': nome,
                 'numero_registro': numero_registro,
-                'email': email,
+
                 'telefone' : telefone,
                 'senha': senha
             }
