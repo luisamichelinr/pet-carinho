@@ -42,6 +42,28 @@ main {
     align-items: start;
 }
 
+.between {
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.meio {
+    width: 40vw;
+}
+
+.titulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 30px;
+    padding: 20px 40px;
+    font-weight: normal;
+}
+
+.subtitulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+}
+
 .gap-nav-footer {
     gap: 27px;
 }
@@ -384,16 +406,14 @@ header img {
     text-align: center;
 }
 
-.servico h2 {
+.servico h4 {
     color: var(--cor-rosa-escuro);
     font-size: 32px;
     margin-bottom: 30px;
-    position: relative;
 }
 
 .iten {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
@@ -406,11 +426,9 @@ header img {
 
 .iten img {
     height: 60px;
-    margin-bottom: 15px;
-    filter: hue-rotate(280deg) brightness(1.2);
 }
 
-.iten h3 {
+.iten h5 {
     color: var(--cor-rosa-escuro);
     margin-bottom: 10px;
 }
@@ -419,8 +437,6 @@ header img {
     font-size: 14px;
     max-width: 200px;
 }
-
-
 
 .infousuario {
     padding: 0px 50px;
