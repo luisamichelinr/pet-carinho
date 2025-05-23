@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PetCarinho</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
+
 <body>
     <header class="d-flex">
         <img src="../static/img/logo.png" alt="Logo da PetCarinho">
@@ -15,8 +17,8 @@
             <a href="index.html">Serviços</a>
             <a href="index.html">Depoimentos</a>
             <div class="botoes">
-            <a class="login" href="login.html">Login</a>
-            <a class="cadastro"  href="cadastro_usuario.html">Cadastro</a>
+                <a class="login" href="login.html">Login</a>
+                <a class="cadastro" href="cadastro_usuario.html">Cadastro</a>
             </div>
         </nav>
     </header>
@@ -28,44 +30,51 @@
 
         <section>
             {% with mensagens = get_flashed_messages() %}
-                {% if mensagens %}
-                    <div class="mensagens">
-                      {% for msg in mensagens %}
-                        <p>{{ msg }}</p>
-                      {% endfor %}
-                    </div>
-              {% endif %}
+            {% if mensagens %}
+            <div class="mensagens">
+                {% for msg in mensagens %}
+                <p>{{ msg }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
             {% endwith %}
         </section>
 
-         <div class="foto d-flex">
+
+        <section>
+            <div class="foto d-flex">
+
                 <img src="../static/img/usuario sem foto.png" alt="Ícone de usuário">
             </div>
-        <section class="login2">
-           
-        <div class="inputs">
-            <form action="{{ url_for('login') }}" method="POST">
-                <div class="campo">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
+            <section class="login2">
+
+                <div class="inputs">
+                    <form action="{{ url_for('login') }}" method="POST">
+                        <div class="campo">
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha" required minlength="4" maxlength="10">
+                        </div>
+
+                        <div class="botaoalinhar">
+                            <button class="botaologin" type="submit">Entrar</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="campo">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required minlength="4" maxlength="10">
+                <button class="botao" type="submit">Entrar</button>
+                </form>
                 </div>
 
-                <div class="botaoalinhar">
-                    <button class="botaologin" type="submit">Entrar</button>
-                </div>
-            </form>
-        </div>
-
-        </section>
-        <section class="cadastrologin">
-            <p>Ainda não tem uma conta?</p>
-            <a class="botaocadastro" href="cadastro_usuario.html">Cadastro</a>
-        </section>
+            </section>
+            <section class="cadastrologin">
+                <p>Ainda não tem uma conta?</p>
+                <a class="botaocadastro" href="cadastro_usuario.html">Cadastro</a>
+            </section>
     </main>
 
     <footer class="flex">
@@ -82,13 +91,17 @@
             <div class="flex column gap-vinte">
                 <div class="redes-sociais-texto">
                     <h5 class="texto-branco">Redes Sociais:</h5>
-                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank" class="texto-branco">@petcarinho</a></p>
-                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank" class="texto-branco">PetCarinho Clínica Veterinária</a></p>
-                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank" class="texto-branco">@petcarinho_vet</a></p>
+                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank"
+                            class="texto-branco">@petcarinho</a></p>
+                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank"
+                            class="texto-branco">PetCarinho Clínica Veterinária</a></p>
+                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank"
+                            class="texto-branco">@petcarinho_vet</a></p>
                 </div>
-                <img src="static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
+                <img src="../static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
             </div>
         </div>
     </footer>
 </body>
+
 </html>

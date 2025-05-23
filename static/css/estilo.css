@@ -299,18 +299,6 @@ header img {
     display: flex;
 }
 
-.botaodesalvar button {
-    background-color: #A451FC;
-    border-radius: 60px;
-    border: none;
-    padding: 10px 20px;
-    font-family: McLaren;
-    align-items: center;
-    justify-content: center;
-    color: var(--cor-branco);
-    font-size: 20px;
-}
-
 .inputs select {
     background-color: #FAD9F2;
     border: 2px solid #FAD9F2;
@@ -544,8 +532,7 @@ header img {
     width: 500px;
     background-color: #FFF6F7;
     border-radius: 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);}
 
 .comentario1 span {
     font-weight: bold;
@@ -564,6 +551,88 @@ header img {
 }
 .secao2 {
     gap: 300px;
+}
+
+.alinhadordeinput {
+    display: flex;
+}
+
+.alinha {
+    justify-content: center;
+    align-items: center;
+}
+
+.botaodesalvar button {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 10px 20px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+}
+
+.aviso {
+    font-family: McLaren;
+    font-size: 11px;
+    color: #616161;
+}
+
+.botao {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 5px 15px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+}
+
+.latidos {
+    margin: 70px 0px 300px;
+    display: flex
+
+}
+
+.latidos .dogs {
+    display: inline-block;
+    position: absolute;
+    right: 700px;
+    bottom: 10px;
+    top: 20px;
+}
+
+.latidos h4 {
+    margin: 20px 0px 14px 40px;
+    font-size: xx-large;
+    color: #7A03F9;
+}
+
+.latidos h4 span {
+    font-size: x-large;
+    color: #000000;
+
+}
+
+.avaliacoes {
+    align-items: end;
+    justify-content: flex-start;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    left: 200px;
+    top: 90px;
+}
+
+.fotorodape {
+    display: flex;
+    position: absolute;
+    left: 550px;
+    top: 2694px;
 }
 
 .botaologin {
@@ -632,3 +701,4 @@ header img {
   padding: 6px 8px;
   font-size: 14px;
 }
+
