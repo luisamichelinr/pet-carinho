@@ -15,6 +15,8 @@
     --cor-roxo-escuro: #7A03F9;
     --cor-slamao-fundo: #FFCED5;
     --cor-rosa-cards: #FFDBF6;
+    --cor-pra-animacao: #5201a8;
+    --cor-anima: #fc8c7b;
 
 }
 
@@ -592,6 +594,10 @@ header img {
     font-size: 20px;
 }
 
+.animacao:hover {
+    animation: animabotao 0.3s forwards;
+}
+
 .latidos {
     margin: 70px 0px 300px;
     display: flex
@@ -702,3 +708,34 @@ header img {
   font-size: 14px;
 }
 
+.aviso {
+    position: relative;
+    display: flex;
+    left: 140px;
+}
+
+@keyframes animabotao {
+  0% {
+    transform: scale(1);
+    background-color: var(--cor-roxo-claro);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-pra-animacao);
+  }
+}
+
+
+@keyframes animabotaozin {
+  0% {
+    transform: scale(1);
+    color: var(--cor-salmao);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-anima);
+  }
+}
+
+.animazita:hover {
+    animation: animabotaozin 0.3s forwards;}
