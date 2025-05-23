@@ -50,13 +50,28 @@
                 </div>
 
                 <div class="pets">
-                    <div>
-                        <img class="iconeditar" src="../static/img/editar.png" alt="Ícone editar">
-                        <img src="../static/img/gato.png" alt="Gato">
-                        <h3>Nome</h3>
-                        <h4>Raça</h4>
-                        <h4>Idade</h4>
-                    </div>
+                    {% for paciente in pacientes %}
+                    {% if paciente.nome != "" %}
+                        <div>
+                            <div class="flex">
+                                <a class="botao-pet" href="/editar-pet/{{ paciente.codigoA }}"><img src="" alt="Ícone editar"></a>
+                                <a class="botao-pet" href="/excluir-pet/{{ paciente.codigoA }}"><img src="" alt="Ícone excluir"></a>
+                            </div>
+                            {% if paciente.especie == "cachorro" %}
+                                <img class="icone-pet" src=".." alt="Ícone cachorro">
+                            {% elif paciente.especie == "gato" %}
+                                <img class="icone-pet" src="" alt="Ícone gato">
+                            {% elif paciente.especie == "coelho" %}
+                                <img class="icone-pet" src="" alt="Ícone coelho">
+                            {% elif paciente.especie == "calopsita" %}
+                                <img class="icone-pet" src="" alt="Ícone calopsita">
+                            {% endif %}
+                            <p class="pet-nome">{{ paciente.nome }}</p>
+                            <p class="pet-texto">{{ paciente.raça }}</p>
+                            <p class="pet-texto">{{ paciente.data_nascimento }}</p>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
             <div>

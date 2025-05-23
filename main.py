@@ -28,8 +28,8 @@ pacientes = [
       'codigo': 0,
       'nome': 'Kiara',
       'data_nascimento': '30/04/2021',
-      'especie': 'Cachorro',
-      'raca' : 'SRD',
+      'especie': 'cachorro',
+      'raca': 'SRD',
       'peso': 7,
       'sexo': 'F'
     }
@@ -65,7 +65,7 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', pacientes=pacientes)
 
 @app.route('/perfil_veterinario')
 def perfil_veterinario():
