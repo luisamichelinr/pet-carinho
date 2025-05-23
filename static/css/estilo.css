@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=McLaren&family=Quicksand:wght@300..700&display=swap');
 
-:root {
+  :root {   /*variáveis para cor */
     --cor-branco: #FFFFFF;
     --cor-preto: #000000;
     --cor-roxo: #A451FC;
@@ -20,7 +20,7 @@
 
 }
 
-* {
+* {  /*redefine tudo*/
     margin: 0;
     padding: 0;
     font-family: 'Quicksand', sans-serif;
@@ -29,68 +29,68 @@
     max-width: 1400px;
 }
 
-main {
+main {   /*define a largura maxima do <main>*/
     max-width: 1400px;
 }
 
-.flex {
+.flex {  /*organiza os elementos dentro de um contêiner, em linha, e centraliza na vertical*/
     display: flex;
     align-items: center;
 }
 
-.column {
+.column {  /*organiza um embaixo do outro e alinhados à esquerda*/
     flex-direction: column;
     align-items: start;
 }
 
-.between {
+.between {  /*da um espaço maximo entre elementos e mais 20 pixeis laterais*/
     justify-content: space-between;
     padding: 0 20px;
 }
 
-.inicio {
+.inicio {  /*alinha itens na esquerda*/
     align-items: start;
 }
 
-.left {
+.left {  /*alinha textos a esquerda*/
     text-align: left;
 }
 
-.meio {
+.meio { /* aqui largura do elemento é 40% da largura da tela.*/
     width: 40vw;
 }
 
-.titulo {
+.titulo { /*define fonte, tamanho e espaço para titulo*/
     font-family: 'McLaren', sans-serif;
     font-size: 30px;
     padding: 20px 40px;
     font-weight: normal;
 }
 
-.subtitulo {
+.subtitulo { /*define fonte, tamanho e espaço para subtitulo*/
     font-family: 'McLaren', sans-serif;
     font-size: 25px;
     font-weight: normal;
 }
 
-.gap-nav-footer {
+.gap-nav-footer {  /*Cria um espaço de 27 pixels entre os itens filhos dentro do footer, nav*/
     gap: 27px;
 }
 
-.inferior {
+.inferior { /*alinha itens de cima pra baixo*/
     align-items: end;
 }
 
-.texto-branco {
+.texto-branco { /*define que o texto será branco*/
     color: var(--cor-branco);
     font-size: 17px;
 }
 
-.gap-vinte {
+.gap-vinte {  /*cria espaço de 20 pixels entre itens filhos dentro do container*/
     gap: 20px;
 }
 
-footer {
+footer {  /*definições do footer*/
     background-color: var(--cor-roxo-escuro);
     padding: 25px 30px;
     text-align: left;
@@ -99,69 +99,70 @@ footer {
     transition: 0.5s;
 }
 
-footer a:hover {
+footer a:hover { /*animação*/
     text-decoration: underline;
     transition: 0.5s;
 }
 
-.logo-footer {
+.logo-footer { /*ajusta o tamanho da logo no footer*/
     width: 320px;
     height: auto;
 }
 
-.nav-footer a {
+.nav-footer a {  /*ajusta fonte, cor e tamanho da fonte na nav dentro do footer*/
     font-family: 'McLaren', sans-serif;
     color: var(--cor-branco);
     font-size: 21px;
 }
 
-.redes-sociais {
+.redes-sociais {  /*ajusta tamanho*/
     height: 320px;
     font-weight: bold;
 }
 
-.pagamento {
+.pagamento {  /*ajusta tamanho*/
     width: 305px;
     height: auto;
 }
 
-.introducao {
+.introducao {  /*alinha a introdução*/
     display: flex;
     align-items: center;
     margin-left: 40px;
     margin-top: 60px;
 }
 
-.texto-introducao {
+.texto-introducao {  /*espaço a esquerda, 10pixels entre e alinha em coluna*/
     margin-left: 60px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.img-introducao {
+.img-introducao { /*ajusta tamanho e dá um espaço em cima de 50 pixels*/
     width: 630px;
     margin-top: 50px;
 }
 
-.frase1 {
+.frase1 { /*ajusta a frase (cor, tamanho da fonte e fonte)*/
     color: var(--cor-roxo);
     font-size: 35px;
     font-family: "Quicksand";
 }
 
-.frase2 {
+.frase2 { /*ajusta a frase (cor e fonte)*/
     color: var(--cor-rosa-escuro);
     font-family: "Quicksand";
 }
 
-.frase3 {
-    font-size: 30px;
+.frase3 { /*ajusta o tamanho e fonte*/
     font-family: "Quicksand";
     font-size: 20px;
 }
 
-.agendamento {
+.agendamento { /*ajusta cor de fundo, aredonda borda, define largura maxima, centraliza, ajeita tamanho da fonte,
+     coloca uma margem de 15 pixels em cima, coloca cor, sombra, alinha no centro, coloca margem a esquerda de 
+     -100 pixels e coloca uma margem dentro de 10 pixels*/
     background-color: var(--cor-salmao);
     border-radius: 20px;
     max-width: fit-content;
@@ -175,7 +176,7 @@ footer a:hover {
     padding: 10px;
 }
 
-.agendamento{
+.agendamento{  /*coloca animação no agendamento*/
     animation-name: crescer;
     animation-duration: 1s;
     animation-timing-function: linear;
@@ -183,7 +184,7 @@ footer a:hover {
     animation-direction: alternate;
 }
 
-@keyframes crescer{
+@keyframes crescer{   /*cria uma animação chamada crescer*/
 
     0%{
         transform: scale(1);
@@ -206,21 +207,21 @@ footer a:hover {
     }
 }
 
-.patinha1 {
+.patinha1 {  /*fica por cima de outros conteudos, com largura definida e posicionada*/
     position: absolute;
     width: 65px;
     top: 150px;
     left: 30px;
 }
 
-.patinha2 {
+.patinha2 {  /*fica por cima de outros conteudos, com largura definida e posicionada*/
     position: absolute;
     width: 50px;
     top: 120px;
     left: 60px;
 }
 
-header {
+header {  /*cabeçalho roxo claro, com largura maxima, centralizado na tela, altura de 90 pixels, no topo da imagem fixado*/
     background-color: var(--cor-roxo-claro);
     width: 100%;
     max-width: 1400px;
@@ -233,50 +234,50 @@ header {
 
 }
 
-.cabecalho {
+.cabecalho { /*alinha no centro e da espaço entre itens*/
     justify-content: space-between;
     align-items: center;
 }
 
-header nav {
+header nav { /*define tamanho da nav no header*/
     width: 80vw;
 }
 
-header nav a {
+header nav a { /*define fonte, tamanho, cor e da um espaço entre itens*/
     font-family: 'McLaren';
     font-size: 20px;
     color: var(--cor-branco);
     padding: 10px;
 }
 
-.d-flex {
+.d-flex { /*organiza filhos numa linha, 50px de espaço entre eles*/
     top: 0;
     display: flex;
     gap: 50px;
 }
 
-header img {
+header img { /*ajusta a imagem no header*/
     width: auto;
     padding-left: 15px;
 }
 
-.botoes {
+.botoes { /*alinha itens a esquerda*/
     align-items: left;
 }
 
-.login {
+.login { /*arruma botão de login*/
     border: 2px solid var(--cor-roxo);
     border-radius: 100px;
     padding: 5px 20px;
 }
 
-.cadastro {
+.cadastro { /*arruma botão de cadastro*/
     background-color: var(--cor-roxo);
     padding: 5px 15px;
     border-radius: 100px;
 }
 
-.imgdogsemfoto {
+.imgdogsemfoto { /*alinha e define tamanho e o display na imagem do doguinho sem foto*/
     height: 20vh;
     margin: 60px;
     display: flex;
@@ -286,17 +287,20 @@ header img {
 
 
 
-.patinhas {
+.patinhas {  /*absolute (sobrepoem as patinhas sobre outros elementos,
+    faz ele se mover a vontade e posiciona relativo ao container com position definido),
+     distancia do topo de 45vh, da esquerda de 150vh, largura de 150px e autura se ajusta
+      automaticamente ao conteúdo que estiver dentro dele*/
     position: absolute;
     top: 45vh;
     left: 150vh;
     width: 150px;
     height: auto;
-    z-index: 0;
+    z-index: 0; /*controla qual elemento fica na frente ou atrás*/ .
 }
 
 
-.pata1 {
+.pata1 {                        /*ajeita e roda*/
     transform: rotate(-20deg);
     margin-left: 10px;
 }
@@ -312,28 +316,28 @@ header img {
     margin-left: 50px;
 }
 
-.seta img {
+.seta img {      /*configurações pra seta*/
     margin-top: 100px;
     width: 40px;
     padding: 20px;
 }
 
-.foto {
+.foto {      /*alinha no centro da tela horizontal e verticalmente*/
     align-items: center;
     justify-content: center;
 }
 
-.rosa {
+.rosa {    /*espaço de 100px a esquerda*/
     padding-left: 100px;
 }
 
-.foto img {
+.foto img { /*não tem largura nem altura fixas, ele vai crescer ou encolher dependendo do conteúdo que tem dentro*/
     width: auto;
     height: auto;
 }
 
 
-.inputs {
+.inputs {   /*definições do container dos inputs*/
     padding: 40px 20px;
     margin: 0 200px;
     max-width: 500px;
@@ -344,14 +348,14 @@ header img {
 
 }
 
-.pergunta {
+.pergunta {   /*em linha, centralizado na vertical, agrupado a direita, 10 px de espaço*/
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
 }
-
-.inputs input {
+ 
+.inputs input {  /*definição dos inputs dentro do container para inputs*/
     background-color: #FAD9F2;
     border: 2px solid #FAD9F2;
     border-radius: 60px;
@@ -360,11 +364,12 @@ header img {
     width: 600px;
 }
 
-.botaodesalvar {
+.botaodesalvar {  /*container em flex*/
     display: flex;
 }
 
-.inputs select {
+.inputs select {  /*dentro do select, que está dentro do container dos inputs, ele define cor, borda, arredonda borda,
+    tamanho da fonte e largura*/
     background-color: #FAD9F2;
     border: 2px solid #FAD9F2;
     border-radius: 60px;
@@ -373,13 +378,14 @@ header img {
     width: 625px;
 }
 
-.nomeinput {
+.nomeinput {  /*fonte, alinha a direita e largura*/
     font-family: McLaren;
     text-align: right;
     width: 300px;
 }
 
-.atendimento {
+.atendimento {   /*fundo rosa, bordas arredondadas, organizado em linha com 80px de espaçamento entre, centralizado,
+    largura ajustada, texto centralizado, espaçamento lateral e 30px em baixo e sombra preta*/
     display: flex;
     background-color: var(--cor-rosa);
     border-radius: 100px;
