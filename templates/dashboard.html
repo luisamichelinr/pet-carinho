@@ -84,7 +84,7 @@
             </div>
         </section>
 
-         <section class="flex between inicio">
+        <section class="flex between inicio">
             <div>
                 <div class="flex between meio">
                     <h5 class="subtitulo">Tutores</h5>
@@ -94,14 +94,18 @@
                 <div class="pets">
                     {% for tutor in tutores %}
                     {% if tutor.nome != "" %}
-                        <div class="petdiv">
+                        <div class="tutordiv">
                             <div>
                                 <div class="flex right">
-                                    <a href="/edicao-usuario/{{ tutor.codigo }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                    <a href="/excluir-usuario/{{ tutor.codigo }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
+                                    <a href="/edicao-usuario/{{ tutor['codigo'] }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
+                                    <a href="/excluir-usuario/{{ tutor['codigo'] }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                                 </div>
-                                <h6 class="pet-nome">{{ tutor.nome }}</h6>
-                                <p class="pet-texto">{{ tutor.pets }}</p>
+                                <h6 class="pet-nome">{{ tutor['nome'] }}</h6>
+                                <ul></ul>
+                                    {% for pet in tutor['pets'] %}
+                                    <li class="pet-texto left">{{ pet }}</li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     {% endif %}
@@ -110,21 +114,20 @@
             </div>
             <div>
                 <div class="flex between meio">
-                    <h5 class="subtitulo">Pacientes</h5>
+                    <h5 class="subtitulo">Veterinários</h5>
                     <a href="" class="adicionar2">+</a>
                 </div>
 
                 <div class="pets">
-                    {% for paciente in pacientes %}
-                    {% if paciente.nome != "" %}
-                        <div class="petdiv">
+                    {% for veterinario in veterinarios %}
+                    {% if veterinario.nome != "" %}
+                        <div class="vetdiv">
                             <div>
                                 <div class="flex right">
-                                    <a href="/editar-pet/{{ paciente.codigo }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                    <a href="/excluir-pet/{{ paciente.codigo }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
+                                    <a href="/edicao-usuario/{{ veterinario['codigo'] }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
+                                    <a href="/excluir-usuario/{{ veterinario['codigo'] }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                                 </div>
-                                <h6 class="pet-nome">{{ usuario.nome }}</h6>
-                                <p class="pet-texto">{{ usuario.pet }}</p>
+                                <h6 class="vet-nome">{{ veterinario['nome'] }}</h6>
                             </div>
                         </div>
                     {% endif %}

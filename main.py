@@ -21,6 +21,15 @@ usuarios = [
       'cep': 'N/A',
       'telefone': 'N/A',
       'senha': 'Maria@1'
+    },
+    {'tipo': 2,
+      'codigo': 2,
+      'nome': 'Gustavo',
+      'data_nascimento': '05/12/1999',
+      'endereco': 'N/A',
+      'cep': 'N/A',
+      'telefone': 'N/A',
+      'senha': 'Gustavo@1'
     }
 ]
 pacientes = [
@@ -73,16 +82,21 @@ def dashboard():
             pets_do_usuario = []
             for paciente in pacientes:
                 if paciente['tutor'] == usuario['codigo']:
-                    pets_do_usuario.append(paciente)
+                    pets_do_usuario.append(paciente['nome'])
             tutor = {
                 'nome': usuario['nome'],
+                'codigo': usuario['codigo'],
                 'pets': pets_do_usuario
             }
             tutores.append(tutor)
 
         elif usuario['tipo'] == 2:
+            veterinario = {
+                'nome': usuario['nome'],
+                'codigo': usuario['codigo']
+            }
             veterinarios.append(usuario)
-
+    print(tutores)
     return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, pacientes=pacientes)
 @app.route('/perfil_veterinario')
 def perfil_veterinario():

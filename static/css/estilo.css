@@ -46,6 +46,14 @@ main {
     padding: 0 20px;
 }
 
+.inicio {
+    align-items: start;
+}
+
+.left {
+    text-align: left;
+}
+
 .meio {
     width: 40vw;
 }
@@ -508,7 +516,37 @@ header img {
    
 }
 
+.tutordiv {
+    margin: 20px;
+    background-color: var(--cor-roxo-claro);
+    height: auto;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center; 
+}
+
+.vetdiv {
+    margin: 20px;
+    background-color: var(--cor-slamao-fundo);
+    height: auto;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center; 
+}
+
 .petdiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.tutordiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.vetdiv h6 {
     font-weight: bold;
     font-size: 21px;
 }
