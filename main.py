@@ -7,7 +7,6 @@ usuarios = [
     { 'tipo': 0,
       'codigo': 0,
       'nome': 'adm_vet',
-      'email': 'adm_vet',
       'data_nascimento': '--/--/----',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -17,7 +16,6 @@ usuarios = [
     {'tipo': 1,
       'codigo': 1,
       'nome': 'Maria',
-     'email': 'maria@',
       'data_nascimento': '19/09/2000',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -27,7 +25,6 @@ usuarios = [
     {'tipo': 2,
       'codigo': 2,
       'nome': 'Gustavo',
-     'email': '111',
       'data_nascimento': '05/12/1999',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -122,7 +119,6 @@ def cadastro_usuario():
     try:
         if request.method == 'POST':
             nome = request.form['nome']
-            email = request.form['e-mail']
             data_nascimento = request.form['data-nascimento']
             endereco = request.form['endereco']
             cep = request.form['cep']
@@ -133,7 +129,6 @@ def cadastro_usuario():
                 'tipo': 1,
                 'codigo': codigo,
                 'nome': nome,
-                'e-mail': email,
                 'data_nascimento': data_nascimento,
                 'endereco': endereco,
                 'cep' : cep,
