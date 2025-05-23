@@ -575,6 +575,7 @@ header img {
     border-radius: 100px;
     margin-top: 40px;
     border: none;
+    font-family: McLaren;
     
 }
 
@@ -588,6 +589,7 @@ header img {
     border-radius: 100px;
     justify-content: center;
     align-items: center;
+    font-family: McLaren;
 }
 
 .cadastrologin {
@@ -620,7 +622,7 @@ header img {
 }
 
 .campo label {
-  width: 75px; 
+  width: 120px; 
   font-weight: bold;
   font-size: 18px;
 }
