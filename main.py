@@ -7,6 +7,7 @@ usuarios = [
     { 'tipo': 0,
       'codigo': 0,
       'nome': 'adm_vet',
+      'email': 'adm_vet',
       'data_nascimento': '--/--/----',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -16,6 +17,7 @@ usuarios = [
     {'tipo': 1,
       'codigo': 1,
       'nome': 'Maria',
+     'email': 'maria@',
       'data_nascimento': '19/09/2000',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -25,6 +27,7 @@ usuarios = [
     {'tipo': 2,
       'codigo': 2,
       'nome': 'Gustavo',
+     'email': '111',
       'data_nascimento': '05/12/1999',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -145,9 +148,21 @@ def cadastro_usuario():
         flash(f'Não foi possível criar esse usuário. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
 
+@app.route('/abrir_edicao/<codigo>')
+def abrir_edicao(codigo):
+    for usu in usuarios:
+        if usu['codigo'] == codigo:
+            return render_template('edicao_usuario.html', usuario=usu)
+    print(usuarios)
+    return render_template('edicao_usuario.html', usuario=usu)
+
+
 @app.route('/edicao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def edicao_usuario(codigo):
     try:
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
         if request.method == 'POST':
             nome = request.form['nome']
             data_nascimento = request.form['data-nascimento']
@@ -168,7 +183,7 @@ def edicao_usuario(codigo):
             }
             usuarios.append(usuario)
             flash(f'Usuário {nome} editado com sucesso!')
-            return redirect('/login')
+            return redirect('/login', usuario=usuario)
         else:
             flash(f'Não foi possível editar esse usuário. Tente novamente mais tarde.')
             return render_template('cadastro_usuario.html')
