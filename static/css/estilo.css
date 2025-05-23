@@ -80,6 +80,11 @@ header a:hover {
     font-weight: normal;
 }
 
+.texto-usuario {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: normal;
+}
+
 .gap-nav-footer {  /*Cria um espaço de 27 pixels entre os itens filhos dentro do footer, nav*/
     gap: 27px;
 }
