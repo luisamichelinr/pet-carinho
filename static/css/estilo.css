@@ -33,7 +33,6 @@ main {  /*define a largura maxima do <main>*/
     max-width: 1400px;
 }
 
-
 .flex {  /*organiza os elementos dentro de um contêiner, em linha, e centraliza na vertical*/
     display: flex;
     align-items: center;
