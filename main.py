@@ -119,6 +119,7 @@ def cadastro_usuario():
     try:
         if request.method == 'POST':
             nome = request.form['nome']
+            email = request.form['e-mail']
             data_nascimento = request.form['data-nascimento']
             endereco = request.form['endereco']
             cep = request.form['cep']
@@ -129,6 +130,7 @@ def cadastro_usuario():
                 'tipo': 1,
                 'codigo': codigo,
                 'nome': nome,
+                'e-mail': email,
                 'data_nascimento': data_nascimento,
                 'endereco': endereco,
                 'cep' : cep,
