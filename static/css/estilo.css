@@ -669,8 +669,8 @@ header img { /*ajusta a imagem no header*/
 .comentario1 {
     font-family: Quicksand;
     font-size: 16px;
-    margin: 55px;
     padding: 20px;
+    margin-top: 100px;
     height: 140px;
     width: 500px;
     background-color: #FFF6F7;
@@ -681,7 +681,7 @@ header img { /*ajusta a imagem no header*/
 .comentario2 {
     font-family: Quicksand;
     font-size: 16px;
-    margin: 55px;
+    margin-top: 100px;
     padding: 20px;
     height: 140px;
     width: 500px;
