@@ -42,6 +42,28 @@ main {
     align-items: start;
 }
 
+.between {
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.meio {
+    width: 40vw;
+}
+
+.titulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 30px;
+    padding: 20px 40px;
+    font-weight: normal;
+}
+
+.subtitulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+}
+
 .gap-nav-footer {
     gap: 27px;
 }

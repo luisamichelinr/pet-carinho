@@ -20,10 +20,6 @@ pacientes = []
 def index():
     return render_template('index.html')
 
-<<<<<<< HEAD
-@app.route('/perfil_usuario')
-def perfil_usuario():
-    return render_template('perfil_usuario.html')
 
 @app.route('/login',  methods=['GET', 'POST'])
 def login():
@@ -67,9 +63,6 @@ def servicos():
 @app.route('/depoimentos')
 def depoimentos():
     return render_template('index.html')
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
