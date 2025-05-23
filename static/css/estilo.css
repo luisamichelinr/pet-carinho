@@ -15,6 +15,8 @@
     --cor-roxo-escuro: #7A03F9;
     --cor-slamao-fundo: #FFCED5;
     --cor-rosa-cards: #FFDBF6;
+    --cor-pra-animacao: #5201a8;
+    --cor-anima: #fc8c7b;
 
 }
 
@@ -44,6 +46,14 @@ main {
 .between {
     justify-content: space-between;
     padding: 0 20px;
+}
+
+.inicio {
+    align-items: start;
+}
+
+.left {
+    text-align: left;
 }
 
 .meio {
@@ -228,11 +238,14 @@ header {
     align-items: center;
 }
 
+header nav {
+    width: 80vw;
+}
+
 header nav a {
     font-family: 'McLaren';
     font-size: 20px;
     color: var(--cor-branco);
-    margin: 0px 5px;
     padding: 10px;
 }
 
@@ -248,7 +261,7 @@ header img {
 }
 
 .botoes {
-    margin-left: 200px;
+    align-items: left;
 }
 
 .login {
@@ -540,7 +553,37 @@ header img {
    
 }
 
+.tutordiv {
+    margin: 20px;
+    background-color: var(--cor-roxo-claro);
+    height: auto;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center; 
+}
+
+.vetdiv {
+    margin: 20px;
+    background-color: var(--cor-slamao-fundo);
+    height: auto;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center; 
+}
+
 .petdiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.tutordiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.vetdiv h6 {
     font-weight: bold;
     font-size: 21px;
 }
@@ -657,17 +700,51 @@ header img {
     font-size: 20px;
 }
 
+
+.animacao:hover {
+    animation: animabotao 0.3s forwards;
+}
+
+.latidos {
+    margin: 70px 0px 300px;
+    display: flex
+
+}
+
+.latidos .dogs {
+    display: inline-block;
+    position: absolute;
+    right: 700px;
+    bottom: 10px;
+    top: 70px;
+}
+
+.latidos h4 {
+    margin: 20px 0px 14px 40px;
+    font-size: xx-large;
+    color: #7A03F9;
+}
+
+.latidos h4 span {
+    font-size: x-large;
+    color: #000000;
+
+}
+
+
 .avaliacoes {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
+    left: 200px;
 }
 
 .fotorodape {
     display: flex;
     position: absolute;
     left: 550px;
-    top: 2670px;
+    top: 2493px;
 }
 
 .botaologin {
@@ -736,6 +813,39 @@ header img {
   padding: 6px 8px;
   font-size: 14px;
 }
+
+
+.aviso {
+    position: relative;
+    display: flex;
+    left: 140px;
+}
+
+@keyframes animabotao {
+  0% {
+    transform: scale(1);
+    background-color: var(--cor-roxo-claro);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-pra-animacao);
+  }
+}
+
+
+@keyframes animabotaozin {
+  0% {
+    transform: scale(1);
+    color: var(--cor-salmao);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-anima);
+  }
+}
+
+.animazita:hover {
+    animation: animabotaozin 0.3s forwards;}
 
 
 html {
