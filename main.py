@@ -12,9 +12,28 @@ usuarios = [
       'cep': 'N/A',
       'telefone': 'N/A',
       'senha': 'AuMiau'
-      }
+      },
+    {'tipo': 1,
+      'codigo': 1,
+      'nome': 'Maria',
+      'data_nascimento': '19/09/2000',
+      'endereco': 'N/A',
+      'cep': 'N/A',
+      'telefone': 'N/A',
+      'senha': 'Maria@1'
+    }
 ]
-pacientes = []
+pacientes = [
+    { 'tutor': 1,
+      'codigo': 0,
+      'nome': 'Kiara',
+      'data_nascimento': '30/04/2021',
+      'especie': 'Cachorro',
+      'raca' : 'SRD',
+      'peso': 7,
+      'sexo': 'F'
+    }
+]
 
 @app.route('/')
 def index():
@@ -135,7 +154,7 @@ def cadastro_animal(codigo):
             especie = request.form['especie']
             raca = request.form['raca']
             peso = request.form['peso']
-            senha = request.form['senha']
+            sexo = request.form['sexo']
             codigoA = len(pacientes)
             paciente = {
                 'tutor': codigo,
@@ -145,6 +164,7 @@ def cadastro_animal(codigo):
                 'especie': especie,
                 'raca' : raca,
                 'peso': peso,
+                'sexo': sexo
             }
             pacientes.append(paciente)
             flash(f'Pet {nome} cadastrado com sucesso!')
