@@ -672,6 +672,12 @@ header img {
   font-size: 14px;
 }
 
+
+html {
+    scroll-behavior: smooth;
+}
+
+
 .latidos{
     margin-bottom: 250px;
 }
@@ -687,3 +693,4 @@ header img {
     margin-top: 15px;
     margin-left: 160px;
 }
+
