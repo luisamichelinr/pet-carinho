@@ -14,6 +14,9 @@
     --cor-roxo-fundo: #F3BCFF;
     --cor-roxo-escuro: #7A03F9;
     --cor-slamao-fundo: #FFCED5;
+    --cor-rosa-cards: #FFDBF6;
+    --cor-pra-animacao: #5201a8;
+    --cor-anima: #fc8c7b;
 
 }
 
@@ -23,6 +26,11 @@
     font-family: 'Quicksand', sans-serif;
     text-decoration: none;
     color: black;
+    max-width: 1400px;
+}
+
+main {
+    max-width: 1400px;
 }
 
 .flex {
@@ -33,6 +41,36 @@
 .column {
     flex-direction: column;
     align-items: start;
+}
+
+.between {
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.inicio {
+    align-items: start;
+}
+
+.left {
+    text-align: left;
+}
+
+.meio {
+    width: 40vw;
+}
+
+.titulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 30px;
+    padding: 20px 40px;
+    font-weight: normal;
+}
+
+.subtitulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
 }
 
 .gap-nav-footer {
@@ -126,7 +164,6 @@ footer a:hover {
 .agendamento {
     background-color: var(--cor-salmao);
     border-radius: 20px;
-    padding: 1.5vh;
     max-width: fit-content;
     justify-self: center;
     font-size: 23px;
@@ -135,6 +172,38 @@ footer a:hover {
     box-shadow: black 1px 4px 9px 0px;
     align-self: center;
     margin-left: -100px;
+    padding: 10px;
+}
+
+.agendamento{
+    animation-name: crescer;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes crescer{
+
+    0%{
+        transform: scale(1);
+    }
+
+    25%{
+        transform: scale(1.05);
+    }
+
+    45%{
+        transform: scale(1.1);
+    }
+
+    65%{
+        transform: scale(1.15);
+    }
+
+    100%{
+        transform: scale(1.2);
+    }
 }
 
 .patinha1 {
@@ -169,11 +238,14 @@ header {
     align-items: center;
 }
 
+header nav {
+    width: 80vw;
+}
+
 header nav a {
     font-family: 'McLaren';
     font-size: 20px;
     color: var(--cor-branco);
-    margin: 0px 5px;
     padding: 10px;
 }
 
@@ -189,7 +261,7 @@ header img {
 }
 
 .botoes {
-    padding-left: 70px;
+    align-items: left;
 }
 
 .login {
@@ -217,14 +289,10 @@ header img {
 .patinhas {
     position: absolute;
     top: 45vh;
-    right: 20vh;
-    width: 150px;          
-    height: auto;          
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    pointer-events: none;  
-    z-index: 0;            
+    left: 150vh;
+    width: 150px;
+    height: auto;
+    z-index: 0;
 }
 
 
@@ -245,6 +313,7 @@ header img {
 }
 
 .seta img {
+    margin-top: 100px;
     width: 40px;
     padding: 20px;
 }
@@ -254,20 +323,33 @@ header img {
     justify-content: center;
 }
 
+.rosa {
+    padding-left: 100px;
+}
+
 .foto img {
-    width: 170px;
+    width: auto;
     height: auto;
 }
 
 
 .inputs {
+    padding: 40px 20px;
+    margin: 0 200px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 30px;
+    gap: 10px;
 
 }
 
+.pergunta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
 
 .inputs input {
     background-color: #FAD9F2;
@@ -275,23 +357,11 @@ header img {
     border-radius: 60px;
     padding: 10px;
     font-size: 16px;
-    width: 300px;
-    flex-direction: column;
+    width: 600px;
 }
 
 .botaodesalvar {
     display: flex;
-}
-
-.botaodesalvar button {
-    background-color: #A451FC;
-    border-radius: 60px;
-    border: none;
-    width: 60px;
-    height: 30px;
-    font-family: McLaren;
-    align-items: center;
-    justify-content: center;
 }
 
 .inputs select {
@@ -300,29 +370,255 @@ header img {
     border-radius: 60px;
     padding: 10px;
     font-size: 16px;
-    width: 300px;
-    flex-direction: column;
+    width: 625px;
 }
 
 .nomeinput {
-    align-items: start;
-    justify-content: left;
     font-family: McLaren;
-
+    text-align: right;
+    width: 300px;
 }
 
 .atendimento {
     display: flex;
     background-color: var(--cor-rosa);
     border-radius: 100px;
-    gap: 20px;
+    gap: 80px;
     justify-self: center;
     max-width: fit-content;
     text-align: center;
     padding: 30px;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 120px;
+    padding-right: 120px;
+    box-shadow: black 1px 4px 9px 0px;
+}
+
+.quem-somos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;
+}
+
+.texto-quem-somos {
+    display: flex;
+    flex-direction: column;
+}
+
+.h3-quem-somos {
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.somos {
+    color: var(--cor-roxo-escuro);
+}
+
+.decoracao {
     color: var(--cor-branco);
+    background-color: var(--cor-roxo);
+    border-radius: 50px;
+    width: 170px;
+    height: 5px;
+}
+
+.p-quem-somos {
+    margin-top: 30px;
+}
+
+
+.servico {
+    background: var(--cor-branco);
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.servico h4 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.coelho-img{
+    position: absolute;
+    width: 270px;
+    margin-top: 360px;
+    right: 130px;
+}
+
+.iten {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iten img {
+    height: 60px;
+    margin-top: 40px;
+}
+
+.iten h5 {
+    margin-bottom: 10px;
+}
+
+.iten p {
+    font-size: 14px;
+    max-width: 200px;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+.servicos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.fundo-rosa {
+    background-color: var(--cor-rosa-cards);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+}
+
+.infousuario {
+    padding: 0px 50px;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px;
+}
+
+.adicionar2 {
+    background-color: var(--cor-rosa-escuro);
+    border-radius: 100px;
+    width: 35px;
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    color: var(--cor-branco);
+}
+
+.agendamentos {
+    justify-content: space-between;
+}
+
+.agendamentos div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+.adicionar {
+    background-color: var(--cor-rosa-escuro);
+    border-radius: 100px;
+    width: 35px;
+    display: inline-block;
+   margin-left: 1200px;
+    padding: 5px;
+    text-align: center;
+    color: var(--cor-branco);
+}
+
+
+
+.petsp {
+   justify-content: space-between;
+   display: inline-block;
+   margin: 20px;
+}
+
+.pets {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.petdiv {
+    margin: 20px;
+    background-color: var(--cor-rosa-cards);
+    height: 230px;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center;
+   
+}
+
+.tutordiv {
+    margin: 20px;
+    background-color: var(--cor-roxo-claro);
+    height: auto;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center; 
+}
+
+.vetdiv {
+    margin: 20px;
+    background-color: var(--cor-slamao-fundo);
+    height: auto;
+    width: 150px;
+    padding: 20px 30px 50px;
+    border-radius: 30px;
+    text-align: center; 
+}
+
+.petdiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.tutordiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.vetdiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.botao-pet {
+    width: 30px;
+}
+
+.right {
+    justify-content: end;
+}
+
+.iconeditar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: auto;
+}
+
+.pets img {
+    margin-left: auto;
+}
+
+.pets h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pets h4 {
+    font-style: 'Regular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 }
 
 .latidos > section > div {
@@ -373,8 +669,10 @@ header img {
     width: 500px;
     background-color: #FFF6F7;
     border-radius: 20px;
+
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
+
 
 .comentario1 span {
     font-weight: bold;
@@ -383,6 +681,7 @@ header img {
 
 .comentario2 span {
     font-weight: bold;
+
     font-size: 17px;
 }
 
@@ -400,3 +699,225 @@ header img {
     transform: translateX(-50%);
     margin-left: 300px;
 }
+
+
+.nome-do-servico {
+    font-size: 25px;
+}
+
+.texto-roxo{
+    color: var(--cor-roxo-escuro);
+}
+.secao2 {
+    gap: 100px;
+}
+
+.alinhadordeinput {
+    display: flex;
+}
+
+.alinha {
+    justify-content: center;
+    align-items: center;
+}
+
+.botaodesalvar button {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 10px 20px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+}
+
+.aviso {
+    font-family: McLaren;
+    font-size: 11px;
+    color: #616161;
+}
+
+.botao {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 5px 15px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+}
+
+
+.animacao:hover {
+    animation: animabotao 0.3s forwards;
+}
+
+.latidos {
+    margin: 70px 0px 300px;
+    display: flex
+
+}
+
+.latidos .dogs {
+    display: inline-block;
+    position: absolute;
+    right: 700px;
+    bottom: 10px;
+    top: 70px;
+}
+
+.latidos h4 {
+    margin: 20px 0px 14px 40px;
+    font-size: xx-large;
+    color: #7A03F9;
+}
+
+.latidos h4 span {
+    font-size: x-large;
+    color: #000000;
+
+}
+
+
+.avaliacoes {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    left: 200px;
+}
+
+.fotorodape {
+    display: flex;
+    position: absolute;
+    left: 550px;
+    top: 2493px;
+}
+
+.botaologin {
+    background-color: var(--cor-roxo) ;
+    width: 150px;
+    height: 40px;
+    color: var(--cor-branco);
+    font-size: 20px;
+    border-radius: 100px;
+    margin-top: 40px;
+    border: none;
+    font-family: McLaren;
+    
+}
+
+.botaocadastro {
+    display: flex;
+    background-color: var(--cor-roxo) ;
+    width: 150px;
+    height: 40px;
+    color: var(--cor-branco);
+    font-size: 20px;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    font-family: McLaren;
+}
+
+.cadastrologin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.login2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.botaoalinhar {
+    display: flex;
+  justify-content: center; 
+  align-items: center;    
+ 
+}
+.campo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  width: 120px; 
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.campo input {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+
+.aviso {
+    position: relative;
+    display: flex;
+    left: 140px;
+}
+
+@keyframes animabotao {
+  0% {
+    transform: scale(1);
+    background-color: var(--cor-roxo-claro);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-pra-animacao);
+  }
+}
+
+
+@keyframes animabotaozin {
+  0% {
+    transform: scale(1);
+    color: var(--cor-salmao);
+  }
+  100% {
+    transform: scale(1.2);
+    background-color: var(--cor-anima);
+  }
+}
+
+.animazita:hover {
+    animation: animabotaozin 0.3s forwards;}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.latidos{
+    margin-bottom: 250px;
+}
+
+.conheca-latidos{
+    margin-top: 70px;
+    font-size: 35px;
+    margin-left: 170px;
+    color: var(--cor-roxo);
+}
+
+.nossos-clientes{
+    margin-top: 15px;
+    margin-left: 160px;
+}
+
+

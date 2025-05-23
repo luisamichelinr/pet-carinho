@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, url_for
 
 app = Flask(__name__)
 app.secret_key = 'pet-carinho'
@@ -12,17 +12,42 @@ usuarios = [
       'cep': 'N/A',
       'telefone': 'N/A',
       'senha': 'AuMiau'
-      }
+      },
+    {'tipo': 1,
+      'codigo': 1,
+      'nome': 'Maria',
+      'data_nascimento': '19/09/2000',
+      'endereco': 'N/A',
+      'cep': 'N/A',
+      'telefone': 'N/A',
+      'senha': 'Maria@1'
+    },
+    {'tipo': 2,
+      'codigo': 2,
+      'nome': 'Gustavo',
+      'data_nascimento': '05/12/1999',
+      'endereco': 'N/A',
+      'cep': 'N/A',
+      'telefone': 'N/A',
+      'senha': 'Gustavo@1'
+    }
 ]
-pacientes = []
+pacientes = [
+    { 'tutor': 1,
+      'codigo': 0,
+      'nome': 'Kiara',
+      'data_nascimento': '30/04/2021',
+      'especie': 'cachorro',
+      'raca': 'SRD',
+      'peso': 7,
+      'sexo': 'F'
+    }
+]
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/perfil_usuario')
-def perfil_usuario():
-    return render_template('perfil_usuario.html')
 
 @app.route('/login',  methods=['GET', 'POST'])
 def login():
@@ -34,9 +59,9 @@ def login():
                 if usuario['nome'] == nome and usuario['senha'] == senha:
                     print(f"{usuario['nome']}")
                     if usuario['tipo'] == 0:
-                        return redirect('/')
+                        return redirect('/dashboard')
                     elif usuario['tipo'] == 1:
-                        return redirect('/perfil_usuario')
+                        return redirect(url_for('pagina_usuario', codigo=usuario['codigo']))
                     elif usuario['tipo'] == 2:
                         return redirect('/perfil_veterinario')
             flash(f'Nome e/ou senha incorretos. Tente novamente.')
@@ -47,10 +72,32 @@ def login():
         flash(f'Um erro inesperado aconteceu. Tente novamente')
         return redirect('/login')
 
-@app.route('/dashboard')
+@app.route ('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    tutores = []
+    veterinarios = []
 
+    for usuario in usuarios:
+        if usuario['tipo'] == 1:
+            pets_do_usuario = []
+            for paciente in pacientes:
+                if paciente['tutor'] == usuario['codigo']:
+                    pets_do_usuario.append(paciente['nome'])
+            tutor = {
+                'nome': usuario['nome'],
+                'codigo': usuario['codigo'],
+                'pets': pets_do_usuario
+            }
+            tutores.append(tutor)
+
+        elif usuario['tipo'] == 2:
+            veterinario = {
+                'nome': usuario['nome'],
+                'codigo': usuario['codigo']
+            }
+            veterinarios.append(usuario)
+    print(tutores)
+    return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, pacientes=pacientes)
 @app.route('/perfil_veterinario')
 def perfil_veterinario():
     return render_template('perfil_veterinario.html')
@@ -138,7 +185,7 @@ def cadastro_animal(codigo):
             especie = request.form['especie']
             raca = request.form['raca']
             peso = request.form['peso']
-            senha = request.form['senha']
+            sexo = request.form['sexo']
             codigoA = len(pacientes)
             paciente = {
                 'tutor': codigo,
@@ -147,49 +194,31 @@ def cadastro_animal(codigo):
                 'data_nascimento': data_nascimento,
                 'especie': especie,
                 'raca' : raca,
-                'peso': peso
+                'peso': peso,
+                'sexo': sexo
             }
             pacientes.append(paciente)
             flash(f'Pet {nome} cadastrado com sucesso!')
-            return redirect('/perfil_usuario')
+            return redirect('/pagina_usuario')
         else:
             flash(f'Não foi possível cadastrar esse pet. Tente novamente mais tarde.')
-            return render_template('perfil_usuario.html')
+            return render_template('pagina_usuario.html')
     except:
         flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
 
-@app.route('/perfil_usuario')
-def perfil_usuario():
-    return render_template('perfil_usuario.html')
-
-@app.route('/cadastro_veterinario', methods=['GET', 'POST'])
-def cadastro_veterinario():
-    try:
-        if request.method == 'POST':
-            nome = request.form['nome']
-            telefone = request.form['telefone']
-            numeroderegistro = request.form['numeroderegistro']
-            email = request.form['email']
-            senha = request.form['senha']
-            codigo = len(usuarios)
-            usuario = {
-                'codigo': codigo,
-                'nome': nome,
-                'telefone': telefone,
-                'numeroderegistro': numeroderegistro,
-                'email' : email,
-                'senha': senha
-            }
-            pacientes.append(paciente)
-            flash(f'Pet {nome} cadastrado com sucesso!')
-            return redirect('/perfil_usuario')
-        else:
-            flash(f'Não foi possível cadastrar esse pet. Tente novamente mais tarde.')
-            return render_template('perfil_usuario.html')
-    except:
-        flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
-        return render_template('cadastro_usuario.html')
+@app.route('/pagina_usuario/<int:codigo>')
+@app.route('/pagina_usuario/<int:codigo>')
+def pagina_usuario(codigo):
+    for usuario in usuarios:
+        if usuario['codigo'] == codigo:
+            pets_do_usuario = []
+            for paciente in pacientes:
+                if paciente['tutor'] == codigo:
+                    pets_do_usuario.append(paciente)
+            return render_template('pagina_usuario.html', usuario=usuario, pacientes=pets_do_usuario)
+    flash("Usuário não encontrado.")
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
