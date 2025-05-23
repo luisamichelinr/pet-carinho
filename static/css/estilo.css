@@ -31,7 +31,6 @@
 
 main {
     max-width: 1400px;
-    padding-top: 100px;
 }
 
 .flex {
@@ -42,6 +41,28 @@ main {
 .column {
     flex-direction: column;
     align-items: start;
+}
+
+.between {
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.meio {
+    width: 40vw;
+}
+
+.titulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 30px;
+    padding: 20px 40px;
+    font-weight: normal;
+}
+
+.subtitulo {
+    font-family: 'McLaren', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
 }
 
 .gap-nav-footer {
@@ -135,7 +156,6 @@ footer a:hover {
 .agendamento {
     background-color: var(--cor-salmao);
     border-radius: 20px;
-    padding: 1.5vh;
     max-width: fit-content;
     justify-self: center;
     font-size: 23px;
@@ -144,6 +164,7 @@ footer a:hover {
     box-shadow: black 1px 4px 9px 0px;
     align-self: center;
     margin-left: -100px;
+    padding: 10px;
 }
 
 .patinha1 {
@@ -261,7 +282,7 @@ header img {
 }
 
 .rosa {
-    padding: 50px;
+    padding-left: 100px;
 }
 
 .foto img {
@@ -428,16 +449,15 @@ header img {
 .infousuario {
     padding: 0px 50px;
     flex-direction: column;
-    gap: 25px;
+    gap: 10px;
     margin: 20px;
 }
 
 .adicionar2 {
-     background-color: var(--cor-rosa-escuro);
+    background-color: var(--cor-rosa-escuro);
     border-radius: 100px;
     width: 35px;
     display: inline-block;
-   margin-left: 600px;
     padding: 5px;
     text-align: center;
     color: var(--cor-branco);
@@ -480,14 +500,28 @@ header img {
     flex-wrap: wrap;
 }
 
-.pets div {
+.petdiv {
     margin: 20px;
     background-color: var(--cor-rosa-cards);
     height: 230px;
     width: 150px;
-    padding: 20px;
+    padding: 20px 30px 50px;
     border-radius: 30px;
+    text-align: center;
    
+}
+
+.petdiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.botao-pet {
+    width: 30px;
+}
+
+.right {
+    justify-content: end;
 }
 
 .iconeditar {
@@ -552,7 +586,7 @@ header img {
     color: var(--cor-roxo-escuro);
 }
 .secao2 {
-    gap: 300px;
+    gap: 100px;
 }
 
 .alinhadordeinput {
@@ -594,6 +628,7 @@ header img {
     font-size: 20px;
 }
 
+
 .animacao:hover {
     animation: animabotao 0.3s forwards;
 }
@@ -624,21 +659,18 @@ header img {
 
 }
 
+
 .avaliacoes {
-    align-items: end;
-    justify-content: flex-start;
     display: flex;
-    position: relative;
-    flex-direction: column;
-    left: 200px;
-    top: 90px;
+    justify-content: center;
+    align-items: center;
 }
 
 .fotorodape {
     display: flex;
     position: absolute;
     left: 550px;
-    top: 2694px;
+    top: 2670px;
 }
 
 .botaologin {
@@ -708,6 +740,7 @@ header img {
   font-size: 14px;
 }
 
+
 .aviso {
     position: relative;
     display: flex;
@@ -739,3 +772,26 @@ header img {
 
 .animazita:hover {
     animation: animabotaozin 0.3s forwards;}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.latidos{
+    margin-bottom: 250px;
+}
+
+.conheca-latidos{
+    margin-top: 70px;
+    font-size: 35px;
+    margin-left: 170px;
+    color: var(--cor-roxo);
+}
+
+.nossos-clientes{
+    margin-top: 15px;
+    margin-left: 160px;
+}
+
