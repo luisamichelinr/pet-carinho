@@ -79,6 +79,11 @@ header a:hover {
     font-weight: normal;
 }
 
+.texto-usuario {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: normal;
+}
+
 .gap-nav-footer {
     gap: 27px;
 }

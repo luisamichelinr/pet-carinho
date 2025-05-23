@@ -26,80 +26,54 @@
         <div class="foto rosa">
             <img src="../static/img/usuariorosa.png" alt="Foto do usuário">
         </div>
-        <section class="secao2 d-flex inicio">
+        <section class="secao2 d-flex inicio between">
             <div class="infousuario d-flex meio">
-                <h3>Nome: <span>{{ usuario.nome }}</span> </h3>
-                <h3>Data de nascimento: <span>{{ usuario.data_nascimento }}</span></h3>
-                <h3>Endereço completo: <span>{{ usuario.endereco }}</span></h3>
-                <h3>CEP: <span>{{ usuario.cep }}</span></h3>
-                <h3>Telefone: <span>{{ usuario.telefone }}</span></h3>
+                <h3>Nome: <span class="texto-usuario">{{ usuario.nome }}</span> </h3>
+                <h3>Data de nascimento: <span class="texto-usuario">{{ usuario.data_nascimento }}</span></h3>
+                <h3>Endereço completo: <span class="texto-usuario">{{ usuario.endereco }}</span></h3>
+                <h3>CEP: <span class="texto-usuario">{{ usuario.cep }}</span></h3>
+                <h3>Telefone: <span class="texto-usuario">{{ usuario.telefone }}</span></h3>
             </div>
             <div class="agendamentos flex meio">
                 <h1>Agendamentos</h1>
                 <a class="adicionar2" href="">+</a>
             </div>
-            <section class="secao2 d-flex">
-                <div class="infousuario d-flex">
-                    <h3>Nome:</h3>
-                    <h3>Data de nascimento:</h3>
-                    <h3>Endereço completo:</h3>
-                    <h3>CEP:</h3>
-                    <h3>Telefone:</h3>
-                </div>
-                <div class="agendamentos">
-                    <h1 class="d-flex">Agendamentos</h1>
-                    <a class="adicionar2" href="">+</a>
-                </div>
-
-            </section>
-
+        </section>
+        <section>
             <h1 class="petsp">Pets</h1>
             <div class="d-flex">
                 <a class="adicionar" href="">+</a>
             </div>
-            <section class="pets">
-
-                <div>
-                    <img class="iconeditar" src="../static/img/editar.png" alt="Ícone editar">
-                    <img class="animal" src="../static/img/gato.png" alt="Gato">
-                    <h3>Nome</h3>
-                    <h4>Raça</h4>
-                    <h4>Idade</h4>
-                    <section class="pet-usuario">
-                        <div class="flex between">
-                            <h5 class="subtitulo">Pets</h5>
-                            <a href="" class="adicionar2">+</a>
+            <div class="pets">
+                {% for paciente in pacientes %}
+                {% if paciente.nome != "" %}
+                <div class="petdiv">
+                    <div>
+                        <div class="flex right">
+                            <a href="/editar-pet/{{ paciente.codigo }}"><img
+                                    src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
+                            <a href="/excluir-pet/{{ paciente.codigo }}"><img
+                                    src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                         </div>
-
-                        <div class="pets">
-                            {% for paciente in pacientes %}
-                            {% if paciente.nome != "" %}
-                            <div class="petdiv">
-                                <div>
-                                    <div class="flex right">
-                                        <a class="botao-pet" href="/editar-pet/{{ paciente.codigo }}"><img
-                                                src="../static/img/editar.png" alt="Ícone editar"></a>
-                                        <a class="botao-pet" href="/excluir-pet/{{ paciente.codigo }}"><img
-                                                src="../static/img/excluir.png" alt="Ícone excluir"></a>
-                                    </div>
-                                    {% if paciente.especie == "cachorro" %}
-                                    <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
-                                    {% elif paciente.especie == "gato" %}
-                                    <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
-                                    {% elif paciente.especie == "coelho" %}
-                                    <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
-                                    {% elif paciente.especie == "calopsita" %}
-                                    <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
-                                    {% endif %}
-                                    <h6 class="pet-nome">{{ paciente.nome }}</h6>
-                                    <p class="pet-texto">{{ paciente.raca }}</p>
-                                    <p class="pet-texto">{{ paciente.data_nascimento }}</p>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                    </section>
+                        {% if paciente.especie == "cachorro" %}
+                        <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
+                        {% elif paciente.especie == "gato" %}
+                        <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
+                        {% elif paciente.especie == "coelho" %}
+                        <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
+                        {% elif paciente.especie == "calopsita" %}
+                        <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
+                        {% endif %}
+                        <h6 class="pet-nome">{{ paciente.nome }}</h6>
+                        <p class="pet-texto">{{ paciente.raca }}</p>
+                        <p class="pet-texto">{{ paciente.data_nascimento }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            </div>
+        </section>
     </main>
 
     <footer class="flex">
