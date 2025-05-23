@@ -65,40 +65,43 @@
                     <h3>Nome</h3>
                     <h4>Raça</h4>
                     <h4>Idade</h4>
-        <section class="pet-usuario">
-                    <div class="flex between">
-                        <h5 class="subtitulo">Pets</h5>
-                        <a href="" class="adicionar2">+</a>
-                    </div>
+                    <section class="pet-usuario">
+                        <div class="flex between">
+                            <h5 class="subtitulo">Pets</h5>
+                            <a href="" class="adicionar2">+</a>
+                        </div>
 
-                    <div class="pets">
-                        {% for paciente in pacientes %}
-                        {% if paciente.nome != "" %}
+                        <div class="pets">
+                            {% for paciente in pacientes %}
+                            {% if paciente.nome != "" %}
                             <div class="petdiv">
                                 <div>
                                     <div class="flex right">
-                                        <a class="botao-pet" href="/editar-pet/{{ paciente.codigo }}"><img src="../static/img/editar.png" alt="Ícone editar"></a>
-                                        <a class="botao-pet" href="/excluir-pet/{{ paciente.codigo }}"><img src="../static/img/excluir.png" alt="Ícone excluir"></a>
+                                        <a class="botao-pet" href="/editar-pet/{{ paciente.codigo }}"><img
+                                                src="../static/img/editar.png" alt="Ícone editar"></a>
+                                        <a class="botao-pet" href="/excluir-pet/{{ paciente.codigo }}"><img
+                                                src="../static/img/excluir.png" alt="Ícone excluir"></a>
                                     </div>
                                     {% if paciente.especie == "cachorro" %}
-                                        <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
+                                    <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
                                     {% elif paciente.especie == "gato" %}
-                                        <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
+                                    <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
                                     {% elif paciente.especie == "coelho" %}
-                                        <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
+                                    <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
                                     {% elif paciente.especie == "calopsita" %}
-                                        <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
+                                    <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
                                     {% endif %}
                                     <h6 class="pet-nome">{{ paciente.nome }}</h6>
                                     <p class="pet-texto">{{ paciente.raca }}</p>
                                     <p class="pet-texto">{{ paciente.data_nascimento }}</p>
                                 </div>
                             </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-        </section>
-        
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </section>
+    </main>
+
     <footer class="flex">
         <div class="flex gap-vinte">
             <img src="../static/img/logo.png" alt="Logo PetCarinho" class="logo-footer">
@@ -122,8 +125,7 @@
                     <img src="../static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
                 </div>
             </div>
-        </footer>
-    </main>
+    </footer>
 </body>
 
 </html>
