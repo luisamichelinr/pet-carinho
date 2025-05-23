@@ -50,11 +50,11 @@
 
                 <div class="inputs">
                     <form action="{{ url_for('login') }}" method="POST">
-                        
                         <div class="campo">
-                            <label for="data-nascimento">E-mail:</label>
-                            <input type="mail" id="e-mail" name="e-mail" required>
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome" name="nome" required>
                         </div>
+
                         <div class="campo">
                             <label for="senha">Senha:</label>
                             <input type="password" id="senha" name="senha" required minlength="4" maxlength="10">
