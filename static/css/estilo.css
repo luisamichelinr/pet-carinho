@@ -263,7 +263,7 @@ header img {
 }
 
 .foto img {
-    width: 170px;
+    width: auto;
     height: auto;
 }
 
@@ -442,23 +442,27 @@ header img {
 
 .agendamentos h1 {
     margin-bottom: 30px;
+    display: inline-block;
 }
 
 .agendamentos button {
     background-color: var(--cor-roxo);
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
     border-radius: 100px;
-    font: var(--cor-branco);
+    color: var(--cor-branco);
+    font-size: 18px;
 }
 
 .adicionar {
     background-color: var(--cor-rosa-escuro);
     border-radius: 100px;
-    padding: 5px;
     width: 35px;
-
+    display: flex;
+    display: inline-block;
+    margin-left: auto;
 }
+
 
 .adicionar p {
     padding: 5px;
@@ -467,28 +471,29 @@ header img {
 }
 
 .petsp {
-    padding: 30px;
+   justify-content: space-between;
 }
 
 .pets {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
 }
 
 .pets div {
     margin: 20px;
     background-color: var(--cor-rosa-cards);
-    height: 200px;
+    height: 230px;
     width: 150px;
-    padding: 50px;
+    padding: 20px;
     border-radius: 30px;
+   
 }
 
 .iconeditar {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    margin-left: auto;
 }
 
 .pets img {
@@ -536,4 +541,8 @@ header img {
 
 .comentario2 span {
     font-weight: bold;
+}
+
+.secao2 {
+    gap: 300px;
 }
