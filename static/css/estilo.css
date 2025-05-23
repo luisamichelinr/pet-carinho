@@ -592,47 +592,17 @@ header img {
     font-size: 20px;
 }
 
-.latidos {
-    margin: 70px 0px 300px;
-    display: flex
-
-}
-
-.latidos .dogs {
-    display: inline-block;
-    position: absolute;
-    right: 700px;
-    bottom: 10px;
-    top: 20px;
-}
-
-.latidos h4 {
-    margin: 20px 0px 14px 40px;
-    font-size: xx-large;
-    color: #7A03F9;
-}
-
-.latidos h4 span {
-    font-size: x-large;
-    color: #000000;
-
-}
-
 .avaliacoes {
-    align-items: end;
-    justify-content: flex-start;
     display: flex;
-    position: relative;
-    flex-direction: column;
-    left: 200px;
-    top: 90px;
+    justify-content: center;
+    align-items: center;
 }
 
 .fotorodape {
     display: flex;
     position: absolute;
     left: 550px;
-    top: 2694px;
+    top: 2570px;
 }
 
 .botaologin {
@@ -700,3 +670,18 @@ header img {
   font-size: 14px;
 }
 
+.latidos{
+    margin-bottom: 50px;
+}
+
+.conheca-latidos{
+    margin-top: 70px;
+    font-size: 35px;
+    margin-left: 170px;
+    color: var(--cor-roxo);
+}
+
+.nossos-clientes{
+    margin-top: 15px;
+    margin-left: 160px;
+}
