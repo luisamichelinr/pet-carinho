@@ -41,33 +41,34 @@
     <div class="foto d-flex">
             <img src="../static/img/veterinario.png" alt="Foto do veterinário">
     </div>
-    <section class="formularioveterinario d-flex inputs">
+    <section class="login2">
+        <div class="inputs">
     <form action="">
                 
+        <div class="campo">
                 <label>Nome:</label>
                 <input type="text" 
                     name="nome"  />
-
-
+        </div>
+        <div class="campo">
                 <label>Telefone:</label>
                 <input type="tel" 
                     name="telefone"
                     required />
-
-              
+        </div>
+        <div class="campo">
                 <label>Número de registro:</label>
                 <input type="number" 
                     name="numeroderegistro" 
                     required />
-                
-                
+        </div>
+        <div class="campo">
                 <label>Informe seu e-mail:</label>
                 <input type="email" 
                     name="email"
                     required  />
-                
-               
-
+        </div>    
+        <div class="campo">
                 <label>Informe uma senha:</label>
                 <input type="password"
                     name="senha"
@@ -75,11 +76,19 @@
                     maxlength="10"
                        pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$"/>
 
+        </div>
+            <div class="botaoalinhar botaodesalvar">
+                    <button type="submit">Salvar</button>
+                </div>
+
+
         
 
                 <button class="botao" type="submit">Salvar</button>
+
                
             </form>
+            </div>
         </section>
     
     </main>
