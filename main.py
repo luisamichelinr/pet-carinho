@@ -119,6 +119,7 @@ def cadastro_usuario():
     try:
         if request.method == 'POST':
             nome = request.form['nome']
+            email = request.form['e-mail']
             data_nascimento = request.form['data-nascimento']
             endereco = request.form['endereco']
             cep = request.form['cep']
@@ -129,6 +130,7 @@ def cadastro_usuario():
                 'tipo': 1,
                 'codigo': codigo,
                 'nome': nome,
+                'e-mail': email,
                 'data_nascimento': data_nascimento,
                 'endereco': endereco,
                 'cep' : cep,
@@ -145,21 +147,9 @@ def cadastro_usuario():
         flash(f'Não foi possível criar esse usuário. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
 
-@app.route('/abrir_edicao/<codigo>')
-def abrir_edicao(codigo):
-    for usu in usuarios:
-        if usu['codigo'] == codigo:
-            return render_template('edicao_usuario.html', usuario=usu)
-    print(usuarios)
-    return render_template('edicao_usuario.html', usuario=usu)
-
-
 @app.route('/edicao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def edicao_usuario(codigo):
     try:
-        for u in usuarios:
-            if u['codigo'] == codigo:
-                usuario = u
         if request.method == 'POST':
             nome = request.form['nome']
             data_nascimento = request.form['data-nascimento']
@@ -180,7 +170,7 @@ def edicao_usuario(codigo):
             }
             usuarios.append(usuario)
             flash(f'Usuário {nome} editado com sucesso!')
-            return redirect('/login', usuario=usuario)
+            return redirect('/login')
         else:
             flash(f'Não foi possível editar esse usuário. Tente novamente mais tarde.')
             return render_template('cadastro_usuario.html')
@@ -226,7 +216,7 @@ def cadastro_veterinario():
             nome = request.form['nome']
             numero_registro = request.form['numeroderegistro']
             telefone = request.form['telefone']
-            
+            email = request.form['email']
             senha = request.form['senha']
             codigo = len(usuarios)
             usuario = {
@@ -234,7 +224,7 @@ def cadastro_veterinario():
                 'codigo': codigo,
                 'nome': nome,
                 'numero_registro': numero_registro,
-
+                'email': email,
                 'telefone' : telefone,
                 'senha': senha
             }
