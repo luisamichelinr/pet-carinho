@@ -46,8 +46,12 @@ main {
     padding: 0 20px;
 }
 
+.inicio {
+    align-items: start;
+}
+
 .meio {
-    width: 40vw;
+    width: 35vw;
 }
 
 .titulo {
@@ -61,6 +65,10 @@ main {
     font-family: 'McLaren', sans-serif;
     font-size: 25px;
     font-weight: normal;
+}
+
+.pet-usuario {
+    padding: 0 100px;;
 }
 
 .gap-nav-footer {
@@ -154,7 +162,6 @@ footer a:hover {
 .agendamento {
     background-color: var(--cor-salmao);
     border-radius: 20px;
-    padding: 1.5vh;
     max-width: fit-content;
     justify-self: center;
     font-size: 23px;
@@ -280,7 +287,7 @@ header img {
 }
 
 .rosa {
-    padding: 50px;
+    padding-left: 100px;
 }
 
 .foto img {
@@ -440,16 +447,15 @@ header img {
 .infousuario {
     padding: 0px 50px;
     flex-direction: column;
-    gap: 25px;
+    gap: 10px;
     margin: 20px;
 }
 
 .adicionar2 {
-     background-color: var(--cor-rosa-escuro);
+    background-color: var(--cor-rosa-escuro);
     border-radius: 100px;
     width: 35px;
     display: inline-block;
-   margin-left: 600px;
     padding: 5px;
     text-align: center;
     color: var(--cor-branco);
@@ -492,14 +498,28 @@ header img {
     flex-wrap: wrap;
 }
 
-.pets div {
+.petdiv {
     margin: 20px;
     background-color: var(--cor-rosa-cards);
     height: 230px;
     width: 150px;
-    padding: 20px;
+    padding: 20px 30px 50px;
     border-radius: 30px;
+    text-align: center;
    
+}
+
+.petdiv h6 {
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.botao-pet {
+    width: 30px;
+}
+
+.right {
+    justify-content: end;
 }
 
 .iconeditar {
@@ -558,5 +578,5 @@ header img {
 }
 
 .secao2 {
-    gap: 300px;
+    gap: 100px;
 }

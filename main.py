@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, url_for
 
 app = Flask(__name__)
 app.secret_key = 'pet-carinho'
@@ -50,9 +50,9 @@ def login():
                 if usuario['nome'] == nome and usuario['senha'] == senha:
                     print(f"{usuario['nome']}")
                     if usuario['tipo'] == 0:
-                        return redirect('/')
+                        return redirect('/dashboard')
                     elif usuario['tipo'] == 1:
-                        return redirect('/perfil_usuario')
+                        return redirect(url_for('pagina_usuario', codigo=usuario['codigo']))
                     elif usuario['tipo'] == 2:
                         return redirect('/perfil_veterinario')
             flash(f'Nome e/ou senha incorretos. Tente novamente.')
@@ -63,10 +63,27 @@ def login():
         flash(f'Um erro inesperado aconteceu. Tente novamente')
         return redirect('/login')
 
-@app.route('/dashboard')
+@app.route ('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', pacientes=pacientes)
+    tutores = []
+    veterinarios = []
 
+    for usuario in usuarios:
+        if usuario['tipo'] == 1:
+            pets_do_usuario = []
+            for paciente in pacientes:
+                if paciente['tutor'] == usuario['codigo']:
+                    pets_do_usuario.append(paciente)
+            tutor = {
+                'nome': usuario['nome'],
+                'pets': pets_do_usuario
+            }
+            tutores.append(tutor)
+
+        elif usuario['tipo'] == 2:
+            veterinarios.append(usuario)
+
+    return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, pacientes=pacientes)
 @app.route('/perfil_veterinario')
 def perfil_veterinario():
     return render_template('perfil_veterinario.html')
@@ -168,17 +185,26 @@ def cadastro_animal(codigo):
             }
             pacientes.append(paciente)
             flash(f'Pet {nome} cadastrado com sucesso!')
-            return redirect('/perfil_usuario')
+            return redirect('/pagina_usuario')
         else:
             flash(f'Não foi possível cadastrar esse pet. Tente novamente mais tarde.')
-            return render_template('perfil_usuario.html')
+            return render_template('pagina_usuario.html')
     except:
         flash(f'Um erro inesperado aconteceu. Tente novamente mais tarde.')
         return render_template('cadastro_usuario.html')
 
-@app.route('/perfil_usuario')
-def perfil_usuario():
-    return render_template('perfil_usuario.html')
+@app.route('/pagina_usuario/<int:codigo>')
+@app.route('/pagina_usuario/<int:codigo>')
+def pagina_usuario(codigo):
+    for usuario in usuarios:
+        if usuario['codigo'] == codigo:
+            pets_do_usuario = []
+            for paciente in pacientes:
+                if paciente['tutor'] == codigo:
+                    pets_do_usuario.append(paciente)
+            return render_template('pagina_usuario.html', usuario=usuario, pacientes=pets_do_usuario)
+    flash("Usuário não encontrado.")
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
