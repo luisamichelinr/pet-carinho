@@ -284,7 +284,7 @@ header img {
 }
 
 .foto img {
-    width: 170px;
+    width: auto;
     height: auto;
 }
 
@@ -405,16 +405,14 @@ header img {
     text-align: center;
 }
 
-.servico h2 {
+.servico h4 {
     color: var(--cor-rosa-escuro);
     font-size: 32px;
     margin-bottom: 30px;
-    position: relative;
 }
 
 .iten {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
@@ -427,11 +425,9 @@ header img {
 
 .iten img {
     height: 60px;
-    margin-bottom: 15px;
-    filter: hue-rotate(280deg) brightness(1.2);
 }
 
-.iten h3 {
+.iten h5 {
     color: var(--cor-rosa-escuro);
     margin-bottom: 10px;
 }
@@ -441,13 +437,22 @@ header img {
     max-width: 200px;
 }
 
-
-
 .infousuario {
     padding: 0px 50px;
     flex-direction: column;
     gap: 25px;
     margin: 20px;
+}
+
+.adicionar2 {
+     background-color: var(--cor-rosa-escuro);
+    border-radius: 100px;
+    width: 35px;
+    display: inline-block;
+   margin-left: 600px;
+    padding: 5px;
+    text-align: center;
+    color: var(--cor-branco);
 }
 
 .agendamentos {
@@ -461,55 +466,47 @@ header img {
     margin-bottom: 20px;
 }
 
-.agendamentos h1 {
-    margin-bottom: 30px;
-}
 
-.agendamentos button {
-    background-color: var(--cor-roxo);
-    width: 100px;
-    height: 30px;
-    border-radius: 100px;
-    font: var(--cor-branco);
-}
 
 .adicionar {
     background-color: var(--cor-rosa-escuro);
     border-radius: 100px;
-    padding: 5px;
     width: 35px;
-
-}
-
-.adicionar p {
+    display: inline-block;
+   margin-left: 1200px;
     padding: 5px;
     text-align: center;
     color: var(--cor-branco);
 }
 
+
+
 .petsp {
-    padding: 30px;
+   justify-content: space-between;
+   display: inline-block;
+   margin: 20px;
 }
 
 .pets {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
 }
 
 .pets div {
     margin: 20px;
     background-color: var(--cor-rosa-cards);
-    height: 200px;
+    height: 230px;
     width: 150px;
-    padding: 50px;
+    padding: 20px;
     border-radius: 30px;
+   
 }
 
 .iconeditar {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    margin-left: auto;
 }
 
 .pets img {
@@ -527,6 +524,7 @@ header img {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
 }
 
 .comentario1 {
@@ -557,4 +555,8 @@ header img {
 
 .comentario2 span {
     font-weight: bold;
+}
+
+.secao2 {
+    gap: 300px;
 }
