@@ -191,7 +191,7 @@ footer a:hover {
 
 header {
     background-color: var(--cor-roxo-claro);
-    width: 100%;
+    width: 100vw;
     max-width: 1400px;
     margin: 0 auto;
 
@@ -207,11 +207,14 @@ header {
     align-items: center;
 }
 
+header nav {
+    width: 80vw;
+}
+
 header nav a {
     font-family: 'McLaren';
     font-size: 20px;
     color: var(--cor-branco);
-    margin: 0px 5px;
     padding: 10px;
 }
 
@@ -227,7 +230,7 @@ header img {
 }
 
 .botoes {
-    margin-left: 200px;
+    align-items: left;
 }
 
 .login {
