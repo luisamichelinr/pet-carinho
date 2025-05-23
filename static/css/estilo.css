@@ -46,12 +46,8 @@ main {
     padding: 0 20px;
 }
 
-.inicio {
-    align-items: start;
-}
-
 .meio {
-    width: 35vw;
+    width: 40vw;
 }
 
 .titulo {
@@ -65,10 +61,6 @@ main {
     font-family: 'McLaren', sans-serif;
     font-size: 25px;
     font-weight: normal;
-}
-
-.pet-usuario {
-    padding: 0 100px;;
 }
 
 .gap-nav-footer {
@@ -224,7 +216,7 @@ header img {
 }
 
 .botoes {
-    padding-left: 70px;
+    margin-left: 200px;
 }
 
 .login {
@@ -327,18 +319,6 @@ header img {
     display: flex;
 }
 
-.botaodesalvar button {
-    background-color: #A451FC;
-    border-radius: 60px;
-    border: none;
-    padding: 10px 20px;
-    font-family: McLaren;
-    align-items: center;
-    justify-content: center;
-    color: var(--cor-branco);
-    font-size: 20px;
-}
-
 .inputs select {
     background-color: #FAD9F2;
     border: 2px solid #FAD9F2;
@@ -413,35 +393,54 @@ header img {
 }
 
 .servico h4 {
-    color: var(--cor-rosa-escuro);
     font-size: 32px;
     margin-bottom: 30px;
 }
 
-.iten {
-    display: grid;
-    gap: 30px;
+.coelho-img{
+    position: absolute;
+    width: 270px;
+    margin-top: 360px;
+    right: 130px;
 }
 
 .iten {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #333;
 }
 
 .iten img {
     height: 60px;
+    margin-top: 40px;
 }
 
 .iten h5 {
-    color: var(--cor-rosa-escuro);
     margin-bottom: 10px;
 }
 
 .iten p {
     font-size: 14px;
     max-width: 200px;
+}
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+.servicos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.fundo-rosa {
+    background-color: var(--cor-rosa-cards);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
 }
 
 .infousuario {
@@ -566,8 +565,7 @@ header img {
     width: 500px;
     background-color: #FFF6F7;
     border-radius: 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);}
 
 .comentario1 span {
     font-weight: bold;
@@ -577,6 +575,155 @@ header img {
     font-weight: bold;
 }
 
+.nome-do-servico {
+    font-size: 25px;
+}
+
+.texto-roxo{
+    color: var(--cor-roxo-escuro);
+}
 .secao2 {
     gap: 100px;
 }
+
+.alinhadordeinput {
+    display: flex;
+}
+
+.alinha {
+    justify-content: center;
+    align-items: center;
+}
+
+.botaodesalvar button {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 10px 20px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+}
+
+.aviso {
+    font-family: McLaren;
+    font-size: 11px;
+    color: #616161;
+}
+
+.botao {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 5px 15px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+}
+
+.avaliacoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fotorodape {
+    display: flex;
+    position: absolute;
+    left: 550px;
+    top: 2770px;
+}
+
+.botaologin {
+    background-color: var(--cor-roxo) ;
+    width: 150px;
+    height: 40px;
+    color: var(--cor-branco);
+    font-size: 20px;
+    border-radius: 100px;
+    margin-top: 40px;
+    border: none;
+    font-family: McLaren;
+    
+}
+
+.botaocadastro {
+    display: flex;
+    background-color: var(--cor-roxo) ;
+    width: 150px;
+    height: 40px;
+    color: var(--cor-branco);
+    font-size: 20px;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    font-family: McLaren;
+}
+
+.cadastrologin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.login2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.botaoalinhar {
+    display: flex;
+  justify-content: center; 
+  align-items: center;    
+ 
+}
+.campo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  width: 120px; 
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.campo input {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.latidos{
+    margin-bottom: 250px;
+}
+
+.conheca-latidos{
+    margin-top: 70px;
+    font-size: 35px;
+    margin-left: 170px;
+    color: var(--cor-roxo);
+}
+
+.nossos-clientes{
+    margin-top: 15px;
+    margin-left: 160px;
+}
+
