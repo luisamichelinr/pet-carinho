@@ -17,31 +17,35 @@
             <a href="/#servicos">Serviços</a>
             <a href="/#depoimentos">Depoimentos</a>
             <div class="botoes">
-
-            <a class="login animacao" href="login.html">Login</a>
-            <a class="cadastro animacao" href="/cadastro_usuario">Cadastro</a>
-
-
+                <a class="login animacao" href="/login">Login</a>
+                <a class="cadastro animacao" href="/cadastro_usuario">Cadastro</a>
             </div>
         </nav>
     </header>
 
     <main>
-        <section>
+        <section class="seta-mensagens">
             <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-        </section>
 
-        <section>
-            {% with mensagens = get_flashed_messages() %}
-            {% if mensagens %}
-            <div class="mensagens">
-                {% for msg in mensagens %}
-                <p>{{ msg }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                        {% for categoria, mensagem in mensagens %}
+                            {% if categoria == 'erro' %}
+                                <div class="mensagem-erro">
+                                    <p>⚠️ {{ mensagem }}</p>
+                                </div>
+                            {% elif categoria == 'sucesso' %}
+                                <div class="mensagem-sucesso">
+                                    <p>🎉 {{ mensagem }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             {% endwith %}
         </section>
+
 
 
         <div class="foto d-flex">

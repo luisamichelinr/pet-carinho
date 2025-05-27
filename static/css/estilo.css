@@ -52,7 +52,66 @@ main {  /*define a largura maxima do <main>*/
     align-items: start;
 }
 
+.pets-sec {
+margin: 0px auto;
+width: 90vw;
+}
 
+.seta-mensagens {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.seta-mensagens img {      /*configurações pra seta*/
+    width: 40px;
+    padding: 20px;
+}
+
+.mensagens {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mensagens {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.mensagem-erro {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--cor-rosa-claro);
+    border: 2px solid var(--cor-rosa-escuro);
+    color: var(--cor-rosa-escuro);
+}
+
+.mensagem-sucesso {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--cor-roxo-fundo);
+    border: 2px solid var(--cor-roxo-escuro);
+    color: var(--cor-roxo-escuro);
+}
+
+.mensagens p {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 600;
+}
 
 header a:hover {
     text-decoration: underline;
@@ -328,12 +387,6 @@ header img { /*ajusta a imagem no header*/
     margin-left: 50px;
 }
 
-.seta img {      /*configurações pra seta*/
-    margin-top: 100px;
-    width: 40px;
-    padding: 20px;
-}
-
 .foto {      /*alinha no centro da tela horizontal e verticalmente*/
     align-items: center;
     justify-content: center;
@@ -524,13 +577,11 @@ header img { /*ajusta a imagem no header*/
 }
 
 .agendamentos {
-    justify-content: space-between;
+gap: 265px;
+
 }
 
 .agendamentos div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -568,7 +619,6 @@ header img { /*ajusta a imagem no header*/
     padding: 20px 30px 50px;
     border-radius: 30px;
     text-align: center;
-   
 }
 
 .tutordiv {
@@ -594,6 +644,10 @@ header img { /*ajusta a imagem no header*/
 .petdiv h6 {
     font-weight: bold;
     font-size: 21px;
+}
+
+.icone-pet {
+    width: 144px
 }
 
 .tutordiv h6 {

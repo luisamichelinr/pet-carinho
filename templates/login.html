@@ -24,21 +24,28 @@
     </header>
 
     <main>
-        <section class="seta">
+        <section class="seta-mensagens">
             <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-        </section>
 
-        <section>
-            {% with mensagens = get_flashed_messages() %}
-            {% if mensagens %}
-            <div class="mensagens">
-                {% for msg in mensagens %}
-                <p>{{ msg }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                        {% for categoria, mensagem in mensagens %}
+                            {% if categoria == 'erro' %}
+                                <div class="mensagem-erro">
+                                    <p>⚠️ {{ mensagem }}</p>
+                                </div>
+                            {% elif categoria == 'sucesso' %}
+                                <div class="mensagem-sucesso">
+                                    <p>🎉 {{ mensagem }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             {% endwith %}
         </section>
+
 
 
         <section>
@@ -53,7 +60,7 @@
                         
                         <div class="campo">
                             <label for="data-nascimento">E-mail:</label>
-                            <input type="mail" id="e-mail" name="e-mail" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <div class="campo">
                             <label for="senha">Senha:</label>

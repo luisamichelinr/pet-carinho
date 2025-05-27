@@ -17,20 +17,32 @@
             <a href="/#quem_somos">Quem somos</a>
             <a href="/#servicos">Serviços</a>
             <a href="/#depoimentos">Depoimentos</a>
-            <div class="botoes">
-
-
-            <a class="login animacao" href="/login">Login</a>
-            <a class="cadastro animacao" href="/cadastro_usuario">Cadastro</a>
-
-
-            </div>
         </nav>
     </header>
     <main>
-        <a href="index.html">
-            <img src="../static/img/seta.png" alt="setinha" class="seta">
-        </a>
+        <section class="seta-mensagens">
+            <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                        {% for categoria, mensagem in mensagens %}
+                            {% if categoria == 'erro' %}
+                                <div class="mensagem-erro">
+                                    <p>⚠️ {{ mensagem }}</p>
+                                </div>
+                            {% elif categoria == 'sucesso' %}
+                                <div class="mensagem-sucesso">
+                                    <p>🎉 {{ mensagem }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </section>
+
+
         <div class="imgdogsemfoto">
             <img src="../static/img/dog_usuario.png" alt="Dog Usuário">
         </div>
@@ -42,15 +54,15 @@
         </div>
 
         
-        <form class="inputs" action="/cadastro_usuario" method="POST" class="inputs">
+        <form class="inputs" action="{{ url_for('cadastro_animal', codigo=codigo) }}" method="POST">
             <div class="pergunta">
                 <label class="nomeinput" for="nome">Nome: </label>
                 <input type="text" id="nome" name="nome" required>
             </div>
 
             <div class="pergunta">
-                <label class="nomeinput" for="genero">Sexo:</label>
-                <select name="sexo" id="sexo">
+                <label class="nomeinput" for="sexo">Sexo:</label>
+                <select name="sexo" id="sexo" required>
                     <option value="M">Macho</option>
                     <option value="F">Fêmea</option>
                 </select>
@@ -58,7 +70,7 @@
 
             <div class="pergunta">
                 <label class="nomeinput" for="especies">Espécie:</label>
-                <select name="especies" id="especies" required>
+                <select name="especie" id="especie" required>
                     <option value="cachorro">Cachorro</option>
                     <option value="gato">Gato</option>
                     <option value="calopsita">Calopsita</option>
@@ -68,25 +80,22 @@
 
             <div class="pergunta">
                 <label class="nomeinput" for="raca">Raça: </label>
-                <input type="text" id="raca" name="raca">
+                <input type="text" id="raca" name="raca" required>
             </div>
 
             <div class="pergunta">
-                <label class="nomeinput" for="data_nascimento">Data de nascimento do pet: </label>
-                <input type="date" id="data_nascimento" name="data_nascimento">
+                <label class="nomeinput" for="data-nascimento">Data de nascimento do pet: </label>
+                <input type="date" id="data-nascimento" name="data-nascimento" required>
             </div>
 
             <div class="pergunta">
                 <label class="nomeinput" for="peso">Peso (kg):</label>
-                <input type="number" id="peso" name="peso" step="0.1" min="0">
+                <input type="number" id="peso" name="peso" step="0.1" min="0" required>
             </div>
 
 
             <div class="botaodesalvar">
                 <button class="animacao" type="submit">Salvar</button>
-
-            <div class="botaodesalvar botaoalinhar">
-                <button type="submit">Salvar</button>
             </div>
 
         </form>

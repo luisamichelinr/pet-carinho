@@ -16,29 +16,32 @@
             <a href="/#quem_somos">Quem somos</a>
             <a href="/#servicos">Serviços</a>
             <a href="/#depoimentos">Depoimentos</a>
-            <div class="botoes">
-                <a class="login" href="login.html">Login</a>
-                <a class="cadastro" href="/cadastro_usuario">Cadastro</a>
-            </div>
         </nav>
     </header>
 
     <main>
-        <section class="seta">
+        <section class="seta-mensagens">
             <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-        </section>
 
-        <section>
-            {% with mensagens = get_flashed_messages() %}
-            {% if mensagens %}
-            <div class="mensagens">
-                {% for msg in mensagens %}
-                <p>{{ msg }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                        {% for categoria, mensagem in mensagens %}
+                            {% if categoria == 'erro' %}
+                                <div class="mensagem-erro">
+                                    <p>⚠️ {{ mensagem }}</p>
+                                </div>
+                            {% elif categoria == 'sucesso' %}
+                                <div class="mensagem-sucesso">
+                                    <p>🎉 {{ mensagem }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             {% endwith %}
         </section>
+
 
         <section>
             <h3 class="titulo">Dashboard da clínica</h3>
@@ -48,7 +51,6 @@
             <div>
                 <div class="flex between meio">
                     <h5 class="subtitulo">Pacientes</h5>
-                    <a href="" class="adicionar2">+</a>
                 </div>
 
                 <div class="pets">

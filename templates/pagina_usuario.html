@@ -16,17 +16,37 @@
             <a href="/#quem_somos">Quem somos</a>
             <a href="/#servicos">Serviços</a>
             <a href="/#depoimentos">Depoimentos</a>
-            <a class="botao animacao" href="edicao_usuario.html">Editar</a>
+            <a class="botao animacao" href="{{ url_for('edicao_usuario', codigo=codigo) }}">Editar</a>
         </nav>
     </header>
     <main>
-        <section class="seta">
+        <section class="seta-mensagens">
             <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                        {% for categoria, mensagem in mensagens %}
+                            {% if categoria == 'erro' %}
+                                <div class="mensagem-erro">
+                                    <p>⚠️ {{ mensagem }}</p>
+                                </div>
+                            {% elif categoria == 'sucesso' %}
+                                <div class="mensagem-sucesso">
+                                    <p>🎉 {{ mensagem }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
         </section>
+
+
         <div class="foto rosa">
             <img src="../static/img/usuariorosa.png" alt="Foto do usuário">
         </div>
-        <section class="secao2 d-flex inicio between">
+        <section class="secao2 d-flex inicio">
             <div class="infousuario d-flex meio">
                 <h3>Nome: <span class="texto-usuario">{{ usuario.nome }}</span> </h3>
                 <h3>Data de nascimento: <span class="texto-usuario">{{ usuario.data_nascimento }}</span></h3>
@@ -34,44 +54,47 @@
                 <h3>CEP: <span class="texto-usuario">{{ usuario.cep }}</span></h3>
                 <h3>Telefone: <span class="texto-usuario">{{ usuario.telefone }}</span></h3>
             </div>
-            <div class="agendamentos flex meio">
+            <div class="agendamentos flex">
                 <h1>Agendamentos</h1>
                 <a class="adicionar2" href="">+</a>
             </div>
         </section>
-        <section>
-            <div class="d-flex">
-                <h1 class="petsp">Pets</h1>
-                <a class="adicionar" href="">+</a>
-            </div>
-            <div class="pets">
-                {% for paciente in pacientes %}
-                {% if paciente.nome != "" %}
-                <div class="petdiv">
-                    <div>
-                        <div class="flex right">
-                            <a href="/editar-pet/{{ paciente.codigo }}"><img
-                                    src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                            <a href="/excluir-pet/{{ paciente.codigo }}"><img
-                                    src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
-                        </div>
-                        {% if paciente.especie == "cachorro" %}
-                        <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
-                        {% elif paciente.especie == "gato" %}
-                        <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
-                        {% elif paciente.especie == "coelho" %}
-                        <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
-                        {% elif paciente.especie == "calopsita" %}
-                        <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
-                        {% endif %}
-                        <h6 class="pet-nome">{{ paciente.nome }}</h6>
-                        <p class="pet-texto">{{ paciente.raca }}</p>
-                        <p class="pet-texto">{{ paciente.data_nascimento }}</p>
-                    </div>
+        <section class="pets-sec">
+            <div>
+                <div class="flex between">
+                    <h1 class="petsp">Pets</h1>
+                    <a class="adicionar2" href="{{ url_for('cadastro_animal', codigo=codigo) }}">+</a>
                 </div>
-                {% endif %}
-                {% endfor %}
             </div>
+            <div>
+                <div class="pets flex between meio"">
+                    {% for paciente in pacientes %}
+                    {% if paciente.nome != "" %}
+                    <div class="petdiv">
+                        <div>
+                            <div class="flex right">
+                                <a href="/editar-pet/{{ paciente.codigo }}"><img
+                                        src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
+                                <a href="/excluir-pet/{{ paciente.codigo }}"><img
+                                        src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
+                            </div>
+                            {% if paciente.especie == "cachorro" %}
+                            <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
+                            {% elif paciente.especie == "gato" %}
+                            <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
+                            {% elif paciente.especie == "coelho" %}
+                            <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
+                            {% elif paciente.especie == "calopsita" %}
+                            <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
+                            {% endif %}
+                            <h6 class="pet-nome">{{ paciente.nome }}</h6>
+                            <p class="pet-texto">{{ paciente.raca }}</p>
+                            <p class="pet-texto">{{ paciente.data_nascimento }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </section>
     </main>
