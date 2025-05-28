@@ -18,7 +18,7 @@ usuarios = [
       'codigo': 1,
       'nome': 'Maria',
      'email': 'maria@gmail.com',
-      'data_nascimento': '19/09/2000',
+      'data_nascimento': '2000-09-19',
       'endereco': 'N/A',
       'cep': 'N/A',
       'telefone': 'N/A',
@@ -28,7 +28,7 @@ usuarios = [
       'codigo': 2,
       'nome': 'Gustavo',
      'email': 'gustavo@vet.com',
-      'data_nascimento': '05/12/1999',
+      'data_nascimento': '1999-03-06',
       'endereco': 'N/A',
       'cep': 'N/A',
       'telefone': 'N/A',
@@ -148,7 +148,6 @@ def cadastro_usuario():
 @app.route('/edicao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def edicao_usuario(codigo):
     try:
-        usuario = None
         for u in usuarios:
             if u['codigo'] == codigo:
                 usuario = u
@@ -168,7 +167,7 @@ def edicao_usuario(codigo):
 
             flash(f'Usuário {usuario["nome"]} editado com sucesso!', 'sucesso')
             return redirect(url_for('pagina_usuario', codigo=codigo))
-        return render_template('edicao_usuario.html', usuario=usuario)
+        return render_template('edicao_usuario.html', usuario=usuario, codigo=codigo)
 
     except:
         flash(f'Não foi possível editar esse usuário', 'erro')
@@ -178,7 +177,6 @@ def edicao_usuario(codigo):
 def cadastro_animal(codigo):
     try:
         if request.method == 'POST':
-            print("Dados recebidos:", request.form)
             nome = request.form['nome']
             data_nascimento = request.form['data-nascimento']
             especie = request.form['especie']
