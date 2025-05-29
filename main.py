@@ -70,7 +70,7 @@ def login():
                         return redirect(url_for('pagina_usuario', codigo=usuario['codigo']))
                     elif usuario['tipo'] == 2:
                         LOGADO = 2
-                        return redirect('/pagina_veterinario')
+                        return redirect(url_for('pagina_veterinario', codigo=usuario['codigo']))
             else:
                 flash('Nome e/ou senha incorretos. Tente novamente.', 'erro')
                 return render_template('login.html')
