@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<link rel="stylesheet" href="../static/css/estilo.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetCarinho</title>
+    <link rel="stylesheet" href="../static/css/estilo.css">
+</head>
+
+<body>
+
+    <header class="d-flex">
+        <img src="../static/img/logo.png" alt="Logo da PetCarinho">
+        <nav class="cabecalho d-flex">
+            <a href="#home">Home</a>
+            <a href="#quem_somos">Quem somos</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <div class="botoes">
+                <button class="cadastro botao animacao">Salvar</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="seta-mensagens">
+            <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+        </section>
+
+        <section class="titulo centro">
+            <h1>Pontuário</h1>
+        </section>
+
+        <section>
+            <div class="info-pet">
+                <div class="info1">
+                    <h2 class="mclaren">Informações do pet</h2>
+                    <p class="quicksand">Nome:</p>
+                    <p class="quicksand">Espécie:</p>
+                    <p class="quicksand">Raça:</p>
+                    <p class="quicksand">Idade:</p>
+                    <h2 class="mclaren">Informações da ultima consulta:</h2>
+                    <p class="quicksand">Nome do veterinário:</p>
+                    <p class="quicksand">Data:</p>
+                    <p class="quicksand">Horário:</p>
+                    <p class="quicksand">Medicação:</p>
+                </div>
+
+                <div class="info2">
+                    <h3 class="mclaren">Sintomas relatados pelo tutor:</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="afastar calculo">
+            <div class="column">
+                <h3 class="mclaren calculo_soro">Calcular dose do medicamento</h3>
+                <p class="quicksand afastar3 font_size">Dose recomendada</p>
+                <input class="quicksand afastar3" type="number">
+                <p class="multi ">X</p>
+                <p class="quicksand afastar3 font_size">Peso do animal</p>
+                <input class="quicksand afastar3" type="number" value="{{ animal.peso }}">
+                <div class="botaosalvar botaoalinhar afastar2">
+                    <button class="botao animacao" type="submit">Calcular</button>
+                </div>
+                <p class="mclaren">Resultado</p>
+                <!-- Aqui vai ficar o resultado da conta -->
+            </div>
+        </section>
+        <div class="botaosalvar botaoalinhar afastar2">
+            <button class="botao animacao" type="submit">Salvar</button>
+        </div>
+    </main>
+
+    <footer class="flex">
+        <div class="flex gap-vinte">
+            <img src="../static/img/logo.png" alt="Logo PetCarinho" class="logo-footer">
+            <div class="nav-footer flex column gap-nav-footer">
+                <a href="/#home">Home</a>
+                <a href="/#quem_somos">Quem somos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="/#depoimentos">Depoimentos</a>
+            </div>
+        </div>
+        <div class="flex inferior redes-sociais">
+            <div class="flex column gap-vinte">
+                <div class="redes-sociais-texto">
+                    <h5 class="texto-branco">Redes Sociais:</h5>
+                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank"
+                            class="texto-branco">@petcarinho</a></p>
+                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank"
+                            class="texto-branco">PetCarinho Clínica Veterinária</a></p>
+                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank"
+                            class="texto-branco">@petcarinho_vet</a></p>
+                </div>
+                <img src="../static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
