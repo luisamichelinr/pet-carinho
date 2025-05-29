@@ -351,12 +351,14 @@ def excluir_pet(codigo):
 
         return render_template('exclusao_animal.html', codigo=codigo, paciente=paciente)
 
-@app.route('/abrir_edicao_animal/<codigo>')
-def abrir_edicao_animal(codigo):
-    for p in pacientes:
-        if p['codigo'] == codigo:
-            render_template('edicao_animal', pacientes=pacientes)
-    render_template('edicao_animal')
+
+@app.route('/agendamento')
+def agendamento(codigo):
+    try:
+        return render_template('agendamento.html')
+    except Exception as e:
+        flash(f'Ocorreu um erro inesperado: {str(e)}')
+        return redirect('/')
 
 
 if __name__ == '__main__':
