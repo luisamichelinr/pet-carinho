@@ -331,6 +331,13 @@ def excluir_pet(codigo):
         }
         flash(f'Pet excluído com sucesso!')
         return redirect('/')
+@app.route('/agendamento/<int:codigo>')
+def agendamento():
+    try:
+        return render_template('agendamento.html')
+    except:
+        flash(f'Ocorreu um erro insperado')
+        return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
