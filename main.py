@@ -286,7 +286,8 @@ def excluir_usuario(codigo):
     try:
         if request.method == 'POST':
             usuarios[codigo] = {
-                'tipo': "",
+                'codigo': codigo,
+                'tipo': "1",
                 'nome': "",
                 'email': "",
                 'data_nascimento': "",
@@ -298,14 +299,14 @@ def excluir_usuario(codigo):
 
             for paciente in pacientes:
                 if paciente['tutor'] == codigo:
-                    paciente.update({
+                    paciente = {
                         'nome': "",
                         'data_nascimento': "",
                         'especie': "",
                         'raca': "",
                         'peso': 0,
                         'sexo': ""
-                    })
+                    }
             flash(f'Usuário excluído com sucesso!', 'sucesso')
             return redirect('/dashboard')
 
@@ -319,18 +320,44 @@ def excluir_usuario(codigo):
         for paciente in pacientes:
             if paciente['tutor'] == codigo:
                 pets_usuario.append(paciente)
-        return render_template('confirmar_exclusao.html', usuario=usuario, pacientes=pets_usuario, codigo=usuario['codigo'])
+        return render_template('exclusao_usuario.html', usuario=usuario, pacientes=pets_usuario, codigo=usuario['codigo'])
     except:
         flash('Ocorreu um erro inesperado', 'erro')
         return redirect('/dashboard')
 
-@app.route('/excluir_pet/<int:codigo>')
+@app.route('/excluir_pet/<int:codigo>', methods=['GET', 'POST'])
 def excluir_pet(codigo):
-        pacientes[codigo] = {
-            'nome': ""
-        }
-        flash(f'Pet excluído com sucesso!')
-        return redirect('/')
+        paciente = ''
+
+        for p in pacientes:
+            if p['codigo'] == codigo:
+                paciente = p
+                break
+        if request.method == 'POST':
+            pacientes[codigo] = {
+                'tutor': paciente['tutor'],
+                'codigo': codigo,
+                'nome': '',
+                'data_nascimento': '',
+                'especie': '',
+                'raca': '',
+                'peso': 0,
+                'sexo': ''
+            }
+            print(pacientes)
+            flash(f'Pet excluído com sucesso!', 'sucesso')
+
+            return redirect(url_for('pagina_usuario', codigo=paciente['tutor']))
+
+        return render_template('exclusao_animal.html', codigo=codigo, paciente=paciente)
+
+@app.route('/abrir_edicao_animal/<codigo>')
+def abrir_edicao_animal(codigo):
+    for p in pacientes:
+        if p['codigo'] == codigo:
+            render_template('edicao_animal', pacientes=pacientes)
+    render_template('edicao_animal')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
