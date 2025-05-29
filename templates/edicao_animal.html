@@ -21,8 +21,6 @@
     </header>
     <main>
         <section class="seta-mensagens">
-            <a href="{{ url_for('pagina_usuario', codigo=codigo) }}"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
                     <div class="mensagens">
@@ -42,64 +40,64 @@
             {% endwith %}
         </section>
 
-
-        <div class="imgdogsemfoto">
-            <img src="../static/img/dog_usuario.png" alt="Dog Usuário">
-        </div>
-
-        <div class="patinhas">
-            <img src="../static/img/patinha.png" alt="pata" class="pata1">
-            <img src="../static/img/patinha.png" alt="pata" class="pata2">
-            <img src="../static/img/patinha.png" alt="pata" class="pata3">
-        </div>
-
-        
-        <form class="inputs" action="{{ url_for('edicao_usuario', codigo=usuario['codigo']) }}" method="POST">
-            <div class="pergunta">
-                <label class="nomeinput" for="nome">Nome: </label>
-                <input type="text" id="nome" name="nome" required value="{{ paciente.nome }}">
+        <section>
+            <div class="imgdogsemfoto">
+                <img src="../static/img/dog_usuario.png" alt="Dog Usuário">
             </div>
 
-            <div class="pergunta">
-                <label class="nomeinput" for="sexo">Sexo:</label>
-                <select name="sexo" id="sexo" required>
-                    <option value="M">Macho</option>
-                    <option value="F">Fêmea</option>
-                </select>
-            </div>
-
-            <div class="pergunta">
-                <label class="nomeinput" for="especies">Espécie:</label>
-                <select name="especie" id="especie" required>
-                    <option value="cachorro">Cachorro</option>
-                    <option value="gato">Gato</option>
-                    <option value="calopsita">Calopsita</option>
-                    <option value="coelho">Coelho</option>
-                </select>
-            </div>
-
-            <div class="pergunta">
-                <label class="nomeinput" for="raca">Raça: </label>
-                <input type="text" id="raca" name="raca" required value="{{ paciente.raca }}">
-            </div>
-
-            <div class="pergunta">
-                <label class="nomeinput" for="data-nascimento">Data de nascimento do pet: </label>
-                <input type="date" id="data-nascimento" name="data-nascimento" required value="{{ paciente.datanascimento }}">
-            </div>
-
-            <div class="pergunta">
-                <label class="nomeinput" for="peso">Peso (kg):</label>
-                <input type="number" id="peso" name="peso" step="0.1" min="0" required>
+            <div class="patinhas">
+                <img src="../static/img/patinha.png" alt="pata" class="pata1">
+                <img src="../static/img/patinha.png" alt="pata" class="pata2">
+                <img src="../static/img/patinha.png" alt="pata" class="pata3">
             </div>
 
 
-            <div class="botaodesalvar">
-                <button class="animacao" type="submit">Salvar</button>
-            </div>
+            <form class="inputs" action="{{ url_for('edicao_animal', codigo=animal['codigo']) }}" method="POST">
+                <div class="pergunta">
+                    <label class="nomeinput" for="nome">Nome: </label>
+                    <input type="text" id="nome" name="nome" required value="{{ animal.nome }}">
+                </div>
 
-        </form>
-     
+                <div class="pergunta">
+                    <label class="nomeinput" for="sexo">Sexo:</label>
+                    <select name="sexo" id="sexo" required>
+                        <option value="M" {% if animal.sexo == 'M' %}selected{% endif %}>Macho</option>
+                        <option value="F" {% if animal.sexo == 'F' %}selected{% endif %}>Fêmea</option>
+                    </select>
+                </div>
+
+
+                <div class="pergunta">
+                    <label class="nomeinput" for="especies">Espécie:</label>
+                    <select name="especie" id="especie" required>
+                        <option value="cachorro" {% if animal.especie == 'cachorro' %}selected{% endif %}>Cachorro</option>
+                        <option value="gato" {% if animal.especie == 'gato' %}selected{% endif %}>Gato</option>
+                        <option value="calopsita" {% if animal.especie == 'calopsita' %}selected{% endif %}>Calopsita</option>
+                        <option value="coelho" {% if animal.especie == 'coelho' %}selected{% endif %}>Coelho</option>
+                    </select>
+                </div>
+
+                <div class="pergunta">
+                    <label class="nomeinput" for="raca">Raça: </label>
+                    <input type="text" id="raca" name="raca" required value="{{ animal.raca }}">
+                </div>
+
+                <div class="pergunta">
+                    <label class="nomeinput" for="data-nascimento">Data de nascimento do pet: </label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required value="{{ animal.data_nascimento }}">
+                </div>
+
+                <div class="pergunta">
+                    <label class="nomeinput" for="peso">Peso (kg):</label>
+                    <input type="number" id="peso" name="peso" step="0.1" min="0" required value="{{ animal.peso }}">
+                </div>
+
+                <div class="botaodesalvar">
+                    <button class="animacao" type="submit">Salvar</button>
+                </div>
+
+            </form>
+        </section>
 
     </main>
     <footer class="flex">
