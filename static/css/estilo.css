@@ -1038,6 +1038,36 @@ html {
 }
 
 
+.info-pet{
+    display: flex;
+    justify-content: center;
+    flex-direction: space-between;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.centro{
+    justify-items: center;
+    margin-bottom: 120px;
+}
+
+.info1{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-rosa-cards);
+    border-radius: 20px;
+    padding: 30px;
+    padding-right: 100px;
+}
+
+.info2{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--cor-slamao-fundo);
+    border-radius: 20px;
+    padding: 30px;
+    padding-right: 160px;
+}
 
 .campo textarea {
     display: flex;
@@ -1079,7 +1109,3 @@ font-family: 'McLaren';
   margin-left: 90px; 
   font-weight: normal;
 }
-
-
-
-
