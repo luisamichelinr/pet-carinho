@@ -48,8 +48,16 @@ main {  /*define a largura maxima do <main>*/
     padding: 0 20px;
 }
 
+.around {
+    justify-content: space-around;
+}
+
 .inicio {  /*alinha itens na esquerda*/
     align-items: start;
+}
+
+.espaco {
+    margin-bottom: 50px;
 }
 
 .pets-sec {
@@ -884,6 +892,53 @@ gap: 265px;
     justify-content: center;
     align-items: center;
     font-family: McLaren;
+}
+
+.botaoexcluir {
+    background-color: #A451FC;
+    border-radius: 60px;
+    border: none;
+    padding: 10px 20px;
+    font-family: McLaren;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    font-size: 20px;
+    }
+
+.confirmacao {
+    max-width: 600px;
+    margin: 0px auto 40px;
+    padding: 40px;
+    background-color: var(--cor-rosa-fundo);
+    border-radius: 15px;
+    box-shadow: 6px 9px 8px 3px rgba(0, 0, 0, 0.1);
+}
+
+.confirmacao h5 {
+    font-family: 'McLaren', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.confirmacao p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.confirmacao ul {
+    width: 20vw;
+    margin: 10px auto 20px;
+}
+
+.confirmacao ul li {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    margin-left: 20px;
 }
 
 .cadastrologin {

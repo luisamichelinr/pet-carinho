@@ -80,12 +80,13 @@ def dashboard():
     try:
         tutores = []
         veterinarios = []
+        pacientes_ativos = []
 
         for usuario in usuarios:
-            if usuario['tipo'] == 1:
+            if usuario['tipo'] == 1 and usuario['nome'] != "":
                 pets_do_usuario = []
                 for paciente in pacientes:
-                    if paciente['tutor'] == usuario['codigo']:
+                    if paciente['tutor'] == usuario['codigo'] and paciente['nome'] != '':
                         pets_do_usuario.append(paciente['nome'])
                 tutor = {
                     'nome': usuario['nome'],
@@ -94,12 +95,16 @@ def dashboard():
                 }
                 tutores.append(tutor)
 
-            elif usuario['tipo'] == 2:
+            elif usuario['tipo'] == 2 and usuario['nome'] != "":
                 veterinarios.append(usuario)
 
-        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, pacientes=pacientes)
+        for paciente in pacientes:
+            if paciente['nome'] != '':
+                pacientes_ativos.append(paciente)
+
+        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, pacientes=pacientes_ativos)
     except:
-        flash(f'Ocorreu um erro ao carregar o dashboard do administrador')
+        flash(f'Ocorreu um erro ao carregar o dashboard do administrador', 'erro')
         return redirect('/')
 
 @app.route('/perfil_veterinario')
@@ -276,12 +281,47 @@ def pagina_usuario(codigo):
         flash(f'Ocorreu um erro inesperado')
         return redirect('/')
 
-@app.route('/excluir_usuario/<int:codigo>')
+@app.route('/excluir_usuario/<int:codigo>', methods=['GET', 'POST'])
 def excluir_usuario(codigo):
-        usuarios[codigo] = {
-            'nome': ""
-        }
-        flash(f'Usuário excluído com sucesso!')
+    try:
+        if request.method == 'POST':
+            usuarios[codigo] = {
+                'tipo': "",
+                'nome': "",
+                'email': "",
+                'data_nascimento': "",
+                'endereco': "",
+                'cep': "",
+                'telefone': "",
+                'senha': "",
+            }
+
+            for paciente in pacientes:
+                if paciente['tutor'] == codigo:
+                    paciente.update({
+                        'nome': "",
+                        'data_nascimento': "",
+                        'especie': "",
+                        'raca': "",
+                        'peso': 0,
+                        'sexo': ""
+                    })
+            flash(f'Usuário excluído com sucesso!', 'sucesso')
+            return redirect('/dashboard')
+
+        usuario = ""
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                pets_usuario = []
+                break
+
+        for paciente in pacientes:
+            if paciente['tutor'] == codigo:
+                pets_usuario.append(paciente)
+        return render_template('confirmar_exclusao.html', usuario=usuario, pacientes=pets_usuario, codigo=usuario['codigo'])
+    except:
+        flash('Ocorreu um erro inesperado', 'erro')
         return redirect('/dashboard')
 
 @app.route('/excluir_pet/<int:codigo>')

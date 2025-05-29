@@ -47,7 +47,7 @@
             <h3 class="titulo">Dashboard da clínica</h3>
         </section>
 
-        <section class="flex between inicio">
+        <section class="flex between inicio espaco">
             <div>
                 <div class="flex between meio">
                     <h5 class="subtitulo">Pacientes</h5>
@@ -101,8 +101,8 @@
                         <div class="tutordiv">
                             <div>
                                 <div class="flex right">
-                                    <a href="/edicao-usuario/{{ tutor['codigo'] }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                    <a href="/excluir-usuario/{{ tutor['codigo'] }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
+                                    <a href="/edicao_usuario/{{ tutor['codigo'] }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
+                                    <a href="/excluir_usuario/{{ tutor['codigo'] }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                                 </div>
                                 <h6 class="pet-nome">{{ tutor['nome'] }}</h6>
                                 <ul></ul>
@@ -128,8 +128,8 @@
                         <div class="vetdiv">
                             <div>
                                 <div class="flex right">
-                                    <a href="/edicao-usuario/{{ veterinario['codigo'] }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                    <a href="/excluir-usuario/{{ veterinario['codigo'] }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
+                                    <a href="/edicao_usuario/{{ veterinario['codigo'] }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
+                                    <a href="/excluir_usuario/{{ veterinario['codigo'] }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                                 </div>
                                 <h6 class="vet-nome">{{ veterinario['nome'] }}</h6>
                             </div>
