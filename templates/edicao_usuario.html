@@ -21,8 +21,6 @@
 
     <main>
         <section class="seta-mensagens">
-            <a href="{{ url_for('pagina_usuario', codigo=codigo) }}"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
                     <div class="mensagens">
@@ -77,7 +75,7 @@
                     </div>
                     <div class="campo">
                         <label for="senha">Alterar a senha:</label>
-                        <input type="password" id="senha" name="senha" required pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\W+).*$">
+                        <input type="password" id="senha" name="senha" required>
                     </div>
                     <div class="botaosalvar botaoalinhar">
                         <button class="botao animacao" type="submit">Salvar</button>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PetCarinho - Agendamento</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     </header>
     <main>
         <section class="seta-mensagens">
-            <a href="{{ url_for('agendamento', codigo=codigo) }}"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+            <a href="index.html"><img src="../static/img/seta.png" alt="Seta voltar"></a>
 
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
@@ -44,14 +44,13 @@
         <div>
             <h1 class="tituloagend">Faça seu agendamento!</h1>
         </div>
-        <section class="container">
-            <section class="alinharagend">
-                <div class="inputs">
+        <section class="agendamentos2">
+                <div class="inputs alinharagend">
                     <form action="">
                         <div class="campo">
                         <label for="nomepet">Nome do pet:</label>
                         <select id="nomepet" name="nomepet" required>
-                            <option value=""></option>
+                        <option value=""></option>
                         </select>
                         </div>
                         <div class="campo">
@@ -81,12 +80,11 @@
                         </div>
                     </form>
                 </div>
-             </section>
+                <div class="alinharimg">
+                    <img src="../static/img/agendamentopets.png" alt="Cachorro e gato">
+                </div>
         </section>
-
-    <section class="alinharimg">
-        <img src="../static/img/agendamentopets.png" alt="Cachorro e gato">
-    </section>
+    
 
 
     </main>
