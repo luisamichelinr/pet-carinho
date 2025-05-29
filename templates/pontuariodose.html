@@ -54,16 +54,21 @@
             </div>
         </section>
 
-        <section class="afastar">
-            <h3 class="afastar3">Receita veterinária</h3>
-            <select class="quicksand" name="Selecione:" id="receita">
-                <option value="0">Selecione:</option>
-                <option value="Medicamento">- Medicamento</option>
-                <option value="Soro">- Soro</option>
-                <option value="Nao Necessario">- Não foi Necessario</option>
-            </select>
+        <section class="afastar calculo">
+            <div class="column">
+                <h3 class="mclaren calculo_soro">Calcular dose do medicamento</h3>
+                <p class="quicksand afastar3 font_size">Dose recomendada</p>
+                <input class="quicksand afastar3" type="number">
+                <p class="multi ">X</p>
+                <p class="quicksand afastar3 font_size">Peso do animal</p>
+                <input class="quicksand afastar3" type="number" value="{{ animal.peso }}">
+                <div class="botaosalvar botaoalinhar afastar2">
+                    <button class="botao animacao" type="submit">Calcular</button>
+                </div>
+                <p class="mclaren">Resultado</p>
+                <!-- Aqui vai ficar o resultado da conta -->
+            </div>
         </section>
-
         <div class="botaosalvar botaoalinhar afastar2">
             <button class="botao animacao" type="submit">Salvar</button>
         </div>

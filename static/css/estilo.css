@@ -364,7 +364,15 @@ header img { /*ajusta a imagem no header*/
     align-items: center;
 }
 
+.mclaren{
+    font-family: "McLaren";
+    font-size: 23px;
+}
 
+.quicksand{
+    font-family: "Quicksand";
+    font-size: 17px;
+}
 
 .patinhas {  /*absolute (sobrepoem as patinhas sobre outros elementos,
     faz ele se mover a vontade e posiciona relativo ao container com position definido),
@@ -1041,7 +1049,7 @@ html {
 .info-pet{
     display: flex;
     justify-content: center;
-    flex-direction: space-between;
+    gap: 150px;
     margin-top: 40px;
     margin-bottom: 100px;
 }
@@ -1057,8 +1065,27 @@ html {
     background-color: var(--cor-rosa-cards);
     border-radius: 20px;
     padding: 30px;
-    padding-right: 100px;
 }
+
+.afastar{
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 190px;
+}
+
+.afastar2{
+    margin-bottom: 50px;
+}
+
+.afastar3{
+    margin-bottom: 20px;
+}
+
+.font_size{
+    font-size: 20px;
+}
+
 
 .info2{
     display: flex;
@@ -1066,7 +1093,6 @@ html {
     background-color: var(--cor-slamao-fundo);
     border-radius: 20px;
     padding: 30px;
-    padding-right: 160px;
 }
 
 .campo textarea {
@@ -1087,6 +1113,15 @@ html {
     width: 600px;
 }
 
+.multi{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.calculo{
+    display: flex;
+    text-align: center;
+}
 
 .agendamentos2 {
   display: flex;
@@ -1095,11 +1130,22 @@ html {
 }
 
 
+.calculo_soro{
+    margin-bottom: 15px;
+    font-size: 35px;
+}
+
+.alinharagend {
+  margin-right: 10px;
+}  
+
+
 .alinharimg {
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
+
 }
 
 .alinharimg img {
