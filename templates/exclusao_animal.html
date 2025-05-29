@@ -21,8 +21,6 @@
 
     <main>
         <section class="seta-mensagens">
-            <a href="{{ url_for('pagina_usuario', codigo=codigo) }}"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
                     <div class="mensagens">
@@ -45,9 +43,9 @@
 
 
         <section class="confirmacao">
-            <form method="POST" action="{{ url_for('excluir_pet', codigo=codigo) }}">
+            <form method="POST" action="{{ url_for('exclusao_animal', codigo=codigo) }}">
                 <h5>Confirmação</h5>
-                <p>Ao continuar, você irá apagar todos os dados do pet {{ paciente.nome }}</p>
+                <p>Ao continuar, você irá apagar todos os dados do pet {{ animal.nome }}</p>
                 <div class="flex around">
                         <button class="botaoexcluir animacao" type="submit">Excluir</button>
                         <a class="botaoexcluir animacao" href="/dashboard">Cancelar</a>

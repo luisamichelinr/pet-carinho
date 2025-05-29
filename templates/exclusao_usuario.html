@@ -21,7 +21,7 @@
 
     <main>
         <section class="seta-mensagens">
-            <a href="{{ url_for('pagina_usuario', codigo=codigo) }}"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+            <a href="/dashboard"><img src="../static/img/seta.png" alt="Seta voltar"></a>
 
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
@@ -49,11 +49,11 @@
                 <h5>Confirmação</h5>
                 <p>Ao continuar, você irá apagar todos os dados do usuário {{ usuario.nome }}</p>
                 <div>
-                    {% if pacientes != "" %}
+                    {% if animais != "" %}
                     <ul>
-                        {% for paciente in pacientes %}
-                            {% if paciente.nome != "" %}
-                                <li>{{ paciente.nome }}</li>
+                        {% for animal in animais %}
+                            {% if animal.nome != "" %}
+                                <li>{{ animal.nome }}</li>
                             {% endif %}
                         {% endfor %}
                     </ul>

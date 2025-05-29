@@ -16,7 +16,10 @@
             <a href="/#quem_somos">Quem somos</a>
             <a href="/#servicos">Serviços</a>
             <a href="/#depoimentos">Depoimentos</a>
-            <a class="botao animacao" href="{{ url_for('edicao_usuario', codigo=codigo) }}">Editar</a>
+            <div class="botoes">
+                <a class="login animacao" href="/sair">Sair</a>
+                <a class="botao animacao" href="{{ url_for('edicao_usuario', codigo=codigo) }}">Editar</a>
+            </div>
         </nav>
     </header>
     <main>
@@ -67,29 +70,28 @@
                 </div>
             </div>
             <div>
-                <div class="pets flex between meio"">
-                    {% for paciente in pacientes %}
-                    {% if paciente.nome != "" %}
+                <div class="pets flex between meio">
+                    {% for animal in animais %}
+                    {% if animal.nome != "" %}
                     <div class="petdiv">
                         <div>
                             <div class="flex right">
-                                <a href="/editar_pet/{{ paciente.codigo }}"><img
+                                <a href="/edicao_animal/{{ animal.codigo }}"><img
                                         src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                <a href="/excluir_pet/{{ paciente.codigo }}"><img
-                                        src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
+                                <a href="/exclusao_animal/{{ animal.codigo }}"><img src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                             </div>
-                            {% if paciente.especie == "cachorro" %}
+                            {% if animal.especie == "cachorro" %}
                             <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
-                            {% elif paciente.especie == "gato" %}
+                            {% elif animal.especie == "gato" %}
                             <img class="icone-pet" src="../static/img/gato.png" alt="Ícone gato">
-                            {% elif paciente.especie == "coelho" %}
+                            {% elif animal.especie == "coelho" %}
                             <img class="icone-pet" src="../static/img/coelhoI.png" alt="Ícone coelho">
-                            {% elif paciente.especie == "calopsita" %}
+                            {% elif animal.especie == "calopsita" %}
                             <img class="icone-pet" src="../static/img/calopsita.png" alt="Ícone calopsita">
                             {% endif %}
-                            <h6 class="pet-nome">{{ paciente.nome }}</h6>
-                            <p class="pet-texto">{{ paciente.raca }}</p>
-                            <p class="pet-texto">{{ paciente.data_nascimento }}</p>
+                            <h6 class="pet-nome">{{ animal.nome }}</h6>
+                            <p class="pet-texto">{{ animal.raca }}</p>
+                            <p class="pet-texto">{{ animal.data_nascimento }}</p>
                         </div>
                     </div>
                     {% endif %}

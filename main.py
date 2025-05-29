@@ -36,7 +36,7 @@ usuarios = [
       'senha': 'Gustavo@1'
     }
 ]
-pacientes = [
+animais = [
     { 'tutor': 1,
       'codigo': 0,
       'nome': 'Kiara',
@@ -54,8 +54,10 @@ agendamentos = []
 def index():
     return render_template('index.html')
 
+LOGADO = 999
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global LOGADO
     try:
         if request.method == 'POST':
             email = request.form['email']
@@ -64,11 +66,14 @@ def login():
                 if usuario['email'] == email and usuario['senha'] == senha:
                     flash(f'Usuário {email} logado com sucesso!', 'sucesso')
                     if usuario['tipo'] == 0:
+                        LOGADO = 0
                         return redirect('/dashboard')
                     elif usuario['tipo'] == 1:
+                        LOGADO = 1
                         return redirect(url_for('pagina_usuario', codigo=usuario['codigo']))
                     elif usuario['tipo'] == 2:
-                        return redirect('/perfil_veterinario')
+                        LOGADO = 2
+                        return redirect(url_for('pagina_veterinario', codigo=usuario['codigo']))
             else:
                 flash('Nome e/ou senha incorretos. Tente novamente.', 'erro')
                 return render_template('login.html')
@@ -78,45 +83,49 @@ def login():
         flash(f'Um erro inesperado aconteceu', 'erro')
         return redirect('/login')
 
+@app.route('/sair')
+def sair():
+    LOGADO = 999
+    return redirect('/')
+
 @app.route('/dashboard')
 def dashboard():
     try:
         tutores = []
         veterinarios = []
-        pacientes_ativos = []
+        animais_ativos = []
 
         for usuario in usuarios:
             if usuario['tipo'] == 1 and usuario['nome'] != "":
-                pets_do_usuario = []
-                for paciente in pacientes:
-                    if paciente['tutor'] == usuario['codigo'] and paciente['nome'] != '':
-                        pets_do_usuario.append(paciente['nome'])
+                animais_do_usuario = []
+                for animal in animais:
+                    if animal['tutor'] == usuario['codigo'] and animal['nome'] != '':
+                        animais_do_usuario.append(animal['nome'])
                 tutor = {
                     'nome': usuario['nome'],
                     'codigo': usuario['codigo'],
-                    'pets': pets_do_usuario
+                    'animais': animais_do_usuario
                 }
                 tutores.append(tutor)
 
             elif usuario['tipo'] == 2 and usuario['nome'] != "":
                 veterinarios.append(usuario)
 
-        for paciente in pacientes:
-            if paciente['nome'] != '':
-                pacientes_ativos.append(paciente)
+        for animal in animais:
+            if animal['nome'] != '':
+                animais_ativos.append(animal)
 
-        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, pacientes=pacientes_ativos)
+        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, animais=animais_ativos)
     except:
         flash(f'Ocorreu um erro ao carregar o dashboard do administrador', 'erro')
         return redirect('/')
 
-@app.route('/perfil_veterinario')
-def perfil_veterinario():
-    try:
-        return render_template('perfil_veterinario.html')
-    except:
-        flash(f'Ocorreu um erro insperado')
-        return redirect('/')
+@app.route('/pagina_veterinario/<int:codigo>')
+def pagina_veterinario(codigo):
+    for u in usuarios:
+        if u['codigo'] == codigo:
+            usuario = u
+    return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario)
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
@@ -129,24 +138,39 @@ def cadastro_usuario():
             cep = request.form.get('cep')
             telefone = request.form.get('telefone')
             senha = request.form.get('senha')
-            if not (nome and email and senha):
-                flash('Nome, email e senha são obrigatórios.', 'erro')
+            especiais = "!@#$%^&*()-_+=<>?/|\\{}[]"
+            maiuscula = False
+            minuscula = False
+            especial = False
+            numero = False
+            for s in senha:
+                if s.isupper():
+                    maiuscula = True
+                elif s.islower():
+                    minuscula = True
+                elif s.isdigit():
+                    numero = True
+                elif s in especiais:
+                    especial = True
+            if maiuscula == True and minuscula == True and numero == True and especial == True:
+                codigo = len(usuarios)
+                usuario = {
+                    'tipo': 1,
+                    'codigo': codigo,
+                    'nome': nome,
+                    'email': email,
+                    'data_nascimento': data_nascimento,
+                    'endereco': endereco,
+                    'cep': cep,
+                    'telefone': telefone,
+                    'senha': senha
+                }
+                usuarios.append(usuario)
+                flash(f'Usuário {nome} criado com sucesso!', 'sucesso')
+                return redirect('/login')
+            else:
+                flash('Utilize uma senha forte', 'erro')
                 return render_template('cadastro_usuario.html')
-            codigo = len(usuarios)
-            usuario = {
-                'tipo': 1,
-                'codigo': codigo,
-                'nome': nome,
-                'email': email,
-                'data_nascimento': data_nascimento,
-                'endereco': endereco,
-                'cep': cep,
-                'telefone': telefone,
-                'senha': senha
-            }
-            usuarios.append(usuario)
-            flash(f'Usuário {nome} criado com sucesso!', 'sucesso')
-            return redirect('/login')
         else:
             return render_template('cadastro_usuario.html')
     except:
@@ -160,26 +184,44 @@ def edicao_usuario(codigo):
             if u['codigo'] == codigo:
                 usuario = u
                 break
-        if usuario is None:
-            flash('Usuário não encontrado.', 'erro')
-            return redirect('/dashboard')
 
         if request.method == 'POST':
-            usuario['nome'] = request.form.get('nome')
-            usuario['email'] = request.form.get('email')
-            usuario['data_nascimento'] = request.form.get('data-nascimento')
-            usuario['endereco'] = request.form.get('endereco')
-            usuario['cep'] = request.form.get('cep')
-            usuario['telefone'] = request.form.get('telefone')
-            usuario['senha'] = request.form.get('senha')
-
-            flash(f'Usuário {usuario["nome"]} editado com sucesso!', 'sucesso')
-            return redirect(url_for('pagina_usuario', codigo=codigo))
+            senha = request.form.get('senha')
+            especiais = "!@#$%^&*()-_+=<>?/|\\{}[]"
+            maiuscula = False
+            minuscula = False
+            especial = False
+            numero = False
+            for s in senha:
+                if s.isupper():
+                    maiuscula = True
+                elif s.islower():
+                    minuscula = True
+                elif s.isdigit():
+                    numero = True
+                elif s in especiais:
+                    especial = True
+            if maiuscula == True and minuscula == True and numero == True and especial == True:
+                usuario['nome'] = request.form.get('nome')
+                usuario['email'] = request.form.get('email')
+                usuario['data_nascimento'] = request.form.get('data-nascimento')
+                usuario['endereco'] = request.form.get('endereco')
+                usuario['cep'] = request.form.get('cep')
+                usuario['telefone'] = request.form.get('telefone')
+                usuario['senha'] = request.form.get('senha')
+                flash(f'Usuário {usuario["nome"]} editado com sucesso!', 'sucesso')
+                if LOGADO == 0:
+                    return redirect(url_for('dashboard'))
+                elif LOGADO == 1:
+                    return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                flash(f'Não foi possível editar esse usuário', 'erro')
+                return render_template('edicao_usuario.html', usuario=usuario)
         return render_template('edicao_usuario.html', usuario=usuario, codigo=codigo)
 
     except:
         flash(f'Não foi possível editar esse usuário', 'erro')
-        return render_template('edicao_usuario.html', usuario=usuario if usuario else None)
+        return render_template('edicao_usuario.html', usuario=usuario)
 
 @app.route('/cadastro_animal/<int:codigo>', methods=['GET', 'POST'])
 def cadastro_animal(codigo):
@@ -191,8 +233,8 @@ def cadastro_animal(codigo):
             raca = request.form['raca']
             peso = float(request.form['peso'])
             sexo = request.form['sexo']
-            codigoA = len(pacientes)
-            paciente = {
+            codigoA = len(animais)
+            animal = {
                 'tutor': codigo,
                 'codigo': codigoA,
                 'nome': nome,
@@ -202,7 +244,7 @@ def cadastro_animal(codigo):
                 'peso': peso,
                 'sexo': sexo
             }
-            pacientes.append(paciente)
+            animais.append(animal)
             flash(f'Pet {nome} cadastrado com sucesso!', 'sucesso')
             return redirect(url_for('pagina_usuario', codigo=codigo))
         else:
@@ -220,19 +262,34 @@ def cadastro_veterinario():
             telefone = request.form['telefone']
             email = request.form['email']
             senha = request.form['senha']
-            codigo = len(usuarios)
-            usuario = {
-                'tipo': 2,
-                'codigo': codigo,
-                'nome': nome,
-                'numero_registro': numero_registro,
-                'email': email,
-                'telefone': telefone,
-                'senha': senha
-            }
-            usuarios.append(usuario)
-            flash(f'Veterinário {nome} cadastrado com sucesso!')
-            return redirect('/dashboard')
+            especiais = "!@#$%^&*()-_+=<>?/|\\{}[]"
+            maiuscula = False
+            minuscula = False
+            especial = False
+            numero = False
+            for s in senha:
+                if s.isupper():
+                    maiuscula = True
+                elif s.islower():
+                    minuscula = True
+                elif s.isdigit():
+                    numero = True
+                elif s in especiais:
+                    especial = True
+            if maiuscula == True and minuscula == True and numero == True and especial == True:
+                codigo = len(usuarios)
+                usuario = {
+                    'tipo': 2,
+                    'codigo': codigo,
+                    'nome': nome,
+                    'numero_registro': numero_registro,
+                    'email': email,
+                    'telefone': telefone,
+                    'senha': senha
+                }
+                usuarios.append(usuario)
+                flash(f'Veterinário {nome} cadastrado com sucesso!')
+                return redirect('/dashboard')
         else:
             return render_template('cadastro_veterinario.html')
     except:
@@ -242,50 +299,86 @@ def cadastro_veterinario():
 @app.route('/edicao_veterinario/<int:codigo>', methods=['GET', 'POST'])
 def edicao_veterinario(codigo):
     try:
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                break
+
         if request.method == 'POST':
-            nome = request.form['nome']
-            numero_registro = request.form['numeroderegistro']
-            telefone = request.form['telefone']
-            email = request.form['email']
-            senha = request.form['senha']
-            codigo = len(usuarios)
-            usuario = {
+            senha = request.form.get('senha')
+            especiais = "!@#$%^&*()-_+=<>?/|\\{}[]"
+            maiuscula = False
+            minuscula = False
+            especial = False
+            numero = False
+            for s in senha:
+                if s.isupper():
+                    maiuscula = True
+                elif s.islower():
+                    minuscula = True
+                elif s.isdigit():
+                    numero = True
+                elif s in especiais:
+                    especial = True
+            if maiuscula == True and minuscula == True and numero == True and especial == True:
+                usuario['nome'] = request.form.get('nome')
+                usuario['email'] = request.form.get('email')
+                usuario['numero_registro'] = request.form.get('numeroderegistro')
+                usuario['telefone'] = request.form.get('telefone')
+                usuario['senha'] = request.form.get('senha')
+                flash(f'Veterinário {usuario["nome"]} editado com sucesso!', 'sucesso')
+                return redirect(url_for('dashboard'))
+            else:
+                flash(f'Não foi possível editar esse veterinário', 'erro')
+                return render_template('edicao_veterinario.html', usuario=usuario)
+        return render_template('edicao_veterinario.html', usuario=usuario, codigo=codigo)
+
+    except:
+        flash(f'Não foi possível editar esse veterinário', 'erro')
+        return render_template('edicao_veterinario.html', usuario=usuario)
+
+@app.route('/exclusao_veterinario/<int:codigo>', methods=['GET', 'POST'])
+def exclusao_veterinario(codigo):
+    try:
+        usuario = ''
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                break
+        if request.method == 'POST':
+            usuarios[codigo] = {
                 'tipo': 2,
                 'codigo': codigo,
-                'nome': nome,
-                'numero_registro': numero_registro,
-                'email': email,
-                'telefone': telefone,
-                'senha': senha
+                'nome': '',
+                'numero_registro': '',
+                'email': '',
+                'telefone': '',
+                'senha': ''
             }
-            usuarios.append(usuario)
-            flash(f'Veterinário {nome} editado com sucesso!')
-            return redirect('/dashboard')
-        else:
-            flash(f'Não foi possível editar esse usuário. Tente novamente mais tarde.')
-            return render_template('cadastro_usuario.html')
+            flash(f'Veterinário excluído com sucesso!', 'sucesso')
+            return redirect(url_for('dashboard'))
+        return render_template('exclusao_veterinario.html', codigo=codigo, usuario=usuario)
     except:
-        flash(f'Não foi possível editar esse veterinário')
+        flash(f'Ocorreu um erro inesperado', 'erro')
         return redirect('/dashboard')
-
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):
     try:
         for usuario in usuarios:
             if usuario['codigo'] == codigo:
-                pets_do_usuario = []
-                for paciente in pacientes:
-                    if paciente['tutor'] == codigo:
-                        pets_do_usuario.append(paciente)
-                return render_template('pagina_usuario.html', usuario=usuario, pacientes=pets_do_usuario, codigo=usuario['codigo'])
+                animais_do_usuario = []
+                for animal in animais:
+                    if animal['tutor'] == codigo:
+                        animais_do_usuario.append(animal)
+                return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'])
         flash("Usuário não encontrado.")
         return redirect('/')
     except:
         flash(f'Ocorreu um erro inesperado')
         return redirect('/')
 
-@app.route('/excluir_usuario/<int:codigo>', methods=['GET', 'POST'])
-def excluir_usuario(codigo):
+@app.route('/exclusao_usuario/<int:codigo>', methods=['GET', 'POST'])
+def exclusao_usuario(codigo):
     try:
         if request.method == 'POST':
             usuarios[codigo] = {
@@ -300,9 +393,9 @@ def excluir_usuario(codigo):
                 'senha': "",
             }
 
-            for paciente in pacientes:
-                if paciente['tutor'] == codigo:
-                    paciente = {
+            for animal in animais:
+                if animal['tutor'] == codigo:
+                    animal = {
                         'nome': "",
                         'data_nascimento': "",
                         'especie': "",
@@ -317,28 +410,28 @@ def excluir_usuario(codigo):
         for u in usuarios:
             if u['codigo'] == codigo:
                 usuario = u
-                pets_usuario = []
+                animais_usuario = []
                 break
 
-        for paciente in pacientes:
-            if paciente['tutor'] == codigo:
-                pets_usuario.append(paciente)
-        return render_template('exclusao_usuario.html', usuario=usuario, pacientes=pets_usuario, codigo=usuario['codigo'])
+        for animal in animais:
+            if animal['tutor'] == codigo:
+                animais_usuario.append(animal)
+        return render_template('exclusao_usuario.html', usuario=usuario, animais=animais_usuario, codigo=usuario['codigo'])
     except:
         flash('Ocorreu um erro inesperado', 'erro')
         return redirect('/dashboard')
 
-@app.route('/excluir_pet/<int:codigo>', methods=['GET', 'POST'])
-def excluir_pet(codigo):
-        paciente = ''
-
-        for p in pacientes:
-            if p['codigo'] == codigo:
-                paciente = p
+@app.route('/exclusao_animal/<int:codigo>', methods=['GET', 'POST'])
+def exclusao_animal(codigo):
+    try:
+        animal = ''
+        for a in animais:
+            if a['codigo'] == codigo:
+                animal = a
                 break
         if request.method == 'POST':
-            pacientes[codigo] = {
-                'tutor': paciente['tutor'],
+            animais[codigo] = {
+                'tutor': animal['tutor'],
                 'codigo': codigo,
                 'nome': '',
                 'data_nascimento': '',
@@ -347,7 +440,6 @@ def excluir_pet(codigo):
                 'peso': 0,
                 'sexo': ''
             }
-            print(pacientes)
             flash(f'Pet excluído com sucesso!', 'sucesso')
 
             return redirect(url_for('pagina_usuario', codigo=paciente['tutor']))
