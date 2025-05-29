@@ -38,55 +38,62 @@
                     </div>
                 {% endif %}
             {% endwith %}
-            
-        </div>
-            </section>
+
+        </section>
         <div>
             <h1 class="tituloagend">Faça seu agendamento!</h1>
         </div>
         <section class="agendamentos2">
-                <div class="inputs alinharagend">
-                    <form action="">
-                        <div class="campo">
-                        <label for="nomepet">Nome do pet:</label>
+            <div class="inputs alinharagend">
+                <form method="POST" action="/agendamento">
+                    <div class="campo">
+                        <label for="nomepet">Escolha um Pet:</label>
                         <select id="nomepet" name="nomepet" required>
-                        <option value=""></option>
+                            <option value="">Selecione um pet</option>
+                            {% for pet in pets %}
+                                <option value="{{ pet }}">{{ pet }}</option>
+                            {% endfor %}
                         </select>
-                        </div>
-                        <div class="campo">
-                        <label>Nome do tutor:</label>
-                        <input type="text" name="nometutor" required/>
-                        </div>
-                        <div class="campo">
-                        <label>Telefone de contato:</label>
+                    </div>
+                    <div class="campo">
+                    <label for="nometutor">Selecione o tutor:</label>
+                        <select id="nometutor" name="nometutor" required>
+                        <option value="">Selecione um tutor</option>
+                            {% for tutor in tutores %}
+                        <option value="{{ tutor.codigo }}">{{ tutor.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="telefone">Telefone de contato:</label>
                         <input type="tel" name="telefone" required />
-                        </div>
-                        <div class="campo">
-                        <label for="nomepet">Veterinário:</label>
+                    </div>
+                    <div class="campo">
+                        <label for="nomevet">Selecione o veterinário:</label>
                         <select id="nomevet" name="nomevet" required>
-                            <option value=""></option>
+                            <option value="">Selecione um veterinário</option>
+                            {% for vet in veterinarios %}
+                                <option value="{{ vet }}">{{ vet }}</option>
+                            {% endfor %}
                         </select>
-                        </div>
-                        <div class="campo">
-                        <label for="data-hora">Data e horário:</label>
-                        <input type="datetime-local" id="data-hora" name="data-hora" required>
-                        </div>
-                        <div class="campo">
+                    </div>
+                    <div class="campo">
+                        <label for="datahora">Data e horário:</label>
+                        <input type="datetime-local" id="datahora" name="datahora" required />
+                    </div>
+                    <div class="campo">
                         <label for="sintomas">Sintomas do pet:</label>
                         <textarea id="sintomas" name="sintomas" rows="4" cols="50" required></textarea>
-                        </div>
-                        <div class="botaoalinhar botaodesalvar">
+                    </div>
+                    <div class="botaoalinhar botaodesalvar">
                         <button type="submit">Agendar</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="alinharimg">
+                    </div>
+                </form>
+            </div>
+            <div class="alinharimg">
                     <img src="../static/img/agendamentopets.png" alt="Cachorro e gato">
-                </div>
+            </div>
         </section>
-    
-
-
     </main>
     <footer class="flex">
         <div class="flex gap-vinte">
@@ -102,12 +109,9 @@
             <div class="flex column gap-vinte">
                 <div class="redes-sociais-texto">
                     <h5 class="texto-branco">Redes Sociais:</h5>
-                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank"
-                            class="texto-branco">@petcarinho</a></p>
-                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank"
-                            class="texto-branco">PetCarinho Clínica Veterinária</a></p>
-                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank"
-                            class="texto-branco">@petcarinho_vet</a></p>
+                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank" class="texto-branco">@petcarinho</a></p>
+                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank" class="texto-branco">PetCarinho Clínica Veterinária</a></p>
+                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank" class="texto-branco">@petcarinho_vet</a></p>
                 </div>
                 <img src="../static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
             </div>

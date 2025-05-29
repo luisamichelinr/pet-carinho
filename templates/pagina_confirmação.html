@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta Confirmada</title>
+</head>
+<body>
+<header class="d-flex">
+        <img src="../static/img/logo.png" alt="Logo da PetCarinho">
+        <nav class="cabecalho d-flex">
+            <a href="/#home">Home</a>
+            <a href="/#quem_somos">Quem somos</a>
+            <a href="/#servicos">Serviços</a>
+            <a href="/#depoimentos">Depoimentos</a>
+            <a class="cadastro animacao" href="/cadastro_usuario">Agendar</a>
+        </nav>
+</header>
+<main>
+    <h1>Consulta Confirmada!</h1>
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+        {% if mensagens %}
+            <ul>
+            {% for categoria, mensagem in mensagens %}
+                <li class="{{ categoria }}">{{ mensagem }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <a href="{{ url_for('agendamento') }}">Voltar ao agendamento</a>
+</main>
+</body>
+</html>

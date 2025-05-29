@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'pet-carinho'
@@ -46,6 +47,8 @@ pacientes = [
       'sexo': 'F'
     }
 ]
+
+agendamentos = []
 
 @app.route('/')
 def index():
@@ -351,15 +354,86 @@ def excluir_pet(codigo):
 
         return render_template('exclusao_animal.html', codigo=codigo, paciente=paciente)
 
-
-@app.route('/agendamento')
-def agendamento(codigo):
+@app.route('/agendamento', methods=["GET", "POST"])
+def agendamento():
     try:
-        return render_template('agendamento.html')
+        if request.method == 'POST':
+            nomepet = request.form["nomepet"]
+            nometutor = int(request.form["nometutor"])
+            telefone = request.form["telefone"]
+            nomevet = request.form["nomevet"]
+            datahora = request.form["datahora"]
+            sintomas = request.form["sintomas"]
+
+            try:
+                datahora_obj = datetime.fromisoformat(datahora)
+                dia_da_semana = datahora_obj.weekday()
+                hora_agendada = datahora_obj.hour
+                minuto_agendado = datahora_obj.minute
+
+
+                if dia_da_semana == 6:
+                    flash(f"Desculpe, estamos fechados no domingo.", "erro")
+                    return redirect(url_for('agendamento'))
+
+                if dia_da_semana >= 5:
+                    if hora_agendada < 8 or hora_agendada >= 14:
+                        flash(f"O horário para sábado é das 08:00 às 14:00.", "erro")
+                        return redirect(url_for('agendamento'))
+                else:
+                    if hora_agendada < 8 or hora_agendada >= 18:
+                        flash(f"O horário para segunda a sexta é das 08:00 às 18:00.", "erro")
+                        return redirect(url_for('agendamento'))
+
+            except ValueError:
+                flash(f"Formato de data e hora inválido.", "erro")
+                return redirect(url_for('agendamento'))
+            pet = None
+            for p in pacientes:
+                if p['nome'] == nomepet and p['tutor'] == nometutor:
+                    pet = p
+                    break
+
+            if not pet:
+                flash(f"Pet {nomepet} não encontrado ou o tutor não corresponde.", "erro")
+                return redirect(url_for('agendamento'))  # CORRETO: return dentro do if
+
+            vet = None
+            for v in usuarios:
+                if v['tipo'] == 2 and v['nome'] == nomevet:
+                    vet = v
+                    break
+
+            if not vet:
+                flash(f"Veterinário {nomevet} não encontrado.", "erro")
+                return redirect(url_for('agendamento'))  # CORRETO: return após o loop
+
+            agendamento = {
+                "nomepet": nomepet,
+                "nometutor": [u['nome'] for u in usuarios if u['codigo'] == nometutor][0],
+                "telefone": telefone,
+                "nomevet": nomevet,
+                "datahora": datahora,
+                "sintomas": sintomas
+            }
+            agendamentos.append(agendamento)
+
+            flash(f'Agendamento de {nomepet} realizado com sucesso! Sua consulta será {datahora} com {nomevet}.', 'sucesso')
+            return redirect(url_for('pagina_confirmacao'))
+
+        else:
+            tutores = [usuario for usuario in usuarios if usuario['tipo'] == 1]
+            veterinarios = [usuario['nome'] for usuario in usuarios if usuario['tipo'] == 2]
+            pets = [pet['nome'] for pet in pacientes]
+
+            return render_template('agendamento.html', tutores=tutores, veterinarios=veterinarios, pets=pets)
     except Exception as e:
-        flash(f'Ocorreu um erro inesperado: {str(e)}')
+        flash(f'Ocorreu um erro inesperado: {e}', 'erro')
         return redirect('/')
 
+@app.route('/pagina_confirmacao')
+def pagina_confirmacao():
+    return render_template('pagina_confirmacao.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
