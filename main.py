@@ -117,13 +117,12 @@ def dashboard():
         flash(f'Ocorreu um erro ao carregar o dashboard do administrador', 'erro')
         return redirect('/')
 
-@app.route('/perfil_veterinario')
-def perfil_veterinario():
-    try:
-        return render_template('perfil_veterinario.html')
-    except:
-        flash(f'Ocorreu um erro insperado')
-        return redirect('/')
+@app.route('/pagina_veterinario/<int:codigo>')
+def pagina_veterinario(codigo):
+    for u in usuarios:
+        if u['codigo'] == codigo:
+            usuario = u
+    return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario)
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
