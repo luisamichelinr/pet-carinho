@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" dir="ltr">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetCarinho - Cadastro do veterinário</title>
+    <title>Confirmação - PetCarinho</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
 
@@ -18,10 +18,9 @@
             <a href="/#depoimentos">Depoimentos</a>
         </nav>
     </header>
+
     <main>
         <section class="seta-mensagens">
-            <a href="/dashboard"><img src="../static/img/seta.png" alt="Seta voltar"></a>
-
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
                     <div class="mensagens">
@@ -42,50 +41,26 @@
         </section>
 
 
-        <div class="foto d-flex">
-            <img src="../static/img/veterinario.png" alt="Foto do veterinário">
-        </div>
-        <section class="login2">
-            <div class="inputs">
-                <form action="{{ url_for('edicao_veterinario', codigo=usuario['codigo'])}}", method="POST">
-                    <div class="campo">
-                        <label>Nome:</label>
-                        <input type="text" name="nome" required value="{{ usuario.nome }}"/>
-                    </div>
-                     <div class="campo">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" required value="{{ usuario.email }}"/>
-                    </div>
-                    <div class="campo">
-                        <label>Telefone:</label>
-                        <input type="tel" name="telefone" required value="{{ usuario.telefone }}"/>
-                    </div>
-                    <div class="campo">
-                        <label>Número de registro:</label>
-                        <input type="number" name="numeroderegistro" required value="{{ usuario.numero_registro }}"/>
-                    </div>
-                
-                    <div class="campo">
-                        <label>Informe uma senha:</label>
-                        <input type="password" name="senha" minlength="4" maxlength="10" required value="{{ usuario.senha }}"/>
-                    </div>
 
-                    <div class="botaodesalvar botaoalinhar">
-                        <button class="animacao" type="submit">Salvar</button>
-                    </div>
-                </form>
-
-            </div>
+        <section class="confirmacao">
+            <form method="POST" action="{{ url_for('exclusao_veterinario', codigo=codigo) }}">
+                <h5>Confirmação</h5>
+                <p>Ao continuar, você irá apagar todos os dados do veterinário {{ usuario.nome }}</p>
+                <div class="flex around">
+                        <button class="botaoexcluir animacao" type="submit">Excluir</button>
+                        <a class="botaoexcluir animacao" href="/dashboard">Cancelar</a>
+                </div>
+            </form>
         </section>
-
     </main>
+
     <footer class="flex">
         <div class="flex gap-vinte">
             <img src="../static/img/logo.png" alt="Logo PetCarinho" class="logo-footer">
             <div class="nav-footer flex column gap-nav-footer">
                 <a href="/#home">Home</a>
                 <a href="/#quem_somos">Quem somos</a>
-                <a href="/#servicos">Serviços</a>
+                <a href="#servicos">Serviços</a>
                 <a href="/#depoimentos">Depoimentos</a>
             </div>
         </div>

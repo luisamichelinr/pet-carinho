@@ -321,7 +321,7 @@ def edicao_veterinario(codigo):
             if maiuscula == True and minuscula == True and numero == True and especial == True:
                 usuario['nome'] = request.form.get('nome')
                 usuario['email'] = request.form.get('email')
-                usuario['numero_registro'] = request.form.get('data-nascimento')
+                usuario['numero_registro'] = request.form.get('numeroderegistro')
                 usuario['telefone'] = request.form.get('telefone')
                 usuario['senha'] = request.form.get('senha')
                 flash(f'Veterinário {usuario["nome"]} editado com sucesso!', 'sucesso')
@@ -335,6 +335,30 @@ def edicao_veterinario(codigo):
         flash(f'Não foi possível editar esse veterinário', 'erro')
         return render_template('edicao_veterinario.html', usuario=usuario)
 
+@app.route('/exclusao_veterinario/<int:codigo>', methods=['GET', 'POST'])
+def exclusao_veterinario(codigo):
+    try:
+        usuario = ''
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                break
+        if request.method == 'POST':
+            usuarios[codigo] = {
+                'tipo': 2,
+                'codigo': codigo,
+                'nome': '',
+                'numero_registro': '',
+                'email': '',
+                'telefone': '',
+                'senha': ''
+            }
+            flash(f'Veterinário excluído com sucesso!', 'sucesso')
+            return redirect(url_for('dashboard'))
+        return render_template('exclusao_veterinario.html', codigo=codigo, usuario=usuario)
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        return redirect('/dashboard')
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):
     try:
