@@ -332,7 +332,7 @@ def excluir_pet(codigo):
         flash(f'Pet excluído com sucesso!')
         return redirect('/')
 @app.route('/agendamento')
-def agendamento():
+def agendamento(codigo):
     try:
         return render_template('agendamento.html')
     except Exception as e:
