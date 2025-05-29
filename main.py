@@ -70,7 +70,7 @@ def login():
                         return redirect(url_for('pagina_usuario', codigo=usuario['codigo']))
                     elif usuario['tipo'] == 2:
                         LOGADO = 2
-                        return redirect('/perfil_veterinario')
+                        return redirect('/pagina_veterinario')
             else:
                 flash('Nome e/ou senha incorretos. Tente novamente.', 'erro')
                 return render_template('login.html')
@@ -208,7 +208,10 @@ def edicao_usuario(codigo):
                 usuario['telefone'] = request.form.get('telefone')
                 usuario['senha'] = request.form.get('senha')
                 flash(f'Usuário {usuario["nome"]} editado com sucesso!', 'sucesso')
-                return redirect(url_for('pagina_usuario', codigo=codigo))
+                if LOGADO == 0:
+                    return redirect(url_for('dashboard'))
+                elif LOGADO == 1:
+                    return redirect(url_for('pagina_usuario', codigo=codigo))
             else:
                 flash(f'Não foi possível editar esse usuário', 'erro')
                 return render_template('edicao_usuario.html', usuario=usuario)
@@ -294,31 +297,43 @@ def cadastro_veterinario():
 @app.route('/edicao_veterinario/<int:codigo>', methods=['GET', 'POST'])
 def edicao_veterinario(codigo):
     try:
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                break
+
         if request.method == 'POST':
-            nome = request.form['nome']
-            numero_registro = request.form['numeroderegistro']
-            telefone = request.form['telefone']
-            email = request.form['email']
-            senha = request.form['senha']
-            codigo = len(usuarios)
-            usuario = {
-                'tipo': 2,
-                'codigo': codigo,
-                'nome': nome,
-                'numero_registro': numero_registro,
-                'email': email,
-                'telefone': telefone,
-                'senha': senha
-            }
-            usuarios.append(usuario)
-            flash(f'Veterinário {nome} editado com sucesso!')
-            return redirect('/dashboard')
-        else:
-            flash(f'Não foi possível editar esse usuário. Tente novamente mais tarde.')
-            return render_template('cadastro_usuario.html')
+            senha = request.form.get('senha')
+            especiais = "!@#$%^&*()-_+=<>?/|\\{}[]"
+            maiuscula = False
+            minuscula = False
+            especial = False
+            numero = False
+            for s in senha:
+                if s.isupper():
+                    maiuscula = True
+                elif s.islower():
+                    minuscula = True
+                elif s.isdigit():
+                    numero = True
+                elif s in especiais:
+                    especial = True
+            if maiuscula == True and minuscula == True and numero == True and especial == True:
+                usuario['nome'] = request.form.get('nome')
+                usuario['email'] = request.form.get('email')
+                usuario['numero_registro'] = request.form.get('data-nascimento')
+                usuario['telefone'] = request.form.get('telefone')
+                usuario['senha'] = request.form.get('senha')
+                flash(f'Veterinário {usuario["nome"]} editado com sucesso!', 'sucesso')
+                return redirect(url_for('dashboard'))
+            else:
+                flash(f'Não foi possível editar esse veterinário', 'erro')
+                return render_template('edicao_veterinario.html', usuario=usuario)
+        return render_template('edicao_veterinario.html', usuario=usuario, codigo=codigo)
+
     except:
-        flash(f'Não foi possível editar esse veterinário')
-        return redirect('/dashboard')
+        flash(f'Não foi possível editar esse veterinário', 'erro')
+        return render_template('edicao_veterinario.html', usuario=usuario)
 
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):

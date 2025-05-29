@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edição de usuário - PetCarinho</title>
+    <title>PetCarinho - Cadastro do veterinário</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
 
@@ -18,9 +18,10 @@
             <a href="/#depoimentos">Depoimentos</a>
         </nav>
     </header>
-
     <main>
         <section class="seta-mensagens">
+            <a href="/dashboard"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
                     <div class="mensagens">
@@ -42,49 +43,42 @@
 
 
         <div class="foto d-flex">
-            <img src="../static/img/usuario sem foto.png" alt="Ícone de usuário">
+            <img src="../static/img/veterinario.png" alt="Foto do veterinário">
         </div>
-
         <section class="login2">
             <div class="inputs">
-                <form action="{{ url_for('edicao_usuario', codigo=usuario['codigo']) }}" method="POST">
+                <form action="{{ url_for(edicao_veterinario') }}", method="POST">
                     <div class="campo">
-                        <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" required value="{{ usuario.nome }}">
+                        <label>Nome:</label>
+                        <input type="text" name="nome" required value="{{ veterinario.nome }}"/>
                     </div>
-                    <div class="campo">
+                     <div class="campo">
                             <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" required value="{{ usuario.email }}">
-                        </div>
-                    <div class="campo">
-                        <label for="data-nascimento">Data de nascimento:</label>
-                        <input type="date" id="data-nascimento" name="data-nascimento" required
-                            value="{{ usuario.data_nascimento }}">
+                            <input type="email" id="email" name="email" required value="{{ veterinario.email }}"/>
                     </div>
                     <div class="campo">
-                        <label for="endereco">Endereço completo:</label>
-                        <input type="text" id="endereco" name="endereco" required value="{{ usuario.endereco }}">
+                        <label>Telefone:</label>
+                        <input type="tel" name="telefone" required value="{{ veterinario.telefone }}"/>
                     </div>
                     <div class="campo">
-                        <label for="cep">CEP:</label>
-                        <input type="text" id="cep" name="cep" required value="{{ usuario.cep }}">
+                        <label>Número de registro:</label>
+                        <input type="number" name="numeroderegistro" required value="{{ veterinario.numero_registro }}"/>
                     </div>
+                
                     <div class="campo">
-                        <label for="telefone">Telefone:</label>
-                        <input type="tel" id="telefone" name="telefone" required value="{{ usuario.telefone }}">
+                        <label>Informe uma senha:</label>
+                        <input type="password" name="senha" minlength="4" maxlength="10" required value="{{ veterinario.senha }}"/>
                     </div>
-                    <div class="campo">
-                        <label for="senha">Alterar a senha:</label>
-                        <input type="password" id="senha" name="senha" required value="{{ usuario.senha }}">
-                    </div>
-                    <div class="botaosalvar botaoalinhar">
-                        <button class="botao animacao" type="submit">Salvar</button>
+
+                    <div class="botaodesalvar botaoalinhar">
+                        <button class="animacao" type="submit">Salvar</button>
                     </div>
                 </form>
+
             </div>
         </section>
-    </main>
 
+    </main>
     <footer class="flex">
         <div class="flex gap-vinte">
             <img src="../static/img/logo.png" alt="Logo PetCarinho" class="logo-footer">
