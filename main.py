@@ -144,6 +144,14 @@ def pagina_veterinario(codigo):
         for u in usuarios:
             if u['codigo'] == codigo:
                 usuario = u
+        if usuario and 'data_nascimento' in usuario and usuario['data_nascimento']:
+            try:
+                data_obj = datetime.fromisoformat(usuario['data_nascimento'])
+                usuario['data_nascimento_formatada'] = data_obj.strftime('%d/%m/%Y')
+            except ValueError:
+                usuario['data_nascimento_formatada'] = usuario['data_nascimento']
+        else:
+            usuario['data_nascimento_formatada'] = "Não informado"
         agendamentos_vet = []
         animais_vet = []
         for a in agendamentos:
