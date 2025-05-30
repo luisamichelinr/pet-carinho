@@ -71,7 +71,7 @@
                                 <p>Veterinário: {{ agendamento.nomevet }} </p>
 
                                 {% if agendamento.remarcavel %}
-                                    <a>Remarcar</a>
+                                    <a href="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">Remarcar</a>
                                 {% endif %}
                             </li>
                         {% else %}

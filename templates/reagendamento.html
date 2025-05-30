@@ -22,9 +22,9 @@
             <a
             {% if LOGADO == 0 %}
                 href="{{ url_for('dashboard') }}"
-            {% elif LOGADO['tipo'] == 1 %}
+            {% elif LOGADO == 1 %}
                 href="{{ url_for('pagina_usuario', codigo=usuario['codigo']) }}"
-            {% elif LOGADO['tipo'] == 2 %}
+            {% elif LOGADO == 2 %}
                 href="{{ url_for('pagina_veterinario', codigo=usuario['codigo']) }}"
             {% else %}
                 href="/"
@@ -56,7 +56,7 @@
         </div>
         <section class="agendamentos2">
             <div class="inputs alinharagend">
-                <form method="POST" action="{{ url_for('agendamento', codigo=usuario.codigo) }}">
+                <form method="POST" action="{{ url_for('reagendamento', codigoA=agendamento.codigo) }}">
                     <div class="campo">
                         <label for="nomepet">Escolha um Pet:</label>
                         <select id="nomepet" name="nomepet" required>
@@ -64,13 +64,13 @@
                             {% if LOGADO == 1 %}
                                 {% for animal in animais_usuario %}
                                     {% if animal.nome != '' %}
-                                        <option value="{{ animal.codigo }}">{{ animal.nome }}</option>
+                                        <option value="{{ animal.codigo }}" {% if animal.codigo == agendamento.codigopet %}selected{% endif %}>{{ animal.nome }}</option>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
                                 {% for animal in animais %}
                                     {% if animal.nome != '' %}
-                                        <option value="{{ animal.codigo }}">{{ animal.nome }}</option>
+                                        <option value="{{ animal.codigo }}" {% if animal.codigo == agendamento.codigopet %}selected{% endif %}>{{ animal.nome }}</option>
                                     {% endif %}
                                 {% endfor %}
                             {% endif %}
@@ -78,27 +78,27 @@
                     </div>
                     <div class="campo">
                         <label for="telefone">Telefone de contato:</label>
-                        <input type="tel" name="telefone" required />
+                        <input type="tel" name="telefone" required value="agendamento.telefone"/>
                     </div>
                     <div class="campo">
                         <label for="nomevet">Selecione o veterinário:</label>
                         <select id="nomevet" name="nomevet" required>
                             <option value="">Selecione um veterinário</option>
                             {% for vet in veterinarios %}
-                                <option value="{{ vet.codigo }}">{{ vet.nome }}</option>
+                                <option value="{{ vet.codigo }}" {% if vet.codigo == agendamento.nomevet %}selected{% endif %}>{{ vet.nome }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="campo">
                         <label for="datahora">Data e horário:</label>
-                        <input type="datetime-local" id="datahora" name="datahora" required />
+                        <input type="datetime-local" id="datahora" name="datahora" required value="agendamento.datahora"/>
                     </div>
                     <div class="campo">
                         <label for="sintomas">Sintomas do pet:</label>
-                        <textarea id="sintomas" name="sintomas" rows="4" cols="50" required></textarea>
+                        <textarea id="sintomas" name="sintomas" rows="4" cols="50" required value="agendamento.sintomas"></textarea>
                     </div>
                     <div class="botaoalinhar botaodesalvar">
-                        <button type="submit">Agendar</button>
+                        <button type="submit">Reagendar</button>
                     </div>
                 </form>
             </div>
