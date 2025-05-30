@@ -1224,6 +1224,10 @@ html {
     position: relative; 
 }
 
+.test1{
+    display: flex;
+    flex-direction: column;
+}
 
 .botaoagendamento {
     background-color: var(--cor-roxo);
