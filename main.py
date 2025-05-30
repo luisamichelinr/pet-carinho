@@ -529,29 +529,29 @@ def exclusao_animal(codigo):
 def processar_receita():
     receita = request.form.get('receita')
     if receita == "Soro":
-        return redirect(url_for('prontuariosoro'))
+        return redirect(url_for('prontuariosoro.html'))
     else:
-        return redirect(url_for('prontuario')) 
+        return redirect(url_for('prontuario.html'))
 
 @app.route('/prontuariosoro')
 def pontuario_soro():
-    return render_template('prontuariosoro')
+    return render_template('prontuariosoro.html')
 
 @app.route("/calcular", methods=["POST"])
 def calcular():
-    try:
+
         desidratacao = float(request.form["desidratacao"])
         peso = float(request.form["peso"])
         resultado = desidratacao * peso
-        return render_template("prontuariosoro", resultado=resultado)
+        return render_template("prontuariosoro.html", resultado=resultado)
 
 @app.route("/calcular_dose", methods=["POST"])
 def calcular_dose():
-    try:
+
         dose_recomendada = float(request.form["dose_recomendada"])
         peso = float(request.form["peso"])
         resultado_dose = dose_recomendada * peso
-        return render_template("prontuariodose", resultado_dose=resultado_dose)
+        return render_template("prontuariodose.html", resultado_dose=resultado_dose
 
 
 @app.route('/agendamento/<int:codigo>', methods=["GET", "POST"])
@@ -643,13 +643,13 @@ def agendamento(codigo):
 
             return render_template('agendamento.html', tutores=tutores, veterinarios=veterinarios, animais=animais, LOGADO=LOGADO, usuario=usuario, animais_usuario=animais_usuario)
     except:
-        flash(f'Ocorreu um erro inesperado', 'erro')
-        if LOGADO == 0:
-            return redirect(url_for('dashboard'))
-        elif LOGADO == 1:
-            return redirect(url_for('pagina_usuario', codigo=codigo))
-        else:
-            return redirect('/')
+            flash(f'Ocorreu um erro inesperado', 'erro')
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
 
 
 @app.route('/reagendamento/<int:codigo_agendamento>', methods=['GET', 'POST'])
@@ -789,8 +789,8 @@ def exclusao_agendamento(codigo_agendamento):
                 return redirect('/')
 
             flash(f'Não foi possível excluir esse agendamento', 'erro')
-            return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO, codigo=codigo)
-        return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO, codigo=codigo)
+            return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
+        return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
 
 
     except:
