@@ -324,6 +324,7 @@ def edicao_animal(codigo):
             if a['codigo'] == codigo:
                 animal = a
                 break
+        codigo_tutor = a['tutor']
         if request.method == 'POST':
             animal['nome'] = request.form.get('nome')
             animal['data_nascimento'] = request.form.get('data_nascimento')
@@ -334,7 +335,7 @@ def edicao_animal(codigo):
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
             elif LOGADO == 1:
-                return redirect(url_for('pagina_usuario', codigo=codigo))
+                return redirect(url_for('pagina_usuario', codigo=codigo_tutor))
             else:
                 return redirect('/')
         return render_template('edicao_animal.html', animal=animal, codigo=codigo, LOGADO=LOGADO)
