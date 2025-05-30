@@ -541,10 +541,11 @@ def agendamento(codigo):
             veterinario = usuarios[nomevet]
             tutor = animal['tutor']
 
-
             datahora_obj = datetime.fromisoformat(datahora)
             dia_da_semana = datahora_obj.weekday()
             hora_agendada = datahora_obj.hour
+            datahora_obj = datetime.fromisoformat(datahora)
+            datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
 
             for a in agendamentos:
                 if a['codigopet'] == codigopet:
@@ -576,12 +577,13 @@ def agendamento(codigo):
                 "nomevet": nomevet,
                 "datahora": datahora,
                 "sintomas": sintomas,
-                'remarcavel': True
+                'remarcavel': True,
+                'datahora_obj': datahora_obj,
+                'datahora_formatada': datahora_formatada
             }
             agendamentos.append(agendamento)
-            print(agendamentos)
 
-            flash(f'Agendamento de {animal['nome']} realizado com sucesso! Sua consulta será {datahora} com {veterinario['nome']}.', 'sucesso')
+            flash(f'Agendamento de {animal['nome']} realizado com sucesso! Sua consulta será {datahora_formatada} com {veterinario['nome']}.', 'sucesso')
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
             elif LOGADO == 1:
