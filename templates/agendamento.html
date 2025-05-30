@@ -58,8 +58,8 @@
             <div class="inputs alinharagend">
                 <form method="POST" action="{{ url_for('agendamento', codigo=usuario.codigo) }}">
                     <div class="campo">
-                        <label for="nomepet">Escolha um Pet:</label>
-                        <select id="nomepet" name="nomepet" required>
+                        <label for="codigopet">Escolha um Pet:</label>
+                        <select id="codigopet" name="codigopet" required>
                             <option value="">Selecione um pet</option>
                             {% if LOGADO == 1 %}
                                 {% for animal in animais_usuario %}
@@ -76,24 +76,6 @@
                             {% endif %}
                         </select>
                     </div>
-                    {% if LOGADO == 1 %}
-                        <div class="campo">
-                            <label for="nometutor">Tutor:</label>
-                            <select id="nometutor" name="nometutor" required>
-                                <option value="{{usuario.codigo}}">{{usuario.nome}}</option>
-                            </select>
-                        </div>
-                    {% else %}
-                        <div class="campo">
-                            <label for="nometutor">Selecione o tutor:</label>
-                            <select id="nometutor" name="nometutor" required>
-                                <option value="">Selecione um tutor</option>
-                                {% for tutor in tutores %}
-                                    <option value="{{ tutor.codigo }}">{{ tutor.nome }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    {% endif %}
                     <div class="campo">
                         <label for="telefone">Telefone de contato:</label>
                         <input type="tel" name="telefone" required />
