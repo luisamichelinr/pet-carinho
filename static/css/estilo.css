@@ -1212,3 +1212,33 @@ html {
     height: 60px;
     position: relative; 
 }
+
+.botaoagendamento {
+    background-color: var(--cor-roxo);
+    border-radius: 60px;
+    border: none;
+    padding: 8px 15px;
+    font-family: McLaren;
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;  
+}
+
+.agendamentostexto ul li {
+    margin-bottom: 20px;  
+}
+
+.botoes-container {
+    display: flex; 
+    margin-top: 20px;  
+}
+
+.agendamentostexto p {
+    font-size: 20px;
+}
+
+.agendamentos h1 {
+    font-size: 28px;
+}

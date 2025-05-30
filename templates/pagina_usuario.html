@@ -62,25 +62,27 @@
                     <h1>Agendamentos</h1>
                     <a class="adicionar2" href="{{ url_for('agendamento', codigo=codigo)}}">+</a>
                 </div>
-                <div>
+                <div class="agendamentostexto">
                     <ul>
                         {% for agendamento in agendamentos_usuario %}
                             <li>
                                 <p>Pet: {{ agendamento.nomepet }} </p>
-                                <p>Data e hora: {{ agendamento.datahora }} </p>
-                                <p>Veterinário: {{ agendamento.nomevet }} </p>
-                                <a href="{{ url_for('exclusao_agendamento', codigo_agendamento=agendamento.codigo) }}">Excluir</a>
-
+                                <p>Data e hora: {{ agendamento.datahora_formatada }} </p>
+                                <p>Veterinário: {{agendamento.nomevet}} </p>
+                            <div class="botoes-container">
+                                <a class="botaoagendamento" href="{{ url_for('exclusao_agendamento', codigo_agendamento=agendamento.codigo) }}">Excluir</a>
+                          
                                 {% if agendamento.remarcavel %}
-                                    <a href="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">Remarcar</a>
+                                    <a class="botaoagendamento" href="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">Remarcar</a>
                                 {% endif %}
+                            </div>
                             </li>
                         {% else %}
                             <p>Você não tem agendamentos.</p>
                         {% endfor %}
                     </ul>
                 </div>
-            </div>
+            
         </section>
         <section class="pets-sec">
             <div>
