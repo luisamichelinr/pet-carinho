@@ -1177,25 +1177,28 @@ html {
     position: fixed;
     z-index: 999;
     top: 85px;
+     justify-content: flex-end;
 }
 
 .contatos div p {
     color: var(--cor-roxo-contatos);
     font-weight: bold;
     font-size: 16px;
-
+    
 }
 
-.contatos {
+.contatos2 {
     display: flex;
-    justify-content: flex-end;
     gap: 30px; 
     align-items: center; 
+    margin-left: 680px;
+    
 
 }
 
 .contatosfilho {
     display: flex;
     align-items: center; 
-    gap: 20px;   
+    gap: 20px; 
+    margin-left: 20px;  
 }
