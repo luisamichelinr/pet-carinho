@@ -449,6 +449,9 @@ def exclusao_veterinario(codigo):
                 'telefone': '',
                 'senha': ''
             }
+            for a in agendamentos:
+                if a['nomevet'] == usuario['nome']:
+                    exclusao_agendamentos(a['codigo'])
             flash(f'Veterinário excluído com sucesso!', 'sucesso')
             return redirect(url_for('dashboard'))
         return render_template('exclusao_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO)
