@@ -52,7 +52,7 @@
         <section class="secao2 d-flex inicio">
             <div class="infousuario d-flex meio">
                 <h3>Nome: <span class="texto-usuario">{{ usuario.nome }}</span> </h3>
-                <h3>Data de nascimento: <span class="texto-usuario">{{ usuario.data_nascimento }}</span></h3>
+                <h3>Data de nascimento: <span class="texto-usuario">{{ usuario.data_nascimento_formatada }}</span></h3>
                 <h3>Endereço completo: <span class="texto-usuario">{{ usuario.endereco }}</span></h3>
                 <h3>CEP: <span class="texto-usuario">{{ usuario.cep }}</span></h3>
                 <h3>Telefone: <span class="texto-usuario">{{ usuario.telefone }}</span></h3>
@@ -128,7 +128,7 @@
                             {% endif %}
                             <h6 class="pet-nome">{{ animal.nome }}</h6>
                             <p class="pet-texto">{{ animal.raca }}</p>
-                            <p class="pet-texto">{{ animal.data_nascimento }}</p>
+                            <p class="pet-texto">{{ animal.data_nascimento_formatada }}</p>
                         </div>
                     </div>
                     {% endif %}

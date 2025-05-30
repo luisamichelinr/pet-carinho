@@ -104,9 +104,9 @@ def dashboard():
         tutores = []
         veterinarios = []
         animais_ativos = []
-
+        print(HOJE)
         for a in agendamentos:
-            if a['datahora'] == HOJE:
+            if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
 
         print(agendamentos)
@@ -147,7 +147,7 @@ def pagina_veterinario(codigo):
         agendamentos_vet = []
         animais_vet = []
         for a in agendamentos:
-            if a['datahora'] == HOJE:
+            if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
             if a['nomevet'] == usuario['nome']:
                 agendamentos_vet.append(a)
@@ -445,14 +445,30 @@ def pagina_usuario(codigo):
         LOGADO = 1
         for usuario in usuarios:
             if usuario['codigo'] == codigo:
+                if 'data_nascimento' in usuario and usuario['data_nascimento']:
+                    try:
+                        data_obj = datetime.fromisoformat(usuario['data_nascimento'])
+                        usuario['data_nascimento_formatada'] = data_obj.strftime('%d/%m/%Y')
+                    except ValueError:
+                        usuario['data_nascimento_formatada'] = usuario['data_nascimento']
+                else:
+                    usuario['data_nascimento_formatada'] = "Não informado"
                 animais_do_usuario = []
                 for animal in animais:
                     if animal['tutor'] == codigo:
+                        if 'data_nascimento' in animal and animal['data_nascimento']:
+                            try:
+                                data_animal = datetime.fromisoformat(animal['data_nascimento'])
+                                animal['data_nascimento_formatada'] = data_animal.strftime('%d/%m/%Y')
+                            except ValueError:
+                                animal['data_nascimento_formatada'] = animal['data_nascimento']
+                        else:
+                            animal['data_nascimento_formatada'] = "Não informado"
                         animais_do_usuario.append(animal)
                 agendamentos_usuario = []
                 for a in agendamentos:
                     if a['nometutor'] == usuario['codigo']:
-                        if a['datahora'] == HOJE:
+                        if a['data_somente'] == HOJE:
                             a['remarcavel'] = False
                         agendamentos_usuario.append(a)
                 return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'], LOGADO=LOGADO, agendamentos_usuario=agendamentos_usuario)
@@ -597,6 +613,7 @@ def agendamento(codigo):
             hora_agendada = datahora_obj.hour
             datahora_obj = datetime.fromisoformat(datahora)
             datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
+            data_somente = datahora_obj.date()
 
             for a in agendamentos:
                 if a['codigopet'] == codigopet:
@@ -630,7 +647,8 @@ def agendamento(codigo):
                 'sintomas': sintomas,
                 'remarcavel': True,
                 'datahora_obj': datahora_obj,
-                'datahora_formatada': datahora_formatada
+                'datahora_formatada': datahora_formatada,
+                'data_somente': data_somente,
             }
             agendamentos.append(agendamento)
 
@@ -700,6 +718,7 @@ def reagendamento(codigo_agendamento):
             hora_agendada = datahora_obj.hour
             datahora_obj = datetime.fromisoformat(datahora)
             datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
+            data_somente = datahora_obj.date()
 
             for a in agendamentos:
                 if a['datahora'] == datahora and a['nomevet'] == nomevet and a['codigo'] != codigo_agendamento:
@@ -726,7 +745,7 @@ def reagendamento(codigo_agendamento):
             agendamento['sintomas'] = request.form["sintomas"]
             agendamento['datahora_formatada'] = datahora_formatada
             agendamento['datahora_obj'] = datahora_obj
-            agendamento['datahora'] = datahora
+            agendamento['data_somente'] = data_somente
 
             flash(f'Agendamento do dia {agendamento['datahora']} editado com sucesso!', 'sucesso')
             if LOGADO == 0:
@@ -799,7 +818,8 @@ def exclusao_agendamentos(codigo_agendamento):
                 'sintomas': '',
                 'remarcavel': False,
                 'datahora_obj': '',
-                'datahora_formatada': ''
+                'datahora_formatada': '',
+                'data_somente': ''
             }
             print(agendamentos)
 
