@@ -130,16 +130,24 @@ def dashboard():
 
 @app.route('/pagina_veterinario/<int:codigo>')
 def pagina_veterinario(codigo):
-    global LOGADO
-    LOGADO = 2
-    for u in usuarios:
-        if u['codigo'] == codigo:
-            usuario = u
-    agendamentos_vet = []
-    for a in agendamentos:
-        if a['nomevet'] == a['codigo']:
-            agendamentos_vet.append(a)
-    return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO, animais=animais, agendamentos_vet=agendamentos_vet)
+    try:
+        global LOGADO
+        LOGADO = 2
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+        agendamentos_vet = []
+        animais_vet = []
+        for a in agendamentos:
+            if a['nomevet'] == codigo:
+                agendamentos_vet.append(a)
+            for an in animais:
+                if a['codigopet'] == an['codigo']:
+                    animais_vet.append(an)
+        return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO, animais_vet=animais_vet, agendamentos_vet=agendamentos_vet)
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        return redirect('/')
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
@@ -749,9 +757,9 @@ def reagendamento(codigo_agendamento):
         else:
             return redirect('/')
 
-@app.route('/exclusao_agendamento/<int:codigo_agendamento>', methods=['GET', 'POST'])
-def exclusao_agendamento(codigo_agendamento):
-    # try:
+@app.route('/exclusao_agendamentos/<int:codigo_agendamento>', methods=['GET', 'POST'])
+def exclusao_agendamentos(codigo_agendamento):
+    try:
         agendamento = ''
         for ag in agendamentos:
             if ag['codigo'] == codigo_agendamento:
@@ -766,7 +774,7 @@ def exclusao_agendamento(codigo_agendamento):
         # print(f'aqui e o codigo -> {codigo}')
 
         if request.method == 'POST':
-            agendamento[codigo_agendamento] = {
+            agendamentos[codigo_agendamento] = {
                 'codigo': agendamento['codigo'],
                 'codigopet': '',
                 'nomepet': '',
@@ -779,6 +787,7 @@ def exclusao_agendamento(codigo_agendamento):
                 'datahora_obj': '',
                 'datahora_formatada': ''
             }
+            print(agendamentos)
 
             flash(f'Agendamento excluído com sucesso!', 'sucesso')
             if LOGADO == 0:
@@ -789,17 +798,17 @@ def exclusao_agendamento(codigo_agendamento):
                 return redirect('/')
 
             flash(f'Não foi possível excluir esse agendamento', 'erro')
-            return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
-        return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
+            return render_template('exclusao_agendamentos.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
+        return render_template('exclusao_agendamentos.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
 
-    #
-    # except:
-    #     flash(f'Ocorreu um erro inesperado', 'erro')
-    #     if LOGADO == 0:
-    #         return redirect(url_for('dashboard'))
-    #     elif LOGADO == 1:
-    #         return redirect(url_for('pagina_usuario', codigo=codigo))
-    #     else:
-    #         return redirect('/')
+
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        if LOGADO == 0:
+            return redirect(url_for('dashboard'))
+        elif LOGADO == 1:
+            return redirect(url_for('pagina_usuario', codigo=codigo))
+        else:
+            return redirect('/')
 if __name__ == '__main__':
     app.run(debug=True)
