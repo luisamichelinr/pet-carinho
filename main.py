@@ -144,12 +144,20 @@ def pagina_veterinario(codigo):
         for u in usuarios:
             if u['codigo'] == codigo:
                 usuario = u
+        if usuario and 'data_nascimento' in usuario and usuario['data_nascimento']:
+            try:
+                data_obj = datetime.fromisoformat(usuario['data_nascimento'])
+                usuario['data_nascimento_formatada'] = data_obj.strftime('%d/%m/%Y')
+            except ValueError:
+                usuario['data_nascimento_formatada'] = usuario['data_nascimento']
+        else:
+            usuario['data_nascimento_formatada'] = "Não informado"
         agendamentos_vet = []
         animais_vet = []
         for a in agendamentos:
             if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
-            if a['nomevet'] == codigo:
+            if a['nomevet'] == usuario['nome']:
                 agendamentos_vet.append(a)
             for an in animais:
                 if a['codigopet'] == an['codigo']:
@@ -562,7 +570,7 @@ def prontuario(codigo_agendamento):
             else:
                 return redirect(url_for('prontuario'))
         else:
-            return render_template(url_for('prontuario.html', codigo_agendamento=codigo_agendamento))
+            return render_template('prontuario.html', codigo_agendamento=codigo_agendamento)
     except:
         flash(f'Ocorreu um erro inesperado', 'erro')
         if LOGADO == 0:
