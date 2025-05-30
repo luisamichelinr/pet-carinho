@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetCarinho - Agendamento</title>
+    <title>PetCarinho - Reagendamento</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
 <body>
@@ -52,7 +52,7 @@
 
         </section>
         <div>
-            <h1 class="tituloagend">Faça seu agendamento!</h1>
+            <h1 class="tituloagend">Reagende sua consulta aqui!</h1>
         </div>
         <section class="agendamentos2">
             <div class="inputs alinharagend">
@@ -76,24 +76,6 @@
                             {% endif %}
                         </select>
                     </div>
-                    {% if LOGADO == 1 %}
-                        <div class="campo">
-                            <label for="nometutor">Tutor:</label>
-                            <select id="nometutor" name="nometutor" required>
-                                <option value="{{usuario.codigo}}">{{usuario.nome}}</option>
-                            </select>
-                        </div>
-                    {% else %}
-                        <div class="campo">
-                            <label for="nometutor">Selecione o tutor:</label>
-                            <select id="nometutor" name="nometutor" required>
-                                <option value="">Selecione um tutor</option>
-                                {% for tutor in tutores %}
-                                    <option value="{{ tutor.codigo }}">{{ tutor.nome }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    {% endif %}
                     <div class="campo">
                         <label for="telefone">Telefone de contato:</label>
                         <input type="tel" name="telefone" required />
@@ -109,7 +91,7 @@
                     </div>
                     <div class="campo">
                         <label for="datahora">Data e horário:</label>
-                        <input type="datetime-local" id="datahora" name="datahora" required  />
+                        <input type="datetime-local" id="datahora" name="datahora" required />
                     </div>
                     <div class="campo">
                         <label for="sintomas">Sintomas do pet:</label>
