@@ -104,9 +104,9 @@ def dashboard():
         tutores = []
         veterinarios = []
         animais_ativos = []
-
+        print(HOJE)
         for a in agendamentos:
-            if a['datahora'] == HOJE:
+            if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
 
         print(agendamentos)
@@ -147,7 +147,7 @@ def pagina_veterinario(codigo):
         agendamentos_vet = []
         animais_vet = []
         for a in agendamentos:
-            if a['datahora'] == HOJE:
+            if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
             if a['nomevet'] == codigo:
                 agendamentos_vet.append(a)
@@ -468,7 +468,7 @@ def pagina_usuario(codigo):
                 agendamentos_usuario = []
                 for a in agendamentos:
                     if a['nometutor'] == usuario['codigo']:
-                        if a['datahora'] == HOJE:
+                        if a['data_somente'] == HOJE:
                             a['remarcavel'] = False
                         agendamentos_usuario.append(a)
                 return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'], LOGADO=LOGADO, agendamentos_usuario=agendamentos_usuario)
@@ -481,7 +481,16 @@ def pagina_usuario(codigo):
 @app.route('/exclusao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def exclusao_usuario(codigo):
     try:
+        usuario = ""
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                animais_usuario = []
+                break
         if request.method == 'POST':
+            for a in animais:
+                if a['tutor'] == usuario['codigo']:
+                    exclusao_animal(a['codigo'])
             usuarios[codigo] = {
                 'codigo': codigo,
                 'tipo': "1",
@@ -494,29 +503,8 @@ def exclusao_usuario(codigo):
                 'senha': "",
             }
 
-            for animal in animais:
-                if animal['tutor'] == codigo:
-                    animal = {
-                        'nome': "",
-                        'data_nascimento': "",
-                        'especie': "",
-                        'raca': "",
-                        'peso': 0,
-                        'sexo': ""
-                    }
             flash(f'Usuário excluído com sucesso!', 'sucesso')
             return redirect('/dashboard')
-
-        usuario = ""
-        for u in usuarios:
-            if u['codigo'] == codigo:
-                usuario = u
-                animais_usuario = []
-                break
-
-        for animal in animais:
-            if animal['tutor'] == codigo:
-                animais_usuario.append(animal)
         return render_template('exclusao_usuario.html', usuario=usuario, animais=animais_usuario, codigo=usuario['codigo'], LOGADO=LOGADO)
     except:
         flash('Ocorreu um erro inesperado', 'erro')
@@ -531,6 +519,9 @@ def exclusao_animal(codigo):
                 animal = a
                 break
         if request.method == 'POST':
+            for a in agendamentos:
+                if a['codigopet'] == animal['codigo']:
+                    exclusao_agendamentos(a['codigo'])
             animais[codigo] = {
                 'tutor': animal['tutor'],
                 'codigo': codigo,
@@ -541,6 +532,7 @@ def exclusao_animal(codigo):
                 'peso': 0,
                 'sexo': ''
             }
+
             flash(f'Pet excluído com sucesso!', 'sucesso')
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
@@ -621,6 +613,7 @@ def agendamento(codigo):
             hora_agendada = datahora_obj.hour
             datahora_obj = datetime.fromisoformat(datahora)
             datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
+            data_somente = datahora_obj.date()
 
             for a in agendamentos:
                 if a['codigopet'] == codigopet:
@@ -654,7 +647,8 @@ def agendamento(codigo):
                 'sintomas': sintomas,
                 'remarcavel': True,
                 'datahora_obj': datahora_obj,
-                'datahora_formatada': datahora_formatada
+                'datahora_formatada': datahora_formatada,
+                'data_somente': data_somente,
             }
             agendamentos.append(agendamento)
 
@@ -724,6 +718,7 @@ def reagendamento(codigo_agendamento):
             hora_agendada = datahora_obj.hour
             datahora_obj = datetime.fromisoformat(datahora)
             datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
+            data_somente = datahora_obj.date()
 
             for a in agendamentos:
                 if a['datahora'] == datahora and a['nomevet'] == nomevet and a['codigo'] != codigo_agendamento:
@@ -750,7 +745,7 @@ def reagendamento(codigo_agendamento):
             agendamento['sintomas'] = request.form["sintomas"]
             agendamento['datahora_formatada'] = datahora_formatada
             agendamento['datahora_obj'] = datahora_obj
-            agendamento['datahora'] = datahora
+            agendamento['data_somente'] = data_somente
 
             flash(f'Agendamento do dia {agendamento['datahora']} editado com sucesso!', 'sucesso')
             if LOGADO == 0:
@@ -823,7 +818,8 @@ def exclusao_agendamentos(codigo_agendamento):
                 'sintomas': '',
                 'remarcavel': False,
                 'datahora_obj': '',
-                'datahora_formatada': ''
+                'datahora_formatada': '',
+                'data_somente': ''
             }
             print(agendamentos)
 
