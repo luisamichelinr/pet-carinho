@@ -751,7 +751,7 @@ def reagendamento(codigo_agendamento):
 
 @app.route('/exclusao_agendamento/<int:codigo_agendamento>', methods=['GET', 'POST'])
 def exclusao_agendamento(codigo_agendamento):
-    try:
+    # try:
         agendamento = ''
         for ag in agendamentos:
             if ag['codigo'] == codigo_agendamento:
@@ -792,14 +792,14 @@ def exclusao_agendamento(codigo_agendamento):
             return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
         return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO)
 
-
-    except:
-        flash(f'Ocorreu um erro inesperado', 'erro')
-        if LOGADO == 0:
-            return redirect(url_for('dashboard'))
-        elif LOGADO == 1:
-            return redirect(url_for('pagina_usuario', codigo=codigo))
-        else:
-            return redirect('/')
+    #
+    # except:
+    #     flash(f'Ocorreu um erro inesperado', 'erro')
+    #     if LOGADO == 0:
+    #         return redirect(url_for('dashboard'))
+    #     elif LOGADO == 1:
+    #         return redirect(url_for('pagina_usuario', codigo=codigo))
+    #     else:
+    #         return redirect('/')
 if __name__ == '__main__':
     app.run(debug=True)
