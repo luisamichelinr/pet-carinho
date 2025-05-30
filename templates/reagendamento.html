@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR" dir="ltr">
-
+<html lang="pt-br" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetCarinho - Cadastro do veterinário</title>
+    <title>PetCarinho - Reagendamento</title>
     <link rel="stylesheet" href="../static/css/estilo.css">
 </head>
-
 <body>
     <header class="d-flex">
         <img src="../static/img/logo.png" alt="Logo da PetCarinho">
@@ -16,6 +14,7 @@
             <a href="/#quem_somos">Quem somos</a>
             <a href="/#servicos">Serviços</a>
             <a href="/#depoimentos">Depoimentos</a>
+            <a class="cadastro animacao" href="/cadastro_usuario">Agendar</a>
         </nav>
     </header>
     <main>
@@ -50,45 +49,63 @@
                     </div>
                 {% endif %}
             {% endwith %}
+
         </section>
-
-
-        <div class="foto d-flex">
-            <img src="../static/img/veterinario.png" alt="Foto do veterinário">
+        <div>
+            <h1 class="tituloagend">Reagende sua consulta aqui!</h1>
         </div>
-        <section class="login2">
-            <div class="inputs">
-                <form action="{{ url_for('edicao_veterinario', codigo=usuario['codigo'])}}", method="POST">
+        <section class="agendamentos2">
+            <div class="inputs alinharagend">
+                <form method="POST" action="{{ url_for('agendamento', codigo=usuario.codigo) }}">
                     <div class="campo">
-                        <label>Nome:</label>
-                        <input type="text" name="nome" required value="{{ usuario.nome }}"/>
-                    </div>
-                     <div class="campo">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" required value="{{ usuario.email }}"/>
+                        <label for="nomepet">Escolha um Pet:</label>
+                        <select id="nomepet" name="nomepet" required>
+                            <option value="">Selecione um pet</option>
+                            {% if LOGADO == 1 %}
+                                {% for animal in animais_usuario %}
+                                    {% if animal.nome != '' %}
+                                        <option value="{{ animal.codigo }}">{{ animal.nome }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% for animal in animais %}
+                                    {% if animal.nome != '' %}
+                                        <option value="{{ animal.codigo }}">{{ animal.nome }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </select>
                     </div>
                     <div class="campo">
-                        <label>Telefone:</label>
-                        <input type="tel" name="telefone" required value="{{ usuario.telefone }}"/>
+                        <label for="telefone">Telefone de contato:</label>
+                        <input type="tel" name="telefone" required />
                     </div>
                     <div class="campo">
-                        <label>Número de registro:</label>
-                        <input type="number" name="numeroderegistro" required value="{{ usuario.numero_registro }}"/>
+                        <label for="nomevet">Selecione o veterinário:</label>
+                        <select id="nomevet" name="nomevet" required>
+                            <option value="">Selecione um veterinário</option>
+                            {% for vet in veterinarios %}
+                                <option value="{{ vet.codigo }}">{{ vet.nome }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-                
                     <div class="campo">
-                        <label>Informe uma senha:</label>
-                        <input type="password" name="senha" minlength="4" maxlength="10" required value="{{ usuario.senha }}"/>
+                        <label for="datahora">Data e horário:</label>
+                        <input type="datetime-local" id="datahora" name="datahora" required />
                     </div>
-
-                    <div class="botaodesalvar botaoalinhar">
-                        <button class="animacao" type="submit">Salvar</button>
+                    <div class="campo">
+                        <label for="sintomas">Sintomas do pet:</label>
+                        <textarea id="sintomas" name="sintomas" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="botaoalinhar botaodesalvar">
+                        <button type="submit">Agendar</button>
                     </div>
                 </form>
-
+            </div>
+            <div class="alinharimg">
+                    <img src="../static/img/agendamentopets.png" alt="Cachorro e gato">
             </div>
         </section>
-
     </main>
     <footer class="flex">
         <div class="flex gap-vinte">
@@ -104,17 +121,13 @@
             <div class="flex column gap-vinte">
                 <div class="redes-sociais-texto">
                     <h5 class="texto-branco">Redes Sociais:</h5>
-                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank"
-                            class="texto-branco">@petcarinho</a></p>
-                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank"
-                            class="texto-branco">PetCarinho Clínica Veterinária</a></p>
-                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank"
-                            class="texto-branco">@petcarinho_vet</a></p>
+                    <p class="texto-branco">Instagram: <a href="http://instagram.com" target="_blank" class="texto-branco">@petcarinho</a></p>
+                    <p class="texto-branco">Facebook: <a href="http://facebook.com" target="_blank" class="texto-branco">PetCarinho Clínica Veterinária</a></p>
+                    <p class="texto-branco">Twitter: <a href="http://twitter.com" target="_blank" class="texto-branco">@petcarinho_vet</a></p>
                 </div>
                 <img src="../static/img/pagamento.png" alt="Formas de pagamento" class="pagamento">
             </div>
         </div>
     </footer>
 </body>
-
 </html>
