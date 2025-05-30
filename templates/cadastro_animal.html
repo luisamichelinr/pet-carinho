@@ -71,6 +71,25 @@
                 <input type="text" id="nome" name="nome" required>
             </div>
 
+            {% if LOGADO == 1 %}
+                <div class="pergunta">
+                    <label class="nomeinput" for="nometutor">Tutor:</label>
+                    <select id="nometutor" name="nometutor" required>
+                        <option value="{{usuario.codigo}}">{{usuario.nome}}</option>
+                    </select>
+                </div>
+            {% else %}
+                <div class="pergunta">
+                    <label class="nomeinput" for="nometutor">Selecione o tutor:</label>
+                    <select id="nometutor" name="nometutor" required>
+                        <option value="">Selecione um tutor</option>
+                        {% for tutor in tutores %}
+                            <option value="{{ tutor.codigo }}">{{ tutor.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
             <div class="pergunta">
                 <label class="nomeinput" for="sexo">Sexo:</label>
                 <select name="sexo" id="sexo" required>

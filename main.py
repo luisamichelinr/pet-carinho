@@ -54,6 +54,8 @@ agendamentos = []
 
 @app.route('/')
 def index():
+    global LOGADO
+    LOGADO = 999
     return render_template('index.html')
 
 
@@ -267,7 +269,15 @@ def cadastro_animal(codigo):
             else:
                 return redirect('/')
         else:
-            return render_template('cadastro_animal.html', codigo=codigo, LOGADO=LOGADO)
+            if LOGADO == 1:
+                usuario = usuarios[codigo]
+            else:
+                usuario = usuarios[0]
+            tutores = []
+            for u in usuarios:
+                if u['tipo'] == 1:
+                    tutores.append(u)
+            return render_template('cadastro_animal.html', codigo=codigo, LOGADO=LOGADO, tutores=tutores, usuario=usuario)
     except:
         flash(f'Não foi possível cadastrar esse pet', 'erro')
         return redirect(url_for('pagina_usuario', codigo=codigo))
@@ -518,14 +528,18 @@ def exclusao_animal(codigo):
 
 @app.route('/agendamento/<int:codigo>', methods=["GET", "POST"])
 def agendamento(codigo):
-    try:
+    # try:
         if request.method == 'POST':
-            nomepet = int(request.form["nomepet"])
-            nometutor = int(request.form["nometutor"])
+            codigopet = int(request.form["codigopet"])
             telefone = request.form["telefone"]
-            nomevet = request.form["nomevet"]
+            nomevet = int(request.form["nomevet"])
             datahora = request.form["datahora"]
             sintomas = request.form["sintomas"]
+            consulta = len(agendamentos)
+
+            animal = animais[codigopet]
+            veterinario = usuarios[nomevet]
+            tutor = animal['tutor']
 
 
             datahora_obj = datetime.fromisoformat(datahora)
@@ -533,7 +547,7 @@ def agendamento(codigo):
             hora_agendada = datahora_obj.hour
 
             for a in agendamentos:
-                if a['nomepet'] == nomepet:
+                if a['codigopet'] == codigopet:
                     flash("Este pet já possui um agendamento", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
                 elif a['datahora'] == datahora and a['nomevet'] == nomevet:
@@ -554,8 +568,10 @@ def agendamento(codigo):
                     return redirect(url_for('agendamento', codigo=codigo))
 
             agendamento = {
-                "nomepet": nomepet,
-                "nometutor": nometutor,
+                "codigo": consulta,
+                "codigopet": codigopet,
+                "nomepet": animal,
+                "nometutor": tutor,
                 "telefone": telefone,
                 "nomevet": nomevet,
                 "datahora": datahora,
@@ -563,9 +579,9 @@ def agendamento(codigo):
                 'remarcavel': True
             }
             agendamentos.append(agendamento)
+            print(agendamentos)
 
-
-            flash(f'Agendamento de {animais[nomepet]["nome"]} realizado com sucesso! Sua consulta será {datahora} com {usuarios[nomevet]['nome']}.', 'sucesso')
+            flash(f'Agendamento de {animal['nome']} realizado com sucesso! Sua consulta será {datahora} com {veterinario['nome']}.', 'sucesso')
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
             elif LOGADO == 1:
@@ -594,14 +610,14 @@ def agendamento(codigo):
 
 
             return render_template('agendamento.html', tutores=tutores, veterinarios=veterinarios, animais=animais, LOGADO=LOGADO, usuario=usuario, animais_usuario=animais_usuario)
-    except:
-        flash(f'Ocorreu um erro inesperado', 'erro')
-        if LOGADO == 0:
-            return redirect(url_for('dashboard'))
-        elif LOGADO == 1:
-            return redirect(url_for('pagina_usuario', codigo=codigo))
-        else:
-            return redirect('/')
+    # except:
+    #     flash(f'Ocorreu um erro inesperado', 'erro')
+    #     if LOGADO == 0:
+    #         return redirect(url_for('dashboard'))
+    #     elif LOGADO == 1:
+    #         return redirect(url_for('pagina_usuario', codigo=codigo))
+    #     else:
+    #         return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)
