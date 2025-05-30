@@ -5,6 +5,8 @@ app = Flask(__name__)
 app.secret_key = 'pet-carinho'
 global LOGADO
 LOGADO = 999
+global HOJE
+HOJE = date.today()
 
 usuarios = [
     { 'tipo': 0,
@@ -103,6 +105,12 @@ def dashboard():
         veterinarios = []
         animais_ativos = []
 
+        for a in agendamentos:
+            if a['datahora'] == HOJE:
+                a['remarcavel'] = False
+
+        print(agendamentos)
+
         for usuario in usuarios:
             if usuario['tipo'] == 1 and usuario['nome'] != "":
                 animais_do_usuario = []
@@ -139,6 +147,8 @@ def pagina_veterinario(codigo):
         agendamentos_vet = []
         animais_vet = []
         for a in agendamentos:
+            if a['datahora'] == HOJE:
+                a['remarcavel'] = False
             if a['nomevet'] == codigo:
                 agendamentos_vet.append(a)
             for an in animais:
@@ -433,7 +443,6 @@ def pagina_usuario(codigo):
     try:
         global LOGADO
         LOGADO = 1
-        hoje = date.today()
         for usuario in usuarios:
             if usuario['codigo'] == codigo:
                 animais_do_usuario = []
@@ -443,7 +452,7 @@ def pagina_usuario(codigo):
                 agendamentos_usuario = []
                 for a in agendamentos:
                     if a['nometutor'] == usuario['codigo']:
-                        if a['datahora'] == hoje:
+                        if a['datahora'] == HOJE:
                             a['remarcavel'] = False
                         agendamentos_usuario.append(a)
                 return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'], LOGADO=LOGADO, agendamentos_usuario=agendamentos_usuario)
@@ -533,14 +542,27 @@ def exclusao_animal(codigo):
         else:
             return redirect('/')
         
-@app.route('/receita_medica', methods=['POST'])
-def processar_receita():
-    receita = request.form.get('receita')
-    if receita == "Soro":
-        return redirect(url_for('prontuariosoro.html'))
-    else:
-        return redirect(url_for('prontuario.html'))
-
+@app.route('/prontuario/<int:codigo_agendamento>', methods=['POST'])
+def prontuario(codigo_agendamento):
+    try:
+        if request.method == 'POST':
+            receita = request.form.get('receita')
+            if receita == "Soro":
+                return redirect(url_for('prontuariosoro', codigo_agendamento=codigo_agendamento))
+            elif receita == "Medicamento":
+                return redirect(url_for('prontuariodose', codigo_agendamento=codigo_agendamento))
+            else:
+                return redirect(url_for('prontuario'))
+        else:
+            return render_template(url_for('prontuario.html', codigo_agendamento=codigo_agendamento))
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        if LOGADO == 0:
+            return redirect(url_for('dashboard'))
+        elif LOGADO == 1:
+            return redirect(url_for('pagina_usuario', codigo=codigo))
+        else:
+            return redirect('/')
 @app.route('/prontuariosoro')
 def pontuario_soro():
     return render_template('prontuariosoro.html')

@@ -103,7 +103,7 @@
                                     {% if agendamento.remarcavel %}
                                         <a href="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">Remarcar</a>
                                     {% else %}
-                                        <a>Prontuário</a>
+                                        <a href="{{ url_for('prontuario', codigo_agendamento=agendamento.codigo) }}">Prontuário</a>
                                     {% endif %}
                                 </li>
                             {% endif %}
