@@ -465,7 +465,16 @@ def pagina_usuario(codigo):
 @app.route('/exclusao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def exclusao_usuario(codigo):
     try:
+        usuario = ""
+        for u in usuarios:
+            if u['codigo'] == codigo:
+                usuario = u
+                animais_usuario = []
+                break
         if request.method == 'POST':
+            for a in animais:
+                if a['tutor'] == usuario['codigo']:
+                    exclusao_animal(a['codigo'])
             usuarios[codigo] = {
                 'codigo': codigo,
                 'tipo': "1",
@@ -478,29 +487,8 @@ def exclusao_usuario(codigo):
                 'senha': "",
             }
 
-            for animal in animais:
-                if animal['tutor'] == codigo:
-                    animal = {
-                        'nome': "",
-                        'data_nascimento': "",
-                        'especie': "",
-                        'raca': "",
-                        'peso': 0,
-                        'sexo': ""
-                    }
             flash(f'Usuário excluído com sucesso!', 'sucesso')
             return redirect('/dashboard')
-
-        usuario = ""
-        for u in usuarios:
-            if u['codigo'] == codigo:
-                usuario = u
-                animais_usuario = []
-                break
-
-        for animal in animais:
-            if animal['tutor'] == codigo:
-                animais_usuario.append(animal)
         return render_template('exclusao_usuario.html', usuario=usuario, animais=animais_usuario, codigo=usuario['codigo'], LOGADO=LOGADO)
     except:
         flash('Ocorreu um erro inesperado', 'erro')
@@ -515,6 +503,9 @@ def exclusao_animal(codigo):
                 animal = a
                 break
         if request.method == 'POST':
+            for a in agendamentos:
+                if a['codigopet'] == animal['codigo']:
+                    exclusao_agendamentos(a['codigo'])
             animais[codigo] = {
                 'tutor': animal['tutor'],
                 'codigo': codigo,
@@ -525,6 +516,7 @@ def exclusao_animal(codigo):
                 'peso': 0,
                 'sexo': ''
             }
+
             flash(f'Pet excluído com sucesso!', 'sucesso')
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
