@@ -1199,3 +1199,12 @@ html {
     align-items: center; 
     gap: 20px;   
 }
+
+.atendimento {
+    display: flex;
+}
+.patatinha {
+    width: 70px;
+    height: 70px;
+    position: relative; 
+}
