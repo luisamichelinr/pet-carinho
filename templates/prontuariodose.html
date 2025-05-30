@@ -30,7 +30,7 @@
         </section>
 
         <section class="titulo centro">
-            <h1>Pontuário</h1>
+            <h1>Prontuário</h1>
         </section>
 
         <section>
@@ -54,21 +54,31 @@
             </div>
         </section>
 
-        <section class="afastar calculo">
-            <div class="column">
-                <h3 class="mclaren calculo_soro">Calcular dose do medicamento</h3>
-                <p class="quicksand afastar3 font_size">Dose recomendada</p>
-                <input class="quicksand afastar3" type="number">
-                <p class="multi ">X</p>
-                <p class="quicksand afastar3 font_size">Peso do animal</p>
-                <input class="quicksand afastar3" type="number" value="{{ animal.peso }}">
-                <div class="botaosalvar botaoalinhar afastar2">
-                    <button class="botao animacao" type="submit">Calcular</button>
+        <form method="POST" action="/calcular_dose">
+            <section class="afastar calculo">
+                <div class="column">
+                    <h3 class="mclaren calculo_soro">Calcular dose do medicamento</h3>
+
+                    <p class="quicksand afastar3 font_size">Dose recomendada (mg/kg)</p>
+                    <input class="quicksand afastar3" type="number" step="0.01" name="dose_recomendada" required>
+
+                    <p class="multi">X</p>
+
+                    <p class="quicksand afastar3 font_size">Peso do animal (kg)</p>
+                    <input class="quicksand afastar3" type="number" step="0.01" name="peso" value="{{ animal.peso }}"
+                        required>
+
+                    <div class="botaosalvar botaoalinhar afastar2">
+                        <button class="botao animacao" type="submit">Calcular</button>
+                    </div>
                 </div>
-                <p class="mclaren">Resultado</p>
-                <!-- Aqui vai ficar o resultado da conta -->
-            </div>
-        </section>
+            </section>
+        </form>
+
+        {% if resultado_dose %}
+        <p class="mclaren">Resultado: {{ resultado_dose }} mg</p>
+        {% endif %}
+
         <div class="botaosalvar botaoalinhar afastar2">
             <button class="botao animacao" type="submit">Salvar</button>
         </div>

@@ -30,7 +30,7 @@
         </section>
 
         <section class="titulo centro">
-            <h1>Pontuário</h1>
+            <h1>Prontuário</h1>
         </section>
 
         <section>
@@ -56,17 +56,18 @@
 
         <section class="afastar">
             <h3 class="afastar3">Receita veterinária</h3>
-            <select class="quicksand" name="Selecione:" id="receita">
-                <option value="0">Selecione:</option>
-                <option value="Medicamento">- Medicamento</option>
-                <option value="Soro">- Soro</option>
-                <option value="Nao Necessario">- Não foi Necessario</option>
-            </select>
-        </section>
+            <form method="POST" action="/receita_medica">
+                <select class="quicksand" name="receita" id="receita">
+                    <option value="0">Selecione:</option>
+                    <option value="Medicamento">- Medicamento</option>
+                    <option value="Soro">- Soro</option>
+                    <option value="Nao Necessario">- Não foi Necessário</option>
+                </select>
 
-        <div class="botaosalvar botaoalinhar afastar2">
-            <button class="botao animacao" type="submit">Salvar</button>
-        </div>
+                <div class="botaosalvar botaoalinhar afastar2">
+                    <button class="botao animacao" type="submit">Salvar</button>
+                </div>
+            </form>
     </main>
 
     <footer class="flex">

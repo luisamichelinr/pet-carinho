@@ -525,6 +525,35 @@ def exclusao_animal(codigo):
             return redirect(url_for('pagina_usuario', codigo=codigo))
         else:
             return redirect('/')
+        
+@app.route('/receita_medica', methods=['POST'])
+def processar_receita():
+    receita = request.form.get('receita')
+    if receita == "Soro":
+        return redirect(url_for('prontuariosoro'))
+    else:
+        return redirect(url_for('prontuario')) 
+
+@app.route('/prontuariosoro')
+def pontuario_soro():
+    return render_template('prontuariosoro')
+
+@app.route("/calcular", methods=["POST"])
+def calcular():
+    try:
+        desidratacao = float(request.form["desidratacao"])
+        peso = float(request.form["peso"])
+        resultado = desidratacao * peso
+        return render_template("prontuariosoro", resultado=resultado)
+
+@app.route("/calcular_dose", methods=["POST"])
+def calcular_dose():
+    try:
+        dose_recomendada = float(request.form["dose_recomendada"])
+        peso = float(request.form["peso"])
+        resultado_dose = dose_recomendada * peso
+        return render_template("prontuariodose", resultado_dose=resultado_dose)
+
 
 @app.route('/agendamento/<int:codigo>', methods=["GET", "POST"])
 def agendamento(codigo):
