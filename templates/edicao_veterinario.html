@@ -20,7 +20,18 @@
     </header>
     <main>
         <section class="seta-mensagens">
-            <a href="/dashboard"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+            <a
+            {% if LOGADO == 0 %}
+                href="{{ url_for('dashboard') }}"
+            {% elif LOGADO['tipo'] == 1 %}
+                href="{{ url_for('pagina_usuario', codigo=usuario['codigo']) }}"
+            {% elif LOGADO['tipo'] == 2 %}
+                href="{{ url_for('pagina_veterinario', codigo=usuario['codigo']) }}"
+            {% else %}
+                href="/"
+            {% endif %}
+            >
+                <img src="../static/img/seta.png" alt="Seta voltar"></a>
 
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}

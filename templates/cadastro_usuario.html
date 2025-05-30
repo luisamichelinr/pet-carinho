@@ -25,7 +25,14 @@
 
     <main>
         <section class="seta-mensagens">
-            <a href="/"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+            <a
+            {% if LOGADO == 0 %}
+                href="{{ url_for('dashboard') }}"
+            {% else %}
+                href="/"
+            {% endif %}
+            >
+                <img src="../static/img/seta.png" alt="Seta voltar"></a>
 
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for
-from datetime import datetime
+from datetime import datetime, date
 
 app = Flask(__name__)
 app.secret_key = 'pet-carinho'
@@ -55,6 +55,7 @@ def index():
     return render_template('index.html')
 
 LOGADO = 999
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     global LOGADO
@@ -91,6 +92,7 @@ def sair():
 @app.route('/dashboard')
 def dashboard():
     try:
+        LOGADO = 0
         tutores = []
         veterinarios = []
         animais_ativos = []
@@ -115,17 +117,22 @@ def dashboard():
             if animal['nome'] != '':
                 animais_ativos.append(animal)
 
-        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, animais=animais_ativos)
+        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, animais=animais_ativos, LOGADO=LOGADO, codigo=0, agendamentos=agendamentos)
     except:
         flash(f'Ocorreu um erro ao carregar o dashboard do administrador', 'erro')
         return redirect('/')
 
 @app.route('/pagina_veterinario/<int:codigo>')
 def pagina_veterinario(codigo):
+    LOGADO = 2
     for u in usuarios:
         if u['codigo'] == codigo:
             usuario = u
-    return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario)
+    agendamentos_vet = []
+    for a in agendamentos:
+        if a['nomevet'] == a['codigo']:
+            agendamentos_vet.append(a)
+    return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO, animais=animais, agendamentos_vet=agendamentos_vet)
 
 @app.route('/cadastro_usuario', methods=['GET', 'POST'])
 def cadastro_usuario():
@@ -170,12 +177,12 @@ def cadastro_usuario():
                 return redirect('/login')
             else:
                 flash('Utilize uma senha forte', 'erro')
-                return render_template('cadastro_usuario.html')
+                return render_template('cadastro_usuario.html', LOGADO=LOGADO)
         else:
-            return render_template('cadastro_usuario.html')
+            return render_template('cadastro_usuario.html', LOGADO=LOGADO)
     except:
         flash(f'Não foi possível criar esse usuário', 'erro')
-        return render_template('cadastro_usuario.html')
+        return render_template('cadastro_usuario.html', LOGADO=LOGADO)
 
 @app.route('/edicao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def edicao_usuario(codigo):
@@ -214,14 +221,16 @@ def edicao_usuario(codigo):
                     return redirect(url_for('dashboard'))
                 elif LOGADO == 1:
                     return redirect(url_for('pagina_usuario', codigo=codigo))
+                else:
+                    return redirect('/')
             else:
                 flash(f'Não foi possível editar esse usuário', 'erro')
-                return render_template('edicao_usuario.html', usuario=usuario)
-        return render_template('edicao_usuario.html', usuario=usuario, codigo=codigo)
+                return render_template('edicao_usuario.html', usuario=usuario, LOGADO=LOGADO)
+        return render_template('edicao_usuario.html', usuario=usuario, codigo=codigo, LOGADO=LOGADO)
 
     except:
         flash(f'Não foi possível editar esse usuário', 'erro')
-        return render_template('edicao_usuario.html', usuario=usuario)
+        return render_template('edicao_usuario.html', usuario=usuario, LOGADO=LOGADO)
 
 @app.route('/cadastro_animal/<int:codigo>', methods=['GET', 'POST'])
 def cadastro_animal(codigo):
@@ -246,12 +255,42 @@ def cadastro_animal(codigo):
             }
             animais.append(animal)
             flash(f'Pet {nome} cadastrado com sucesso!', 'sucesso')
-            return redirect(url_for('pagina_usuario', codigo=codigo))
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
         else:
-            return render_template('cadastro_animal.html', codigo=codigo)
+            return render_template('cadastro_animal.html', codigo=codigo, LOGADO=LOGADO)
     except:
         flash(f'Não foi possível cadastrar esse pet', 'erro')
         return redirect(url_for('pagina_usuario', codigo=codigo))
+
+@app.route('/edicao_animal/<int:codigo>', methods=['POST', 'GET'])
+def edicao_animal(codigo):
+    try:
+        for a in animais:
+            if a['codigo'] == codigo:
+                animal = a
+                break
+        if request.method == 'POST':
+            animal['nome'] = request.form.get('nome')
+            animal['data_nascimento'] = request.form.get('data_nascimento')
+            animal['especie'] = request.form.get('especie')
+            animal['raca'] = request.form.get('raca')
+            animal['sexo'] = request.form.get('sexo')
+            flash(f'Pet {animal["nome"]} editado com sucesso!', 'sucesso')
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
+        return render_template('edicao_animal.html', animal=animal, codigo=codigo, LOGADO=LOGADO)
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        return render_template('edicao_animal.html', animal=animal, codigo=codigo, LOGADO=LOGADO)
 
 @app.route('/cadastro_veterinario', methods=['GET', 'POST'])
 def cadastro_veterinario():
@@ -291,7 +330,7 @@ def cadastro_veterinario():
                 flash(f'Veterinário {nome} cadastrado com sucesso!')
                 return redirect('/dashboard')
         else:
-            return render_template('cadastro_veterinario.html')
+            return render_template('cadastro_veterinario.html', LOGADO=LOGADO)
     except:
         flash(f'Não foi possível cadastrar esse veterinário')
         return redirect('/dashboard')
@@ -327,15 +366,20 @@ def edicao_veterinario(codigo):
                 usuario['telefone'] = request.form.get('telefone')
                 usuario['senha'] = request.form.get('senha')
                 flash(f'Veterinário {usuario["nome"]} editado com sucesso!', 'sucesso')
-                return redirect(url_for('dashboard'))
+                if LOGADO == 0:
+                    return redirect(url_for('dashboard'))
+                elif LOGADO == 1:
+                    return redirect(url_for('pagina_usuario', codigo=codigo))
+                else:
+                    return redirect('/')
             else:
                 flash(f'Não foi possível editar esse veterinário', 'erro')
-                return render_template('edicao_veterinario.html', usuario=usuario)
-        return render_template('edicao_veterinario.html', usuario=usuario, codigo=codigo)
+                return render_template('edicao_veterinario.html', usuario=usuario, LOGADO=LOGADO)
+        return render_template('edicao_veterinario.html', usuario=usuario, codigo=codigo, LOGADO=LOGADO)
 
     except:
         flash(f'Não foi possível editar esse veterinário', 'erro')
-        return render_template('edicao_veterinario.html', usuario=usuario)
+        return render_template('edicao_veterinario.html', usuario=usuario, LOGADO=LOGADO)
 
 @app.route('/exclusao_veterinario/<int:codigo>', methods=['GET', 'POST'])
 def exclusao_veterinario(codigo):
@@ -357,24 +401,33 @@ def exclusao_veterinario(codigo):
             }
             flash(f'Veterinário excluído com sucesso!', 'sucesso')
             return redirect(url_for('dashboard'))
-        return render_template('exclusao_veterinario.html', codigo=codigo, usuario=usuario)
+        return render_template('exclusao_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO)
     except:
         flash(f'Ocorreu um erro inesperado', 'erro')
         return redirect('/dashboard')
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):
     try:
+        LOGADO = 1
+        hoje = date.today()
         for usuario in usuarios:
             if usuario['codigo'] == codigo:
                 animais_do_usuario = []
                 for animal in animais:
                     if animal['tutor'] == codigo:
                         animais_do_usuario.append(animal)
-                return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'])
-        flash("Usuário não encontrado.")
+
+                agendamentos_usuario = []
+                for a in agendamentos:
+                    if a['nometutor'] == usuario['codigo']:
+                        if a['datahora'] == hoje:
+                            a['remarcavel'] = False
+                        agendamentos_usuario.append(a)
+                return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'], LOGADO=LOGADO, agendamentos_usuario=agendamentos_usuario)
+        flash("Usuário não encontrado", 'erro')
         return redirect('/')
     except:
-        flash(f'Ocorreu um erro inesperado')
+        flash(f'Ocorreu um erro inesperado', 'erro')
         return redirect('/')
 
 @app.route('/exclusao_usuario/<int:codigo>', methods=['GET', 'POST'])
@@ -416,7 +469,7 @@ def exclusao_usuario(codigo):
         for animal in animais:
             if animal['tutor'] == codigo:
                 animais_usuario.append(animal)
-        return render_template('exclusao_usuario.html', usuario=usuario, animais=animais_usuario, codigo=usuario['codigo'])
+        return render_template('exclusao_usuario.html', usuario=usuario, animais=animais_usuario, codigo=usuario['codigo'], LOGADO=LOGADO)
     except:
         flash('Ocorreu um erro inesperado', 'erro')
         return redirect('/dashboard')
@@ -441,91 +494,108 @@ def exclusao_animal(codigo):
                 'sexo': ''
             }
             flash(f'Pet excluído com sucesso!', 'sucesso')
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
+        return render_template('exclusao_animal.html', codigo=codigo, LOGADO=LOGADO, animal=animal)
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        if LOGADO == 0:
+            return redirect(url_for('dashboard'))
+        elif LOGADO == 1:
+            return redirect(url_for('pagina_usuario', codigo=codigo))
+        else:
+            return redirect('/')
 
-            return redirect(url_for('pagina_usuario', codigo=paciente['tutor']))
-
-        return render_template('exclusao_animal.html', codigo=codigo, paciente=paciente)
-
-@app.route('/agendamento', methods=["GET", "POST"])
-def agendamento():
+@app.route('/agendamento/<int:codigo>', methods=["GET", "POST"])
+def agendamento(codigo):
     try:
         if request.method == 'POST':
-            nomepet = request.form["nomepet"]
+            nomepet = int(request.form["nomepet"])
             nometutor = int(request.form["nometutor"])
             telefone = request.form["telefone"]
             nomevet = request.form["nomevet"]
             datahora = request.form["datahora"]
             sintomas = request.form["sintomas"]
 
-            try:
-                datahora_obj = datetime.fromisoformat(datahora)
-                dia_da_semana = datahora_obj.weekday()
-                hora_agendada = datahora_obj.hour
-                minuto_agendado = datahora_obj.minute
 
+            datahora_obj = datetime.fromisoformat(datahora)
+            dia_da_semana = datahora_obj.weekday()
+            hora_agendada = datahora_obj.hour
 
-                if dia_da_semana == 6:
-                    flash(f"Desculpe, estamos fechados no domingo.", "erro")
-                    return redirect(url_for('agendamento'))
+            for a in agendamentos:
+                if a['nomepet'] == nomepet:
+                    flash("Este pet já possui um agendamento", "erro")
+                    return redirect(url_for('agendamento', codigo=codigo))
+                elif a['datahora'] == datahora and a['nomevet'] == nomevet:
+                    flash("Este horário não está disponível", "erro")
+                    return redirect(url_for('agendamento', codigo=codigo))
 
-                if dia_da_semana >= 5:
-                    if hora_agendada < 8 or hora_agendada >= 14:
-                        flash(f"O horário para sábado é das 08:00 às 14:00.", "erro")
-                        return redirect(url_for('agendamento'))
-                else:
-                    if hora_agendada < 8 or hora_agendada >= 18:
-                        flash(f"O horário para segunda a sexta é das 08:00 às 18:00.", "erro")
-                        return redirect(url_for('agendamento'))
+            if dia_da_semana == 6:
+                flash("Desculpe, estamos fechados no domingo.", "erro")
+                return redirect(url_for('agendamento', codigo=codigo))
 
-            except ValueError:
-                flash(f"Formato de data e hora inválido.", "erro")
-                return redirect(url_for('agendamento'))
-            pet = None
-            for p in pacientes:
-                if p['nome'] == nomepet and p['tutor'] == nometutor:
-                    pet = p
-                    break
-
-            if not pet:
-                flash(f"Pet {nomepet} não encontrado ou o tutor não corresponde.", "erro")
-                return redirect(url_for('agendamento'))  # CORRETO: return dentro do if
-
-            vet = None
-            for v in usuarios:
-                if v['tipo'] == 2 and v['nome'] == nomevet:
-                    vet = v
-                    break
-
-            if not vet:
-                flash(f"Veterinário {nomevet} não encontrado.", "erro")
-                return redirect(url_for('agendamento'))  # CORRETO: return após o loop
+            if dia_da_semana == 5:
+                if hora_agendada < 8 or hora_agendada >= 14:
+                    flash("O horário para sábado é das 08:00 às 14:00.", "erro")
+                    return redirect(url_for('agendamento', codigo=codigo))
+            else:
+                if hora_agendada < 8 or hora_agendada >= 18:
+                    flash("O horário para segunda a sexta é das 08:00 às 18:00.", "erro")
+                    return redirect(url_for('agendamento', codigo=codigo))
 
             agendamento = {
                 "nomepet": nomepet,
-                "nometutor": [u['nome'] for u in usuarios if u['codigo'] == nometutor][0],
+                "nometutor": nometutor,
                 "telefone": telefone,
                 "nomevet": nomevet,
                 "datahora": datahora,
-                "sintomas": sintomas
+                "sintomas": sintomas,
+                'remarcavel': True
             }
             agendamentos.append(agendamento)
 
-            flash(f'Agendamento de {nomepet} realizado com sucesso! Sua consulta será {datahora} com {nomevet}.', 'sucesso')
-            return redirect(url_for('pagina_confirmacao'))
+
+            flash(f'Agendamento de {animais[nomepet]["nome"]} realizado com sucesso! Sua consulta será {datahora} com {usuarios[nomevet]['nome']}.', 'sucesso')
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
 
         else:
-            tutores = [usuario for usuario in usuarios if usuario['tipo'] == 1]
-            veterinarios = [usuario['nome'] for usuario in usuarios if usuario['tipo'] == 2]
-            pets = [pet['nome'] for pet in pacientes]
+            tutores = []
+            veterinarios = []
+            animais_usuario = []
 
-            return render_template('agendamento.html', tutores=tutores, veterinarios=veterinarios, pets=pets)
-    except Exception as e:
-        flash(f'Ocorreu um erro inesperado: {e}', 'erro')
-        return redirect('/')
+            if LOGADO == 1:
+                usuario = usuarios[codigo]
+                for a in animais:
+                    if a['tutor'] == usuario['codigo']:
+                        animais_usuario.append(a)
+            else:
+                usuario = usuarios[0]
 
-@app.route('/pagina_confirmacao')
-def pagina_confirmacao():
-    return render_template('pagina_confirmacao.html')
+            for u in usuarios:
+                if u['tipo'] == 1:
+                    tutores.append(u)
+                elif u['tipo'] == 2:
+                    veterinarios.append(u)
+
+
+            return render_template('agendamento.html', tutores=tutores, veterinarios=veterinarios, animais=animais, LOGADO=LOGADO, usuario=usuario, animais_usuario=animais_usuario)
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        if LOGADO == 0:
+            return redirect(url_for('dashboard'))
+        elif LOGADO == 1:
+            return redirect(url_for('pagina_usuario', codigo=codigo))
+        else:
+            return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True)

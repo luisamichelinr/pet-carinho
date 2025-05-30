@@ -63,7 +63,7 @@
                             <div>
                                 <div class="flex right">
                                     <a href="/edicao_animal/{{ animal.codigo }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                    <a href="/exclusao_animal_adm/{{ animal.codigo }}"><img
+                                    <a href="/exclusao_animal/{{ animal.codigo }}"><img
                                         src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
                                 </div>
                                 {% if animal.especie == "cachorro" %}
@@ -87,7 +87,26 @@
             <div>
                 <div class="flex between meio">
                     <h5 class="subtitulo">Agendamentos</h5>
-                    <a href="" class="adicionar2">+</a>
+                    <a href="{{ url_for('agendamento', codigo=codigo)}}" class="adicionar2">+</a>
+                </div>
+                <div>
+                    <ul>
+                        {% for agendamento in agendamentos %}
+                            <li>
+                                <p>Pet: {{ agendamento.nomepet }} </p>
+                                <p>Data e hora: {{ agendamento.datahora }} </p>
+                                <p>Veterinário: {{ agendamento.nomevet }} </p>
+
+                                {% if agendamento.remarcavel %}
+                                    <a>Remarcar</a>
+                                {% else %}
+                                    <a>Prontuário</a>
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <p>Não há agendamentos.</p>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </section>

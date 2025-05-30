@@ -19,7 +19,18 @@
     </header>
     <main>
         <section class="seta-mensagens">
-            <a href="index.html"><img src="../static/img/seta.png" alt="Seta voltar"></a>
+            <a
+            {% if LOGADO == 0 %}
+                href="{{ url_for('dashboard') }}"
+            {% elif LOGADO['tipo'] == 1 %}
+                href="{{ url_for('pagina_usuario', codigo=usuario['codigo']) }}"
+            {% elif LOGADO['tipo'] == 2 %}
+                href="{{ url_for('pagina_veterinario', codigo=usuario['codigo']) }}"
+            {% else %}
+                href="/"
+            {% endif %}
+            >
+                <img src="../static/img/seta.png" alt="Seta voltar"></a>
 
             {% with mensagens = get_flashed_messages(with_categories=true) %}
                 {% if mensagens %}
@@ -45,25 +56,44 @@
         </div>
         <section class="agendamentos2">
             <div class="inputs alinharagend">
-                <form method="POST" action="/agendamento">
+                <form method="POST" action="{{ url_for('agendamento', codigo=usuario.codigo) }}">
                     <div class="campo">
                         <label for="nomepet">Escolha um Pet:</label>
                         <select id="nomepet" name="nomepet" required>
                             <option value="">Selecione um pet</option>
-                            {% for pet in pets %}
-                                <option value="{{ pet }}">{{ pet }}</option>
-                            {% endfor %}
+                            {% if LOGADO == 1 %}
+                                {% for animal in animais_usuario %}
+                                    {% if animal.nome != '' %}
+                                        <option value="{{ animal.codigo }}">{{ animal.nome }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% for animal in animais %}
+                                    {% if animal.nome != '' %}
+                                        <option value="{{ animal.codigo }}">{{ animal.nome }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </select>
                     </div>
-                    <div class="campo">
-                    <label for="nometutor">Selecione o tutor:</label>
-                        <select id="nometutor" name="nometutor" required>
-                        <option value="">Selecione um tutor</option>
-                            {% for tutor in tutores %}
-                        <option value="{{ tutor.codigo }}">{{ tutor.nome }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    {% if LOGADO == 1 %}
+                        <div class="campo">
+                            <label for="nometutor">Tutor:</label>
+                            <select id="nometutor" name="nometutor" required>
+                                <option value="{{usuario.codigo}}">{{usuario.nome}}</option>
+                            </select>
+                        </div>
+                    {% else %}
+                        <div class="campo">
+                            <label for="nometutor">Selecione o tutor:</label>
+                            <select id="nometutor" name="nometutor" required>
+                                <option value="">Selecione um tutor</option>
+                                {% for tutor in tutores %}
+                                    <option value="{{ tutor.codigo }}">{{ tutor.nome }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
                     <div class="campo">
                         <label for="telefone">Telefone de contato:</label>
                         <input type="tel" name="telefone" required />
@@ -73,7 +103,7 @@
                         <select id="nomevet" name="nomevet" required>
                             <option value="">Selecione um veterinário</option>
                             {% for vet in veterinarios %}
-                                <option value="{{ vet }}">{{ vet }}</option>
+                                <option value="{{ vet.codigo }}">{{ vet.nome }}</option>
                             {% endfor %}
                         </select>
                     </div>

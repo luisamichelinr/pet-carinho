@@ -57,9 +57,28 @@
                 <h3>CEP: <span class="texto-usuario">{{ usuario.cep }}</span></h3>
                 <h3>Telefone: <span class="texto-usuario">{{ usuario.telefone }}</span></h3>
             </div>
-            <div class="agendamentos flex">
-                <h1>Agendamentos</h1>
-                <a class="adicionar2" href="">+</a>
+            <div>
+                <div class="agendamentos flex">
+                    <h1>Agendamentos</h1>
+                    <a class="adicionar2" href="{{ url_for('agendamento', codigo=codigo)}}">+</a>
+                </div>
+                <div>
+                    <ul>
+                        {% for agendamento in agendamentos_usuario %}
+                            <li>
+                                <p>Pet: {{ agendamento.nomepet }} </p>
+                                <p>Data e hora: {{ agendamento.datahora }} </p>
+                                <p>Veterinário: {{ agendamento.nomevet }} </p>
+
+                                {% if agendamento.remarcavel %}
+                                    <a>Remarcar</a>
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <p>Você não tem agendamentos.</p>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </section>
         <section class="pets-sec">
