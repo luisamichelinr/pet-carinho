@@ -562,7 +562,7 @@ def prontuario(codigo_agendamento):
             else:
                 return redirect(url_for('prontuario'))
         else:
-            return render_template(url_for('prontuario.html', codigo_agendamento=codigo_agendamento))
+            return render_template('prontuario.html', codigo_agendamento=codigo_agendamento)
     except:
         flash(f'Ocorreu um erro inesperado', 'erro')
         if LOGADO == 0:
