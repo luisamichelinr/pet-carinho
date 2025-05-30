@@ -102,7 +102,7 @@
                         {% for agendamento in agendamentos_vet %}
                             <li>
                                 <p>Pet: {{ agendamento.nomepet }} </p>
-                                <p>Data e hora: {{ agendamento.datahora }} </p>
+                                <p>Data e hora: {{ agendamento.datahora_formatada }} </p>
                                 <p>Veterinário: {{ agendamento.nomevet }} </p>
 
                                 {% if not agendamento.remarcavel %}
