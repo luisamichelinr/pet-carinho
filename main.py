@@ -529,29 +529,29 @@ def exclusao_animal(codigo):
 def processar_receita():
     receita = request.form.get('receita')
     if receita == "Soro":
-        return redirect(url_for('prontuariosoro'))
+        return redirect(url_for('prontuariosoro.html'))
     else:
-        return redirect(url_for('prontuario')) 
+        return redirect(url_for('prontuario.html'))
 
 @app.route('/prontuariosoro')
 def pontuario_soro():
-    return render_template('prontuariosoro')
+    return render_template('prontuariosoro.html')
 
 @app.route("/calcular", methods=["POST"])
 def calcular():
-    try:
+
         desidratacao = float(request.form["desidratacao"])
         peso = float(request.form["peso"])
         resultado = desidratacao * peso
-        return render_template("prontuariosoro", resultado=resultado)
+        return render_template("prontuariosoro.html", resultado=resultado)
 
 @app.route("/calcular_dose", methods=["POST"])
 def calcular_dose():
-    try:
+
         dose_recomendada = float(request.form["dose_recomendada"])
         peso = float(request.form["peso"])
         resultado_dose = dose_recomendada * peso
-        return render_template("prontuariodose", resultado_dose=resultado_dose)
+        return render_template("prontuariodose.html", resultado_dose=resultado_dose)
 
 
 @app.route('/agendamento/<int:codigo>', methods=["GET", "POST"])
