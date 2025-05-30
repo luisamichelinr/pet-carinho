@@ -537,6 +537,7 @@ def agendamento(codigo):
             consulta = len(agendamentos)
 
             animal = animais[codigopet]
+            nomeanimal = animal['nome']
             veterinario = usuarios[nomevet]
             tutor = animal['tutor']
 
@@ -568,14 +569,14 @@ def agendamento(codigo):
                     return redirect(url_for('agendamento', codigo=codigo))
 
             agendamento = {
-                "codigo": int(consulta),
-                "codigopet": codigopet,
-                "nomepet": animal,
-                "nometutor": int(tutor),
-                "telefone": telefone,
-                "nomevet": nomevet,
-                "datahora": datahora,
-                "sintomas": sintomas,
+                'codigo': int(consulta),
+                'codigopet': codigopet,
+                'nomepet': nomeanimal,
+                'nometutor': int(tutor),
+                'telefone': telefone,
+                'nomevet': nomevet,
+                'datahora': datahora,
+                'sintomas': sintomas,
                 'remarcavel': True,
                 'datahora_obj': datahora_obj,
                 'datahora_formatada': datahora_formatada
@@ -583,7 +584,7 @@ def agendamento(codigo):
             agendamentos.append(agendamento)
 
             flash(f'Agendamento de {animal['nome']} realizado com sucesso! Sua consulta será {datahora_formatada} com {veterinario['nome']}.', 'sucesso')
-            
+            print(agendamentos)
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
             elif LOGADO == 1:
@@ -624,17 +625,23 @@ def agendamento(codigo):
 
 @app.route('/reagendamento/<int:codigo_agendamento>', methods=['GET', 'POST'])
 def reagendamento(codigo_agendamento):
-    # try:
+    try:
         agendamento = ''
-        for a in agendamentos:
-            if a['codigo'] == codigo_agendamento:
-                agendamento = a
+        for ag in agendamentos:
+            if ag['codigo'] == codigo_agendamento:
+                agendamento = ag
                 break
+        # print(f' lista de agendamentos -> {agendamentos}')
+
+        # print(f' um agendamento ->  {agendamento}')
+
         codigo = agendamento['nometutor']
+
+        # print(f'aqui e o codigo -> {codigo}')
 
         if request.method == 'POST':
             datahora = request.form["datahora"]
-            codigopet = int(request.form["codigopet"])
+            codigopet = int(request.form["nomepet"])
             nomevet = int(request.form["nomevet"])
 
             datahora_obj = datetime.fromisoformat(datahora)
@@ -644,10 +651,7 @@ def reagendamento(codigo_agendamento):
             datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
 
             for a in agendamentos:
-                if a['codigopet'] == codigopet:
-                    flash("Este pet já possui um agendamento", "erro")
-                    return redirect(url_for('agendamento', codigo=codigo))
-                elif a['datahora'] == datahora and a['nomevet'] == nomevet:
+                if a['datahora'] == datahora and a['nomevet'] == nomevet and a['codigo'] != codigo_agendamento:
                     flash("Este horário não está disponível", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
 
@@ -664,7 +668,7 @@ def reagendamento(codigo_agendamento):
                     flash("O horário para segunda a sexta é das 08:00 às 18:00.", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
 
-            agendamento['codigopet'] = int(request.form["codigopet"])
+            agendamento['codigopet'] = int(request.form["nomepet"])
             agendamento['telefone'] = request.form["telefone"]
             agendamento['nomevet'] = int(request.form["nomevet"])
             agendamento['datahora'] = request.form["datahora"]
@@ -707,13 +711,66 @@ def reagendamento(codigo_agendamento):
                                    veterinarios=veterinarios, animais=animais, LOGADO=LOGADO, usuario=usuario,
                                    animais_usuario=animais_usuario)
 
-    # except:
-    #     flash(f'Ocorreu um erro inesperado', 'erro')
-    #     if LOGADO == 0:
-    #         return redirect(url_for('dashboard'))
-    #     elif LOGADO == 1:
-    #         return redirect(url_for('pagina_usuario', codigo=codigo))
-    #     else:
-    #         return redirect('/')
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        if LOGADO == 0:
+            return redirect(url_for('dashboard'))
+        elif LOGADO == 1:
+            return redirect(url_for('pagina_usuario', codigo=codigo))
+        else:
+            return redirect('/')
+
+@app.route('/exclusao_agendamento/<int:codigo_agendamento>', methods=['GET', 'POST'])
+def exclusao_agendamento(codigo_agendamento):
+    try:
+        agendamento = ''
+        for ag in agendamentos:
+            if ag['codigo'] == codigo_agendamento:
+                agendamento = ag
+                break
+        # print(f' lista de agendamentos -> {agendamentos}')
+
+        # print(f' um agendamento ->  {agendamento}')
+
+        codigo = agendamento['nometutor']
+
+        # print(f'aqui e o codigo -> {codigo}')
+
+        if request.method == 'POST':
+            agendamento[codigo_agendamento] = {
+                'codigo': agendamento['codigo'],
+                'codigopet': '',
+                'nomepet': '',
+                'nometutor': '',
+                'telefone': '',
+                'nomevet': '',
+                'datahora': '',
+                'sintomas': '',
+                'remarcavel': False,
+                'datahora_obj': '',
+                'datahora_formatada': ''
+            }
+
+            flash(f'Agendamento excluído com sucesso!', 'sucesso')
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
+
+            flash(f'Não foi possível excluir esse agendamento', 'erro')
+            return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO, codigo=codigo)
+        return render_template('exclusao_agendamento.html', agendamento=agendamento, codigo=codigo, LOGADO=LOGADO, codigo=codigo)
+
+
+    except:
+        flash(f'Ocorreu um erro inesperado', 'erro')
+        if LOGADO == 0:
+            return redirect(url_for('dashboard'))
+        elif LOGADO == 1:
+            return redirect(url_for('pagina_usuario', codigo=codigo))
+        else:
+            return redirect('/')
 if __name__ == '__main__':
     app.run(debug=True)
