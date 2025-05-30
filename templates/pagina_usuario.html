@@ -58,7 +58,7 @@
                 <h3>Telefone: <span class="texto-usuario">{{ usuario.telefone }}</span></h3>
             </div>
             <div>
-                <div class="agendamentos flex">
+                <div class="flex between meio">
                     <h1>Agendamentos</h1>
                     <a class="adicionar2" href="{{ url_for('agendamento', codigo=codigo)}}">+</a>
                 </div>
@@ -93,7 +93,7 @@
                             {% endif %}
 
                         {% else %}
-                            <p>Você não tem agendamentos.</p>
+                            <p class="texto-agendamento between">Você não tem agendamentos.</p>
                         {% endfor %}
                     </ul>
                 </div>

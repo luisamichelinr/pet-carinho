@@ -141,6 +141,7 @@ def pagina_veterinario(codigo):
     try:
         global LOGADO
         LOGADO = 2
+        usuario = ''
         for u in usuarios:
             if u['codigo'] == codigo:
                 usuario = u
@@ -623,6 +624,10 @@ def agendamento(codigo):
                     flash("Este horário não está disponível", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
 
+            if data_somente < HOJE:
+                flash("Não é possível agendar em um dia anterior à data atual", "erro")
+                return redirect(url_for('agendamento', codigo=codigo))
+
             if dia_da_semana == 6:
                 flash("Desculpe, estamos fechados no domingo.", "erro")
                 return redirect(url_for('agendamento', codigo=codigo))
@@ -719,6 +724,10 @@ def reagendamento(codigo_agendamento):
             datahora_obj = datetime.fromisoformat(datahora)
             datahora_formatada = datahora_obj.strftime("%d/%m/%Y às %H:%M")
             data_somente = datahora_obj.date()
+
+            if data_somente < HOJE:
+                flash("Não é possível agendar em um dia anterior à data atual", "erro")
+                return redirect(url_for('agendamento', codigo=codigo))
 
             for a in agendamentos:
                 if a['datahora'] == datahora and a['nomevet'] == nomevet and a['codigo'] != codigo_agendamento:
