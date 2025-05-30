@@ -625,7 +625,7 @@ def agendamento(codigo):
                 'nomepet': nomeanimal,
                 'nometutor': int(tutor),
                 'telefone': telefone,
-                'nomevet': nomevet,
+                'nomevet': veterinario['nome'],
                 'datahora': datahora,
                 'sintomas': sintomas,
                 'remarcavel': True,
@@ -634,7 +634,7 @@ def agendamento(codigo):
             }
             agendamentos.append(agendamento)
 
-            flash(f'Agendamento de {animal['nome']} realizado com sucesso! Sua consulta será {datahora_formatada} com {veterinario['nome']}.', 'sucesso')
+            flash(f'Agendamento de {animal["nome"]} realizado com sucesso! Sua consulta será {datahora_formatada} com {veterinario["nome"]}.','sucesso')
             print(agendamentos)
             if LOGADO == 0:
                 return redirect(url_for('dashboard'))
