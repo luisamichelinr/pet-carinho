@@ -17,6 +17,9 @@
     --cor-rosa-cards: #FFDBF6;
     --cor-pra-animacao: #5201a8;
     --cor-anima: #fc8c7b;
+    --cor-rosa-contatos: #FFE7F9;
+    --cor-roxo-contatos: #9B3DFF;
+    --cor-footer: #900dee;
 
 }
 
@@ -170,7 +173,7 @@ header a:hover {
 }
 
 footer {  /*definições do footer*/
-    background-color: var(--cor-roxo-escuro);
+    background-color: var(--cor-footer) ;
     padding: 25px 30px;
     text-align: left;
     gap: 275px;
@@ -216,11 +219,12 @@ footer a:hover { /*animação*/
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 110px;
 }
 
 .img-introducao { /*ajusta tamanho e dá um espaço em cima de 50 pixels*/
     width: 630px;
-    margin-top: 50px;
+    margin-top: 120px;
 }
 
 .frase1 { /*ajusta a frase (cor, tamanho da fonte e fonte)*/
@@ -249,7 +253,7 @@ footer a:hover { /*animação*/
     font-size: 23px;
     margin-top: 15px;
     color: var(--cor-branco);
-    box-shadow: black 1px 4px 9px 0px;
+    box-shadow: #504f4f 1px 4px 9px 0px;
     align-self: center;
     margin-left: -100px;
     padding: 10px;
@@ -289,14 +293,14 @@ footer a:hover { /*animação*/
 .patinha1 {  /*fica por cima de outros conteudos, com largura definida e posicionada*/
     position: absolute;
     width: 65px;
-    top: 150px;
-    left: 30px;
+    top: 230px;
+    left: 20px;
 }
 
 .patinha2 {  /*fica por cima de outros conteudos, com largura definida e posicionada*/
     position: absolute;
     width: 50px;
-    top: 120px;
+    top: 200px;
     left: 60px;
 }
 
@@ -477,8 +481,9 @@ header img { /*ajusta a imagem no header*/
     padding: 30px;
     padding-left: 120px;
     padding-right: 120px;
-    box-shadow: black 1px 4px 9px 0px;
+    box-shadow: #484848 1px 4px 9px 0px;
 }
+
 
 .quem-somos {
     display: flex;
@@ -780,7 +785,7 @@ gap: 265px;
 }
 .fotorodape {
     position: absolute;
-    top: 2569px;
+    top: 2654px;
     right: 0;
 }
 
@@ -849,9 +854,9 @@ gap: 265px;
 .latidos .dogs {
     display: inline-block;
     position: absolute;
-    right: 700px;
+    right: 637px;
     bottom: 10px;
-    top: 70px;
+    top: 77px;
 }
 
 .latidos h4 {
@@ -1041,8 +1046,8 @@ html {
 }
 
 .nossos-clientes{
-    margin-top: 15px;
-    margin-left: 160px;
+    margin-top: 5px;
+    margin-left:220px;
 }
 
 
@@ -1163,3 +1168,34 @@ html {
   font-weight: normal;
 }
 
+.contatos {
+    background-color: var(--cor-rosa-contatos);
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 45px;
+    position: fixed;
+    z-index: 999;
+    top: 85px;
+}
+
+.contatos div p {
+    color: var(--cor-roxo-contatos);
+    font-weight: bold;
+    font-size: 16px;
+
+}
+
+.contatos {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px; 
+    align-items: center; 
+
+}
+
+.contatosfilho {
+    display: flex;
+    align-items: center; 
+    gap: 20px;   
+}
