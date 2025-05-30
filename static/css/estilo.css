@@ -1271,3 +1271,18 @@ html {
     left: 40px;
 
 }
+
+
+.resultado_dose {
+    display: flex;
+    position: absolute;
+    left: 400px;
+    bottom: -545px;
+}
+
+.input_dose {
+    background-color: #ffdff8;
+    border-radius: 80px;
+    bottom: 80px;
+    border: none;
+}
