@@ -93,17 +93,20 @@
                 <div>
                     <ul>
                         {% for agendamento in agendamentos %}
-                            <li>
-                                <p>Pet: {{ agendamento.nomepet }} </p>
-                                <p>Data e hora: {{ agendamento.datahora }} </p>
-                                <p>Veterinário: {{ agendamento.nomevet }} </p>
+                            {% if agendamento.datahora_formatada != '' %}
+                                <li>
+                                    <p>Pet: {{ agendamento.nomepet }} </p>
+                                    <p>Data e hora: {{ agendamento.datahora }} </p>
+                                    <p>Veterinário: {{ agendamento.nomevet }} </p>
+                                    <a href="{{ url_for('exclusao_agendamentos', codigo_agendamento=agendamento.codigo) }}">Excluir</a>
 
-                                {% if agendamento.remarcavel %}
-                                    <a>Remarcar</a>
-                                {% else %}
-                                    <a>Prontuário</a>
-                                {% endif %}
-                            </li>
+                                    {% if agendamento.remarcavel %}
+                                        <a href="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">Remarcar</a>
+                                    {% else %}
+                                        <a href="{{ url_for('prontuario', codigo_agendamento=agendamento.codigo) }}">Prontuário</a>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
                         {% else %}
                             <p>Não há agendamentos.</p>
                         {% endfor %}

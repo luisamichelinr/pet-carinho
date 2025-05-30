@@ -18,11 +18,56 @@
         </nav>
     </header>
 
+    <main>
+        <section class="seta-mensagens">
+            <a
+            {% if LOGADO == 0 %}
+                href="{{ url_for('dashboard') }}"
+            {% elif LOGADO['tipo'] == 1 %}
+                href="{{ url_for('pagina_usuario', codigo=usuario['codigo']) }}"
+            {% elif LOGADO['tipo'] == 2 %}
+                href="{{ url_for('pagina_veterinario', codigo=usuario['codigo']) }}"
+            {% else %}
+                href="/"
+            {% endif %}
+            >
+                <img src="../static/img/seta.png" alt="Seta voltar"></a>
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    <div class="mensagens">
+                        {% for categoria, mensagem in mensagens %}
+                            {% if categoria == 'erro' %}
+                                <div class="mensagem-erro">
+                                    <p>⚠️ {{ mensagem }}</p>
+                                </div>
+                            {% elif categoria == 'sucesso' %}
+                                <div class="mensagem-sucesso">
+                                    <p>🎉 {{ mensagem }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </section>
 
 
 
+        <section class="confirmacao">
+            <form method="POST" action="{{ url_for('exclusao_agendamentos', codigo_agendamento=agendamento.codigo) }}">
+                <h5>Confirmação</h5>
+                <p>Ao continuar, você irá apagar todos os dados do agendamento do dia {{agendamento.datahora_formatada}}</p>
+                <div class="flex around">
+                        <button class="botaoexcluir animacao" type="submit">Excluir</button>
+                        <a class="botaoexcluir animacao" href="/dashboard">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
 
-        <footer class="flex">
+
+
+    <footer class="flex">
         <div class="flex gap-vinte">
             <img src="../static/img/logorodape.png" alt="Logo PetCarinho" class="logo-footer">
             <div class="nav-footer flex column gap-nav-footer">
