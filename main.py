@@ -3,6 +3,8 @@ from datetime import datetime, date
 
 app = Flask(__name__)
 app.secret_key = 'pet-carinho'
+global LOGADO
+LOGADO = 999
 
 usuarios = [
     { 'tipo': 0,
@@ -47,14 +49,14 @@ animais = [
       'sexo': 'F'
     }
 ]
-
 agendamentos = []
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-LOGADO = 999
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -86,12 +88,14 @@ def login():
 
 @app.route('/sair')
 def sair():
+    global LOGADO
     LOGADO = 999
     return redirect('/')
 
 @app.route('/dashboard')
 def dashboard():
     try:
+        global LOGADO
         LOGADO = 0
         tutores = []
         veterinarios = []
@@ -124,6 +128,7 @@ def dashboard():
 
 @app.route('/pagina_veterinario/<int:codigo>')
 def pagina_veterinario(codigo):
+    global LOGADO
     LOGADO = 2
     for u in usuarios:
         if u['codigo'] == codigo:
@@ -408,6 +413,7 @@ def exclusao_veterinario(codigo):
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):
     try:
+        global LOGADO
         LOGADO = 1
         hoje = date.today()
         for usuario in usuarios:
