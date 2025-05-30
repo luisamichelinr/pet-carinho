@@ -551,7 +551,7 @@ def calcular_dose():
         dose_recomendada = float(request.form["dose_recomendada"])
         peso = float(request.form["peso"])
         resultado_dose = dose_recomendada * peso
-        return render_template("prontuariodose.html", resultado_dose=resultado_dose
+        return render_template("prontuariodose.html", resultado_dose=resultado_dose)
 
 
 @app.route('/agendamento/<int:codigo>', methods=["GET", "POST"])
