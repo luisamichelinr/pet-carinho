@@ -64,7 +64,7 @@
             </div>
 
 
-            <form class="inputs" action="{{ url_for('edicao_animal', codigo=animal['codigo']) }}" method="POST">
+            <form class="inputs prala" action="{{ url_for('edicao_animal', codigo=animal['codigo']) }}" method="POST">
                 <div class="pergunta">
                     <label class="nomeinput" for="nome">Nome: </label>
                     <input type="text" id="nome" name="nome" required value="{{ animal.nome }}">
@@ -104,7 +104,7 @@
                     <input type="number" id="peso" name="peso" step="0.1" min="0" required value="{{ animal.peso }}">
                 </div>
 
-                <div class="botaodesalvar">
+                <div class="botaodesalvar pralala">
                     <button class="animacao" type="submit">Salvar</button>
                 </div>
 

@@ -419,6 +419,10 @@ header img { /*ajusta a imagem no header*/
 .foto img { /*não tem largura nem altura fixas, ele vai crescer ou encolher dependendo do conteúdo que tem dentro*/
     width: auto;
     height: auto;
+    display: flex;
+    position: relative;
+    left: 50px;
+
 }
 
 
@@ -1229,4 +1233,10 @@ html {
     display: flex;
     position: relative;
     left: 130px;
+}
+
+.pralalala {
+    display: flex;
+    position: relative;
+    left: 40px;
 }
