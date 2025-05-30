@@ -161,6 +161,14 @@ def pagina_veterinario(codigo):
                 agendamentos_vet.append(a)
             for an in animais:
                 if a['codigopet'] == an['codigo']:
+                    if 'data_nascimento' in an and an['data_nascimento']:
+                        try:
+                            data_animal = datetime.fromisoformat(an['data_nascimento'])
+                            an['data_nascimento_formatada'] = data_animal.strftime('%d/%m/%Y')
+                        except ValueError:
+                            an['data_nascimento_formatada'] = an['data_nascimento']
+                    else:
+                        an['data_nascimento_formatada'] = "Não informado"
                     animais_vet.append(an)
         return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO, animais_vet=animais_vet, agendamentos_vet=agendamentos_vet)
     except:
