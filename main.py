@@ -445,9 +445,25 @@ def pagina_usuario(codigo):
         LOGADO = 1
         for usuario in usuarios:
             if usuario['codigo'] == codigo:
+                if 'data_nascimento' in usuario and usuario['data_nascimento']:
+                    try:
+                        data_obj = datetime.fromisoformat(usuario['data_nascimento'])
+                        usuario['data_nascimento_formatada'] = data_obj.strftime('%d/%m/%Y')
+                    except ValueError:
+                        usuario['data_nascimento_formatada'] = usuario['data_nascimento']
+                else:
+                    usuario['data_nascimento_formatada'] = "Não informado"
                 animais_do_usuario = []
                 for animal in animais:
                     if animal['tutor'] == codigo:
+                        if 'data_nascimento' in animal and animal['data_nascimento']:
+                            try:
+                                data_animal = datetime.fromisoformat(animal['data_nascimento'])
+                                animal['data_nascimento_formatada'] = data_animal.strftime('%d/%m/%Y')
+                            except ValueError:
+                                animal['data_nascimento_formatada'] = animal['data_nascimento']
+                        else:
+                            animal['data_nascimento_formatada'] = "Não informado"
                         animais_do_usuario.append(animal)
                 agendamentos_usuario = []
                 for a in agendamentos:
