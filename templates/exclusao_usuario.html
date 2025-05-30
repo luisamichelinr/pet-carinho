@@ -45,7 +45,7 @@
 
 
         <section class="confirmacao">
-            <form method="POST" action="{{ url_for('excluir_usuario', codigo=codigo) }}">
+            <form method="POST" action="{{ url_for('exclusao_usuario', codigo=codigo) }}">
                 <h5>Confirmação</h5>
                 <p>Ao continuar, você irá apagar todos os dados do usuário {{ usuario.nome }}</p>
                 <div>
