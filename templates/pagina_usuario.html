@@ -71,7 +71,7 @@
                                 <p>Data e hora: {{ agendamento.datahora_formatada }} </p>
                                 <p>Veterinário: {{agendamento.nomevet}} </p>
                             <div class="botoes-container">
-                                <a class="botaoagendamento" href="{{ url_for('exclusao_agendamento', codigo_agendamento=agendamento.codigo) }}">Excluir</a>
+                                <a class="botaoagendamento" href="{{ url_for('exclusao_agendamentos', codigo_agendamento=agendamento.codigo) }}">Excluir</a>
                           
                                 {% if agendamento.remarcavel %}
                                     <a class="botaoagendamento" href="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">Remarcar</a>
