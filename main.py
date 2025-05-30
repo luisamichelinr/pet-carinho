@@ -149,7 +149,7 @@ def pagina_veterinario(codigo):
         for a in agendamentos:
             if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
-            if a['nomevet'] == codigo:
+            if a['nomevet'] == usuario['nome']:
                 agendamentos_vet.append(a)
             for an in animais:
                 if a['codigopet'] == an['codigo']:
@@ -562,7 +562,7 @@ def prontuario(codigo_agendamento):
             else:
                 return redirect(url_for('prontuario'))
         else:
-            return render_template(url_for('prontuario.html', codigo_agendamento=codigo_agendamento))
+            return render_template('prontuario.html', codigo_agendamento=codigo_agendamento)
     except:
         flash(f'Ocorreu um erro inesperado', 'erro')
         if LOGADO == 0:
