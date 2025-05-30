@@ -85,7 +85,7 @@
                         <select id="nomevet" name="nomevet" required>
                             <option value="">Selecione um veterinário</option>
                             {% for vet in veterinarios %}
-                                <option value="{{ vet.codigo }}" {% if vet.codigo == agendamento.nomevet %}selected{% endif %}>{{ vet.nome }}</option>
+                                <option value="{{ vet.nome }}" {% if vet.nome == agendamento.nomevet %}selected{% endif %}>{{ vet.nome }}</option>
                             {% endfor %}
                         </select>
                     </div>
