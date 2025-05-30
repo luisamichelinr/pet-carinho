@@ -433,6 +433,7 @@ header img { /*ajusta a imagem no header*/
 
 }
 
+
 .pergunta {   /*em linha, centralizado na vertical, agrupado a direita, 10 px de espaço*/
     display: flex;
     align-items: center;
@@ -1209,6 +1210,23 @@ html {
 }
 .patatinha {
     width: 60px;
-    height: 60px;
+    height: 55px;
     position: relative; 
+}
+
+
+.prala {
+    padding: 40px 20px 40px 114px;
+    margin: 0 180px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.pralala {
+    display: flex;
+    position: relative;
+    left: 120px;
 }
