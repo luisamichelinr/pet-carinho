@@ -252,7 +252,7 @@ footer a:hover { /*animação*/
     font-size: 23px;
     margin-top: 15px;
     color: var(--cor-branco);
-    box-shadow: black 1px 4px 9px 0px;
+    box-shadow: #504f4f 1px 4px 9px 0px;
     align-self: center;
     margin-left: -100px;
     padding: 10px;
@@ -480,7 +480,7 @@ header img { /*ajusta a imagem no header*/
     padding: 30px;
     padding-left: 120px;
     padding-right: 120px;
-    box-shadow: black 1px 4px 9px 0px;
+    box-shadow: #484848 1px 4px 9px 0px;
 }
 
 
@@ -853,9 +853,9 @@ gap: 265px;
 .latidos .dogs {
     display: inline-block;
     position: absolute;
-    right: 700px;
+    right: 637px;
     bottom: 10px;
-    top: 70px;
+    top: 77px;
 }
 
 .latidos h4 {
