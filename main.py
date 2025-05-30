@@ -145,6 +145,14 @@ def pagina_veterinario(codigo):
         for u in usuarios:
             if u['codigo'] == codigo:
                 usuario = u
+        if usuario and 'data_nascimento' in usuario and usuario['data_nascimento']:
+            try:
+                data_obj = datetime.fromisoformat(usuario['data_nascimento'])
+                usuario['data_nascimento_formatada'] = data_obj.strftime('%d/%m/%Y')
+            except ValueError:
+                usuario['data_nascimento_formatada'] = usuario['data_nascimento']
+        else:
+            usuario['data_nascimento_formatada'] = "Não informado"
         agendamentos_vet = []
         animais_vet = []
         for a in agendamentos:
@@ -154,6 +162,14 @@ def pagina_veterinario(codigo):
                 agendamentos_vet.append(a)
             for an in animais:
                 if a['codigopet'] == an['codigo']:
+                    if 'data_nascimento' in an and an['data_nascimento']:
+                        try:
+                            data_animal = datetime.fromisoformat(an['data_nascimento'])
+                            an['data_nascimento_formatada'] = data_animal.strftime('%d/%m/%Y')
+                        except ValueError:
+                            an['data_nascimento_formatada'] = an['data_nascimento']
+                    else:
+                        an['data_nascimento_formatada'] = "Não informado"
                     animais_vet.append(an)
         return render_template('pagina_veterinario.html', codigo=codigo, usuario=usuario, LOGADO=LOGADO, animais_vet=animais_vet, agendamentos_vet=agendamentos_vet)
     except:

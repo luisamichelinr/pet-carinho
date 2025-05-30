@@ -60,12 +60,12 @@
                     <h3 class="mclaren calculo_soro">Calcular dose do medicamento</h3>
 
                     <p class="quicksand afastar3 font_size">Dose recomendada (mg/kg)</p>
-                    <input class="quicksand afastar3" type="number" step="0.01" name="dose_recomendada" required>
+                    <input class="input_dose quicksand afastar3" type="number" step="0.01" name="dose_recomendada" required>
 
                     <p class="multi">X</p>
 
                     <p class="quicksand afastar3 font_size">Peso do animal (kg)</p>
-                    <input class="quicksand afastar3" type="number" step="0.01" name="peso" value="{{ animal.peso }}"
+                    <input class="input_dose quicksand afastar3" type="number" step="0.01" name="peso" value="{{ animal.peso }}"
                         required>
 
                     <div class="botaosalvar botaoalinhar afastar2">
@@ -75,9 +75,14 @@
             </section>
         </form>
 
-        {% if resultado_dose %}
+        <div class="resultado_dose">
+            {% if resultado_dose %}
         <p class="mclaren">Resultado: {{ resultado_dose }} mg</p>
-        {% endif %}
+        {% endif %}        
+        </div>
+
+        <br><br>
+
 
         <div class="botaosalvar botaoalinhar afastar2">
             <button class="botao animacao" type="submit">Salvar</button>
