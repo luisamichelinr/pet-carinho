@@ -149,7 +149,7 @@ def pagina_veterinario(codigo):
         for a in agendamentos:
             if a['datahora'] == HOJE:
                 a['remarcavel'] = False
-            if a['nomevet'] == codigo:
+            if a['nomevet'] == usuario['nome']:
                 agendamentos_vet.append(a)
             for an in animais:
                 if a['codigopet'] == an['codigo']:
