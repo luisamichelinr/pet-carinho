@@ -22,9 +22,9 @@
             <a
             {% if LOGADO == 0 %}
                 href="{{ url_for('dashboard') }}"
-            {% elif LOGADO['tipo'] == 1 %}
+            {% elif LOGADO == 1 %}
                 href="{{ url_for('pagina_usuario', codigo=usuario['codigo']) }}"
-            {% elif LOGADO['tipo'] == 2 %}
+            {% elif LOGADO == 2 %}
                 href="{{ url_for('pagina_veterinario', codigo=usuario['codigo']) }}"
             {% else %}
                 href="/"
@@ -109,7 +109,7 @@
     </main>
     <footer class="flex">
         <div class="flex gap-vinte">
-            <img src="../static/img/logo.png" alt="Logo PetCarinho" class="logo-footer">
+            <img src="../static/img/logorodape.png" alt="Logo PetCarinho" class="logo-footer">
             <div class="nav-footer flex column gap-nav-footer">
                 <a href="/#home">Home</a>
                 <a href="/#quem_somos">Quem somos</a>

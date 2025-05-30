@@ -19,6 +19,7 @@
     --cor-anima: #fc8c7b;
     --cor-rosa-contatos: #FFE7F9;
     --cor-roxo-contatos: #9B3DFF;
+    --cor-footer: #900dee;
 
 }
 
@@ -172,7 +173,7 @@ header a:hover {
 }
 
 footer {  /*definições do footer*/
-    background-color: var(--cor-roxo-escuro);
+    background-color: var(--cor-footer) ;
     padding: 25px 30px;
     text-align: left;
     gap: 275px;
@@ -1045,8 +1046,8 @@ html {
 }
 
 .nossos-clientes{
-    margin-top: 15px;
-    margin-left: 160px;
+    margin-top: 5px;
+    margin-left:220px;
 }
 
 
@@ -1197,4 +1198,13 @@ html {
     display: flex;
     align-items: center; 
     gap: 20px;   
+}
+
+.atendimento {
+    display: flex;
+}
+.patatinha {
+    width: 70px;
+    height: 70px;
+    position: relative; 
 }
