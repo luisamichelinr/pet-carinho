@@ -91,7 +91,7 @@
                     <a href="{{ url_for('agendamento', codigo=codigo)}}" class="adicionar2">+</a>
                 </div>
                 <div class="agendamentostexto">
-                    <ul class="teste1">
+                    <ul>
                         {% for agendamento in agendamentos %}
                             {% if agendamento.datahora_formatada != '' %}
                                 <li>
