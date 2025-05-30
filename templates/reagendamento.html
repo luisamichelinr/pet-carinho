@@ -56,7 +56,7 @@
         </div>
         <section class="agendamentos2">
             <div class="inputs alinharagend">
-                <form method="POST" action="{{ url_for('reagendamento', codigoA=agendamento.codigo) }}">
+                <form method="POST" action="{{ url_for('reagendamento', codigo_agendamento=agendamento.codigo) }}">
                     <div class="campo">
                         <label for="nomepet">Escolha um Pet:</label>
                         <select id="nomepet" name="nomepet" required>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="campo">
                         <label for="telefone">Telefone de contato:</label>
-                        <input type="tel" name="telefone" required value="agendamento.telefone"/>
+                        <input type="tel" name="telefone" required value="{{ agendamento.telefone }}"/>
                     </div>
                     <div class="campo">
                         <label for="nomevet">Selecione o veterinário:</label>
@@ -91,11 +91,11 @@
                     </div>
                     <div class="campo">
                         <label for="datahora">Data e horário:</label>
-                        <input type="datetime-local" id="datahora" name="datahora" required value="agendamento.datahora"/>
+                        <input type="datetime-local" id="datahora" name="datahora" required value="{{ agendamento.datahora }}"/>
                     </div>
                     <div class="campo">
                         <label for="sintomas">Sintomas do pet:</label>
-                        <textarea id="sintomas" name="sintomas" rows="4" cols="50" required value="agendamento.sintomas"></textarea>
+                        <textarea id="sintomas" name="sintomas" rows="4" cols="50" required>{{ agendamento.sintomas }}</textarea>
                     </div>
                     <div class="botaoalinhar botaodesalvar">
                         <button type="submit">Reagendar</button>
