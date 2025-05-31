@@ -78,11 +78,11 @@
                     </div>
                     <div class="campo">
                         <label for="telefone">Telefone de contato:</label>
-                        <input type="tel" name="telefone" required />
+                        <input type="tel" name="telefone" required value="{{ usuario.telefone }}"/>
                     </div>
                     <div class="campo">
-                        <label for="nomevet">Selecione o veterinário:</label>
-                        <select id="nomevet" name="nomevet" required>
+                        <label for="codigovet">Selecione o veterinário:</label>
+                        <select id="codigovet" name="codigovet" required>
                             <option value="">Selecione um veterinário</option>
                             {% for vet in veterinarios %}
                                 <option value="{{ vet.codigo }}">{{ vet.nome }}</option>

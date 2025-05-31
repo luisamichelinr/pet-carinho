@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash, url_for
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 app = Flask(__name__)
 app.secret_key = 'pet-carinho'
@@ -18,11 +18,11 @@ usuarios = [
       'cep': 'N/A',
       'telefone': 'N/A',
       'senha': 'AuMiau'
-      },
+    },
     {'tipo': 1,
       'codigo': 1,
       'nome': 'Maria',
-     'email': 'maria@gmail.com',
+      'email': 'maria@gmail.com',
       'data_nascimento': '2000-09-19',
       'endereco': 'N/A',
       'cep': 'N/A',
@@ -32,14 +32,57 @@ usuarios = [
     {'tipo': 2,
       'codigo': 2,
       'nome': 'Gustavo',
-     'email': 'gustavo@vet.com',
+      'email': 'gustavo@vet.com',
       'data_nascimento': '1999-03-06',
       'endereco': 'N/A',
       'cep': 'N/A',
       'telefone': 'N/A',
       'senha': 'Gustavo@1'
-    }
+    },
+
+    {'tipo': 1,
+      'codigo': 3,
+      'nome': 'Carlos',
+      'email': 'carlos@gmail.com',
+      'data_nascimento': '1985-12-05',
+      'endereco': 'Rua das Flores, 123',
+      'cep': '12345-678',
+      'telefone': '(11) 91234-5678',
+      'senha': 'Carlos@1'
+    },
+    {'tipo': 1,
+      'codigo': 4,
+      'nome': 'Ana',
+      'email': 'ana@gmail.com',
+      'data_nascimento': '1990-06-20',
+      'endereco': 'Av. Brasil, 456',
+      'cep': '23456-789',
+      'telefone': '(21) 99876-5432',
+      'senha': 'Ana@1'
+    },
+
+    {'tipo': 2,
+      'codigo': 5,
+      'nome': 'Mariana',
+      'email': 'mariana@vet.com',
+      'data_nascimento': '1980-03-15',
+      'endereco': 'Rua das Orquídeas, 98',
+      'cep': '34567-890',
+      'telefone': '(31) 98765-4321',
+      'senha': 'Mariana@1'
+    },
+    {'tipo': 2,
+      'codigo': 6,
+      'nome': 'João',
+      'email': 'joao@vet.com',
+      'data_nascimento': '1978-11-25',
+      'endereco': 'Av. Paulista, 2000',
+      'cep': '45678-901',
+      'telefone': '(41) 91234-8765',
+      'senha': 'Joao@1'
+    },
 ]
+
 animais = [
     { 'tutor': 1,
       'codigo': 0,
@@ -49,9 +92,194 @@ animais = [
       'raca': 'SRD',
       'peso': 7.0,
       'sexo': 'F'
+    },
+
+    { 'tutor': 3,
+      'codigo': 1,
+      'nome': 'Rex',
+      'data_nascimento': '2019-08-15',
+      'especie': 'cachorro',
+      'raca': 'Labrador',
+      'peso': 30.5,
+      'sexo': 'M'
+    },
+    { 'tutor': 3,
+      'codigo': 2,
+      'nome': 'Luna',
+      'data_nascimento': '2020-12-01',
+      'especie': 'gato',
+      'raca': 'Siamês',
+      'peso': 4.2,
+      'sexo': 'F'
+    },
+    { 'tutor': 3,
+      'codigo': 3,
+      'nome': 'Bunny',
+      'data_nascimento': '2022-05-10',
+      'especie': 'coelho',
+      'raca': 'Angorá',
+      'peso': 2.3,
+      'sexo': 'F'
+    },
+    { 'tutor': 3,
+      'codigo': 4,
+      'nome': 'Cali',
+      'data_nascimento': '2023-01-25',
+      'especie': 'calopsita',
+      'raca': 'N/A',
+      'peso': 0.1,
+      'sexo': 'M'
+    },
+
+    { 'tutor': 4,
+      'codigo': 5,
+      'nome': 'Bolt',
+      'data_nascimento': '2018-07-07',
+      'especie': 'cachorro',
+      'raca': 'Pastor Alemão',
+      'peso': 35.0,
+      'sexo': 'M'
+    },
+    { 'tutor': 4,
+      'codigo': 6,
+      'nome': 'Mia',
+      'data_nascimento': '2022-02-20',
+      'especie': 'gato',
+      'raca': 'Maine Coon',
+      'peso': 5.0,
+      'sexo': 'F'
+    },
+    { 'tutor': 4,
+      'codigo': 7,
+      'nome': 'Fluffy',
+      'data_nascimento': '2021-11-15',
+      'especie': 'coelho',
+      'raca': 'Mini Lop',
+      'peso': 1.8,
+      'sexo': 'M'
+    },
+    { 'tutor': 4,
+      'codigo': 8,
+      'nome': 'Piu Piu',
+      'data_nascimento': '2023-03-10',
+      'especie': 'calopsita',
+      'raca': 'N/A',
+      'peso': 0.1,
+      'sexo': 'F'
+    },
+]
+agendamentos = [{
+        'ativo': True,
+        'codigo': 0,
+        'codigopet': 5,
+        'nomepet': 'Bolt',
+        'nometutor': 4,
+        'telefone': '(21) 99876-5432',
+        'codigovet': 2,
+        'nomevet': 'Gustavo',
+        'datahora': '2025-06-02T12:36',
+        'sintomas': 'Tosse persistente',
+        'datahora_obj': datetime(2025, 5, 31, 17, 0),
+        'datahora_formatada': '31/05/2025 às 10:00',
+        'data_somente': date(2025, 5, 31)
+    },
+    {
+        'ativo': True,
+        'codigo': 1,
+        'codigopet': 0,
+        'nomepet': 'Kiara',
+        'nometutor': 1,
+        'telefone': 'N/A',
+        'codigovet': 2,
+        'nomevet': 'Gustavo',
+        'datahora': '2025-06-01T09:00',
+        'sintomas': 'Febre e apatia',
+        'remarcavel': True,
+        'datahora_obj': datetime(2025, 6, 1, 9, 0),
+        'datahora_formatada': '01/06/2025 às 09:00',
+        'data_somente': date(2025, 6, 1),
+    },
+    {
+        'ativo': True,
+        'codigo': 2,
+        'codigopet': 1,
+        'nomepet': 'Rex',
+        'nometutor': 3,
+        'telefone': '(11) 91234-5678',
+        'codigovet': 5,
+        'nomevet': 'Mariana',
+        'datahora': '2025-06-02T14:30',
+        'sintomas': 'Coceira e queda de pelo',
+        'remarcavel': True,
+        'datahora_obj': datetime(2025, 6, 2, 14, 30),
+        'datahora_formatada': '02/06/2025 às 14:30',
+        'data_somente': date(2025, 6, 2),
+    },
+    {
+        'ativo': True,
+        'codigo': 3,
+        'codigopet': 5,
+        'nomepet': 'Bolt',
+        'nometutor': 4,
+        'telefone': '(21) 99876-5432',
+        'codigovet': 6,
+        'nomevet': 'João',
+        'datahora': '2025-06-03T11:00',
+        'sintomas': 'Dificuldade para andar',
+        'remarcavel': True,
+        'datahora_obj': datetime(2025, 6, 3, 11, 0),
+        'datahora_formatada': '03/06/2025 às 11:00',
+        'data_somente': date(2025, 6, 3),
+    },
+    {
+        'ativo': True,
+        'codigo': 4,
+        'codigopet': 2,
+        'nomepet': 'Luna',
+        'nometutor': 3,
+        'telefone': '(11) 91234-5678',
+        'codigovet': 2,
+        'nomevet': 'Gustavo',
+        'datahora': '2025-06-04T15:15',
+        'sintomas': 'Vômito frequente',
+        'remarcavel': True,
+        'datahora_obj': datetime(2025, 6, 4, 15, 15),
+        'datahora_formatada': '04/06/2025 às 15:15',
+        'data_somente': date(2025, 6, 4),
+    },
+    {
+        'ativo': True,
+        'codigo': 5,
+        'codigopet': 7,
+        'nomepet': 'Fluffy',
+        'nometutor': 4,
+        'telefone': '(21) 99876-5432',
+        'codigovet': 5,
+        'nomevet': 'Mariana',
+        'datahora': '2025-06-05T08:45',
+        'sintomas': 'Diarreia leve',
+        'remarcavel': True,
+        'datahora_obj': datetime(2025, 6, 5, 8, 45),
+        'datahora_formatada': '05/06/2025 às 08:45',
+        'data_somente': date(2025, 6, 5),
+    },
+    {
+        'ativo': True,
+        'codigo': 100,
+        'codigopet': 0,
+        'nomepet': 'Kiara',
+        'nometutor': 1,
+        'telefone': '(11) 91234-5678',
+        'codigovet': 2,
+        'nomevet': 'Gustavo',
+        'datahora': (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%dT%H:%M'),
+        'sintomas': 'Exemplo de agendamento passado',
+        'remarcavel': False,
+        'datahora_obj': datetime.now() - timedelta(days=1),
+        'datahora_formatada': (datetime.now() - timedelta(days=1)).strftime('%d/%m/%Y às %H:%M'),
+        'data_somente': (datetime.now() - timedelta(days=1)).date(),
     }
 ]
-agendamentos = []
 
 
 @app.route('/')
@@ -104,12 +332,13 @@ def dashboard():
         tutores = []
         veterinarios = []
         animais_ativos = []
-        print(HOJE)
+        agendamentos_futuros = []
+
         for a in agendamentos:
             if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
-
-        print(agendamentos)
+            if a['ativo'] == True and a['datahora_obj'] >= datetime.now():
+                agendamentos_futuros.append(a)
 
         for usuario in usuarios:
             if usuario['tipo'] == 1 and usuario['nome'] != "":
@@ -131,7 +360,7 @@ def dashboard():
             if animal['nome'] != '':
                 animais_ativos.append(animal)
 
-        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, animais=animais_ativos, LOGADO=LOGADO, codigo=0, agendamentos=agendamentos)
+        return render_template('dashboard.html', tutores=tutores, veterinarios=veterinarios, animais=animais_ativos, LOGADO=LOGADO, codigo=0, agendamentos=agendamentos_futuros)
     except:
         flash(f'Ocorreu um erro ao carregar o dashboard do administrador', 'erro')
         return redirect('/')
@@ -159,7 +388,8 @@ def pagina_veterinario(codigo):
             if a['data_somente'] == HOJE:
                 a['remarcavel'] = False
             if a['nomevet'] == usuario['nome']:
-                agendamentos_vet.append(a)
+                if a['ativo'] == True and a['datahora_obj'] >= datetime.now():
+                    agendamentos_vet.append(a)
             for an in animais:
                 if a['codigopet'] == an['codigo']:
                     if 'data_nascimento' in an and an['data_nascimento']:
@@ -461,7 +691,7 @@ def exclusao_veterinario(codigo):
         return redirect('/dashboard')
 @app.route('/pagina_usuario/<int:codigo>')
 def pagina_usuario(codigo):
-    try:
+    # try:
         global LOGADO
         LOGADO = 1
         for usuario in usuarios:
@@ -488,16 +718,17 @@ def pagina_usuario(codigo):
                         animais_do_usuario.append(animal)
                 agendamentos_usuario = []
                 for a in agendamentos:
-                    if a['nometutor'] == usuario['codigo']:
-                        if a['data_somente'] == HOJE:
-                            a['remarcavel'] = False
-                        agendamentos_usuario.append(a)
+                    if a['ativo'] == True and a['datahora_obj'] >= datetime.now():
+                        if a['nometutor'] == usuario['codigo']:
+                            if a['data_somente'] == HOJE:
+                                a['remarcavel'] = False
+                            agendamentos_usuario.append(a)
                 return render_template('pagina_usuario.html', usuario=usuario, animais=animais_do_usuario, codigo=usuario['codigo'], LOGADO=LOGADO, agendamentos_usuario=agendamentos_usuario)
         flash("Usuário não encontrado", 'erro')
         return redirect('/')
-    except:
-        flash(f'Ocorreu um erro inesperado', 'erro')
-        return redirect('/')
+    # except:
+    #     flash(f'Ocorreu um erro inesperado', 'erro')
+    #     return redirect('/')
 
 @app.route('/exclusao_usuario/<int:codigo>', methods=['GET', 'POST'])
 def exclusao_usuario(codigo):
@@ -619,14 +850,14 @@ def agendamento(codigo):
         if request.method == 'POST':
             codigopet = int(request.form["codigopet"])
             telefone = request.form["telefone"]
-            nomevet = int(request.form["nomevet"])
+            codigovet = int(request.form["codigovet"])
             datahora = request.form["datahora"]
             sintomas = request.form["sintomas"]
             consulta = len(agendamentos)
 
             animal = animais[codigopet]
             nomeanimal = animal['nome']
-            veterinario = usuarios[nomevet]
+            veterinario = usuarios[codigovet]
             tutor = animal['tutor']
 
             datahora_obj = datetime.fromisoformat(datahora)
@@ -637,10 +868,10 @@ def agendamento(codigo):
             data_somente = datahora_obj.date()
 
             for a in agendamentos:
-                if a['codigopet'] == codigopet:
+                if a['codigopet'] == codigopet and a['datahora_obj'] >= datetime.now():
                     flash("Este pet já possui um agendamento", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
-                elif a['datahora'] == datahora and a['nomevet'] == nomevet:
+                elif a['datahora'] == datahora and a['codigovet'] == codigovet:
                     flash("Este horário não está disponível", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
 
@@ -667,6 +898,7 @@ def agendamento(codigo):
                 'nomepet': nomeanimal,
                 'nometutor': int(tutor),
                 'telefone': telefone,
+                'codigovet': codigovet,
                 'nomevet': veterinario['nome'],
                 'datahora': datahora,
                 'sintomas': sintomas,
@@ -674,6 +906,7 @@ def agendamento(codigo):
                 'datahora_obj': datahora_obj,
                 'datahora_formatada': datahora_formatada,
                 'data_somente': data_somente,
+                'ativo': True
             }
             agendamentos.append(agendamento)
 
@@ -720,23 +953,30 @@ def agendamento(codigo):
 @app.route('/reagendamento/<int:codigo_agendamento>', methods=['GET', 'POST'])
 def reagendamento(codigo_agendamento):
     try:
-        agendamento = ''
+        agendamento = {}
         for ag in agendamentos:
-            if ag['codigo'] == codigo_agendamento:
+            if ag['codigo'] == int(codigo_agendamento):
                 agendamento = ag
+                print(f'Agendamento encontrado: {agendamento}')
                 break
-        # print(f' lista de agendamentos -> {agendamentos}')
 
-        # print(f' um agendamento ->  {agendamento}')
+
+        if not agendamento:
+            flash("Agendamento não encontrado", "erro")
+            if LOGADO == 0:
+                return redirect(url_for('dashboard'))
+            elif LOGADO == 1:
+                return redirect(url_for('pagina_usuario', codigo=codigo))
+            else:
+                return redirect('/')
 
         codigo = agendamento['nometutor']
-
-        # print(f'aqui e o codigo -> {codigo}')
 
         if request.method == 'POST':
             datahora = request.form["datahora"]
             codigopet = int(request.form["nomepet"])
-            nomevet = int(request.form["nomevet"])
+            codigovet = int(request.form["codigovet"])
+            veterinario = usuarios[codigovet]
 
             datahora_obj = datetime.fromisoformat(datahora)
             dia_da_semana = datahora_obj.weekday()
@@ -750,7 +990,7 @@ def reagendamento(codigo_agendamento):
                 return redirect(url_for('agendamento', codigo=codigo))
 
             for a in agendamentos:
-                if a['datahora'] == datahora and a['nomevet'] == nomevet and a['codigo'] != codigo_agendamento:
+                if a['datahora'] == datahora and a['codigovet'] == codigovet and a['codigo'] != codigo_agendamento:
                     flash("Este horário não está disponível", "erro")
                     return redirect(url_for('agendamento', codigo=codigo))
 
@@ -769,7 +1009,8 @@ def reagendamento(codigo_agendamento):
 
             agendamento['codigopet'] = int(request.form["nomepet"])
             agendamento['telefone'] = request.form["telefone"]
-            agendamento['nomevet'] = int(request.form["nomevet"])
+            agendamento['codigovet'] = int(request.form["codigovet"])
+            agendamento['nomevet'] = veterinario['nome']
             agendamento['datahora'] = request.form["datahora"]
             agendamento['sintomas'] = request.form["sintomas"]
             agendamento['datahora_formatada'] = datahora_formatada
@@ -827,13 +1068,8 @@ def exclusao_agendamentos(codigo_agendamento):
             if ag['codigo'] == codigo_agendamento:
                 agendamento = ag
                 break
-        # print(f' lista de agendamentos -> {agendamentos}')
-
-        # print(f' um agendamento ->  {agendamento}')
 
         codigo = agendamento['nometutor']
-
-        # print(f'aqui e o codigo -> {codigo}')
 
         if request.method == 'POST':
             agendamentos[codigo_agendamento] = {
@@ -848,7 +1084,8 @@ def exclusao_agendamentos(codigo_agendamento):
                 'remarcavel': False,
                 'datahora_obj': '',
                 'datahora_formatada': '',
-                'data_somente': ''
+                'data_somente': '',
+                'ativo': False
             }
             print(agendamentos)
 

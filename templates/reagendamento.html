@@ -81,11 +81,11 @@
                         <input type="tel" name="telefone" required value="{{ agendamento.telefone }}"/>
                     </div>
                     <div class="campo">
-                        <label for="nomevet">Selecione o veterinário:</label>
-                        <select id="nomevet" name="nomevet" required>
+                        <label for="codigovet">Selecione o veterinário:</label>
+                        <select id="codigovet" name="codigovet" required>
                             <option value="">Selecione um veterinário</option>
                             {% for vet in veterinarios %}
-                                <option value="{{ vet.nome }}" {% if vet.nome == agendamento.nomevet %}selected{% endif %}>{{ vet.nome }}</option>
+                                <option value="{{ vet.codigo }}" {% if vet.codigo == agendamento.codigovet %}selected{% endif %}>{{ vet.nome }}</option>
                             {% endfor %}
                         </select>
                     </div>

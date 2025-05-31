@@ -70,11 +70,6 @@
                     {% if animal.nome != "" %}
                         <div class="petdiv">
                             <div>
-                                <div class="flex right">
-                                    <a href="/edicao_animal/{{ animal.codigo }}"><img src="../static/img/editar.png" alt="Ícone editar" class="botao-pet"></a>
-                                    <a href="/exclusao_animal/{{ animal.codigo }}"><img
-                                        src="../static/img/excluir.png" alt="Ícone excluir" class="botao-pet"></a>
-                                </div>
                                 {% if animal.especie == "cachorro" %}
                                     <img class="icone-pet" src="../static/img/cachorro.png" alt="Ícone cachorro">
                                 {% elif animal.especie == "gato" %}
